@@ -1,0 +1,41 @@
+.cmain{
+    width:50%;
+    margin: 0 auto;
+    text-align: left;
+}
+.ctit{
+    font-size: 40px;;
+}
+.csub{
+    font-size:28px;
+}
+.cimg{
+    width:100%;
+    height: 300px;
+    object-fit: fill;
+    margin:70px 0;
+}
+.cdes{
+    font-size: 24px;
+    text-align: justify;
+}
+
+.cauthor {
+    font-weight: 600;
+    font-size: 22px;;
+}
+
+.cauthor-img {
+    width: 50px;
+}
+.cbtm {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.cdate,
+.cpnt,
+.cread {
+    color: #585858;
+}

@@ -1,0 +1,40 @@
+/* About.css */
+.about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    color: #fff;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.about-container {
+    max-width: 900px;
+    margin: auto;
+}
+
+h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+p {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+a {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
