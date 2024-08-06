@@ -46,6 +46,11 @@
         gap: 5px;
     }
 
+    .btm .btm-right {
+        margin-left: 10px;
+        margin-top: -3px;
+    }
+
     .date,
     .pnt,
     .read {
