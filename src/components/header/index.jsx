@@ -9,6 +9,8 @@ export default function Header() {
                     <a className='nav-lnk' href='/'>Home</a>
                     <a className='nav-lnk' href='/about'>About</a>
                     <a className='nav-lnk' href='/contact'>Contact</a>
+                    <a className='nav-lnk' href='/allusers'>All Users</a>
+
                 </div>
             </header>
         </div>

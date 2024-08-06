@@ -14,7 +14,7 @@ export default function Contact() {
                     <textarea placeholder="Your Message" rows="6" required></textarea>
                     <button type="submit">Send Message</button>
                 </form>
-                {/* <p>Follow us on <a href="[Your Social Media Link]" target="_blank" rel="noopener noreferrer">social media</a> for updates and more.</p> */}
+                <p>Follow us on <a href=" " target="_self" rel="noopener noreferrer">social media</a> for updates and more.</p>
             </div>
         </section>
     );
