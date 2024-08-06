@@ -7,7 +7,7 @@ import Contact from './components/contact';
 import ContentPage from './components/content';
 import Footer from './components/footer';
 import Header from './components/header';
-
+import AllUser from './components/allusers';
 import User from './components/users';
 
 function App() {
@@ -18,13 +18,10 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/allusers" element={<User />} />
+          <Route path="/allusers" element={<AllUser />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/content/:id" element={<ContentPage props=":id" />} />
           <Route path="/users/:id" element={<User props=":id" />} />
-          {/* <Switch> */}
-          {/* <Route path="/users" exact component={User} /> */}
-          {/* </Switch> */}
         </Routes>
       </div>
       <Footer />

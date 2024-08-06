@@ -1,33 +1,49 @@
+// src/components/User/User.jsx
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './user.css';
 
-const User = () => {
-    const [users, setUsers] = useState([]);
+function User(props) {
+    const { id } = useParams();
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:1729/users')
-            .then(response => setUsers(response.data))
-            .catch(error => console.error('Error fetching users:', error));
-    }, []);
-
+        axios.get(`http://localhost:1729/users/${id}`)
+            .then(response => {
+                setUser(response.data);
+            })
+            .catch(error => console.error('Error fetching user:', error));
+    }, [id]);
     return (
-        <div className='user-page'>
-            {users.map((user, index) => (
-                <div className='profile' key={user.id}>
-                    <div className='profile-left'>
-                        <img src={user.aimage} alt={user.author} className='profile-img' />
-                        <span className={`category ${user.category}`}>{user.author}</span>
+        <div>
+            {user ? (
+                <div className="profile-container" key={user._id}>
+                    <div className="profile-header">
+                        <img src={user.aimage} alt="User" className="profile-image" />
+                        <h1>{user.author}</h1>
+                        <p>{user.bio}</p>
+                        <div className="profile-stats">
+                            <span>Followers: {user.followers}</span>
+                            &nbsp;
+                            <span>Following: {user.following}</span>
+                        </div>
                     </div>
-                    <div className='profile-right'>
-                        <p className='bio'>{user.bio}</p>
-                        <p className='quote'>{user.quote}</p>
-                        <p className='posts'>Total Posts: {user.totalposts}</p>
+                    <div className="profile-description">
+                        <p>Publication: {user.publication}</p>
+                        <p>Total Posts: {user.totalposts}</p>
+                    </div>
+                    <div className="profile-post">
+                        <blockquote>{user.quote}</blockquote>
+                        <p>Category: {user.category}</p>
                     </div>
                 </div>
-            ))}
+            ) : (
+                <p>No user found with the given ID</p>
+            )}
+
         </div>
     );
-};
+}
 
 export default User;

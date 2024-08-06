@@ -12,7 +12,7 @@ const BlogList = () => {
             .then(response => setBlogs(response.data))
             .catch(error => console.error('Error fetching blogs:', error));
     }, []);
-    
+
 
     return (
         <div className="blog-list">
@@ -25,18 +25,20 @@ const BlogList = () => {
                     <div className="cont">
                         <p className='sub'>{blog.subject}</p>
                     </div>
-                    <div className="btm">
-                        <div className="btm-left">
-                            <img className='author-img' src={blog.aimage} alt="a img" />
+                    <Link key={blog._id} to={`users/${blog._id}`}>
+                        <div className="btm">
+                            <div className="btm-left">
+                                <img className='author-img' src={blog.aimage} alt="a img" />
+                            </div>
+                            <div className="btm-right">
+                                <span className="author">{blog.author}</span>
+                                <br />
+                                <span className='date'>{blog.date}</span>&nbsp;
+                                <span className="mx-2 pnt">•</span>&nbsp;
+                                <span className="read">{blog.read} read</span>
+                            </div>
                         </div>
-                        <div className="btm-right">
-                            <span className="author">{blog.author}</span>
-                            <br />
-                            <span className='date'>{blog.date}</span>&nbsp;
-                            <span className="mx-2 pnt">•</span>&nbsp;
-                            <span className="read">{blog.read} read</span>
-                        </div>
-                    </div>
+                    </Link>
                 </Link>
             ))}
         </div>

@@ -43,7 +43,10 @@
     .btm {
         display: flex;
         flex-direction: row;
-        gap: 5px;
+        column-gap: 5px;
+    }
+    .btm .btm-right{
+        margin-left: 100px;
     }
 
     .date,

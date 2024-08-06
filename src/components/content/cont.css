@@ -1,41 +1,59 @@
-.cmain{
-    width:50%;
+.main {
+    width: 50%;
     margin: 0 auto;
     text-align: left;
-}
-.ctit{
-    font-size: 40px;;
-}
-.csub{
-    font-size:28px;
-}
-.cimg{
-    width:100%;
-    height: 300px;
-    object-fit: fill;
-    margin:70px 0;
-}
-.cdes{
-    font-size: 24px;
-    text-align: justify;
-}
 
-.cauthor {
-    font-weight: 600;
-    font-size: 22px;;
-}
+    .tit {
+        font-size: 40px;
+        ;
+    }
 
-.cauthor-img {
-    width: 50px;
-}
-.cbtm {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-}
+    .sub {
+        font-size: 28px;
+    }
 
-.cdate,
-.cpnt,
-.cread {
-    color: #585858;
+    .img {
+        width: 100%;
+        height: 300px;
+        object-fit: fill;
+        margin: 70px 0;
+    }
+
+    .des {
+        font-size: 24px;
+        text-align: justify;
+    }
+
+    .author {
+        font-weight: 600;
+        font-size: 22px;
+        ;
+    }
+
+    .author-img {
+        width: 50px;
+        border-radius: 50%;
+    }
+
+    .author-img:hover {
+        border-radius: 20%;
+        transition: border-radius 0.2s linear;
+    }
+
+    .btm {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+    }
+
+    .date,
+    .pnt,
+    .read {
+        color: #585858;
+    }
+
+    .link {
+        text-decoration: none;
+        color: #000000;
+    }
 }
