@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Analytics } from "@vercel/analytics/react"
 import './App.css';
 import Home from './components/home';
 import About from './components/about';
@@ -14,6 +15,7 @@ import AddPost from './components/addpost';
 function App() {
   return (
     <Router>
+      <Analytics/>
       <div className="App">
         <Header />
         <Routes>
