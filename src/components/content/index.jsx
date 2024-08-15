@@ -27,13 +27,11 @@ function ContentPage(props) {
                             <img className='author-img' src={blog.aimage} alt="a img" />
                         </div>
                         <Link key={blog._id} to={`/users/${blog._id}`} className='link btm-right'>
-                            {/* <div > */}
                                 <span className="author">{blog.author}</span>
                                 <br />
                                 <span className='date'>{blog.date}</span>&nbsp;
                                 <span className="mx-2 pnt">•</span>&nbsp;
                                 <span className="read">{blog.read} read</span>
-                            {/* </div> */}
                         </Link>
                     </div>
                     <img src={blog.imagepath} alt={blog.title} className="img" />

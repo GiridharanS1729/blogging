@@ -9,6 +9,7 @@ import Footer from './components/footer';
 import Header from './components/header';
 import AllUser from './components/allusers';
 import User from './components/users';
+import AddPost from './components/addpost';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/allusers" element={<AllUser />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/addpost" element={<AddPost />} />
           <Route path="/content/:id" element={<ContentPage props=":id" />} />
           <Route path="/users/:id" element={<User props=":id" />} />
         </Routes>
