@@ -1,17 +1,26 @@
 // src/components/ContentPage/ContentPage.jsx
 import React, { useEffect, useState } from 'react';
-import { useParams ,Link} from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import './cont.css';
+import x from '../../config';
 
-function ContentPage(props) {
+function ContentPage() {
     const { id } = useParams();
-    const [blog, setblog] = useState(null);
+    const [blog, setBlog] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:1729/blogs/${id}`)
+        const url = x === 1 ? '/data.json' : `http://localhost:1729/blogs/${id}`;
+
+        axios.get(url)
             .then(response => {
-                setblog(response.data);
+                let data;
+                if (x === 1) {
+                    data = response.data.find(blog => blog._id.toString() === id);
+                } else {
+                    data = response.data;
+                }
+                setBlog(data);
             })
             .catch(error => console.error('Error fetching blog:', error));
     }, [id]);
@@ -27,11 +36,11 @@ function ContentPage(props) {
                             <img className='author-img' src={blog.aimage} alt="a img" />
                         </div>
                         <Link key={blog._id} to={`/users/${blog._id}`} className='link btm-right'>
-                                <span className="author">{blog.author}</span>
-                                <br />
-                                <span className='date'>{blog.date}</span>&nbsp;
-                                <span className="mx-2 pnt">•</span>&nbsp;
-                                <span className="read">{blog.read} read</span>
+                            <span className="author">{blog.author}</span>
+                            <br />
+                            <span className='date'>{blog.date}</span>&nbsp;
+                            <span className="mx-2 pnt">•</span>&nbsp;
+                            <span className="read">{blog.read} read</span>
                         </Link>
                     </div>
                     <img src={blog.imagepath} alt={blog.title} className="img" />
@@ -40,7 +49,6 @@ function ContentPage(props) {
             ) : (
                 <p>No blog found with the given ID</p>
             )}
-
         </div>
     );
 }

@@ -3,9 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './user.css';
-// import blogUrl from '../../config';
-
-const x = 1; // Change this value to control the data source
+import x from '../../config';
 
 function User(props) {
     const { id } = useParams();
@@ -13,7 +11,6 @@ function User(props) {
 
     useEffect(() => {
         const url = x === 1 ? '/data.json' : `http://localhost:1729/users/${id}`;
-
         axios.get(url)
             .then(response => {
                 let data;

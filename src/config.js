@@ -1,3 +1,2 @@
-// src/config.js
-const blogUrl = '/data.json';  
+const blogUrl = 1;
 export default blogUrl;

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './user.css';
 import { Link } from 'react-router-dom';
-// import blogUrl from '../../config';
-const x = 1; 
+import x from '../../config';
+// const x = 1; 
 
 const AllUser = () => {
     const [users, setAllUsers] = useState([]);
