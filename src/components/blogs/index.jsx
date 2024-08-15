@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Blogs.css';
-const BlogUrl = process.env.REACT_APP_BLOG_URL;
+// const BlogUrl = process.env.REACT_APP_BLOG_URL;
+import { BlogUrl } from '../../config';
 
 const BlogList = () => {
     const [blogs, setBlogs] = useState([]);
