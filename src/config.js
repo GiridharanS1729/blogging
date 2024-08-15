@@ -1,3 +1,3 @@
 // src/config.js
-const blogUrl = 'http://localhost:1729/';
+const blogUrl = '/data.json';  
 export default blogUrl;

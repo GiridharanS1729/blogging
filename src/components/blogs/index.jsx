@@ -3,14 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Blogs.css';
-// const BlogUrl = process.env.REACT_APP_BLOG_URL;
-import { blogUrl } from '../../config';
+import blogUrl from '../../config';
+// const blogUrl = "https://localhost:1729/blogs";
 
 const BlogList = () => {
     const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
-        axios.get(`${blogUrl}blogs`)
+        axios.get(`${blogUrl}`)
             .then(response => setBlogs(response.data))
             .catch(error => console.error('Error fetching blogs:', error));
     }, []);
