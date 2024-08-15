@@ -3,18 +3,34 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './user.css';
+// import blogUrl from '../../config';
+
+const x = 1; // Change this value to control the data source
 
 function User(props) {
     const { id } = useParams();
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:1729/users/${id}`)
+        const url = x === 1 ? '/data.json' : `http://localhost:1729/users/${id}`;
+
+        axios.get(url)
             .then(response => {
-                setUser(response.data);
+                let data;
+                if (x === 1) {
+                    data = response.data.find(user => user._id === parseInt(id));
+                } else {
+                    data = response.data;
+                }
+                setUser(data);
             })
             .catch(error => console.error('Error fetching user:', error));
     }, [id]);
+
+    if (!user) {
+        return <div>User not found</div>;
+    }
+
     return (
         <div>
             {user ? (

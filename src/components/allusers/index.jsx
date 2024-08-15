@@ -2,13 +2,18 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './user.css';
 import { Link } from 'react-router-dom';
+// import blogUrl from '../../config';
+const x = 1; 
 
 const AllUser = () => {
     const [users, setAllUsers] = useState([]);
-
     useEffect(() => {
-        axios.get('http://localhost:1729/users')
-            .then(response => setAllUsers(response.data))
+        const url = x === 1 ? '/data.json' : `http://localhost:1729/users`;
+        axios.get(url)
+            .then(response => {
+                const data = x === 1 ? response.data : response.data;
+                setAllUsers(data);
+            })
             .catch(error => console.error('Error fetching users:', error));
     }, []);
 
