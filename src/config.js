@@ -1,2 +1,2 @@
-const blogUrl = 1;
+const blogUrl = 0;
 export default blogUrl;
