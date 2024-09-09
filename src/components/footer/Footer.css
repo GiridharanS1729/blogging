@@ -1,0 +1,138 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+
+/* Footer Container */
+.footer {
+    background: linear-gradient(135deg, #3b8d99, #6b6b83);
+    /* Blue-to-purple gradient */
+    color: #fff;
+    padding: 40px 0;
+    font-family: 'Montserrat', sans-serif;
+    animation: fadeInUp 1.2s ease-in-out;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-about,
+.footer-links,
+.footer-social,
+.footer-subscribe {
+    width: 23%;
+    margin-bottom: 30px;
+}
+
+/* About Section */
+.footer-about h3,
+.footer-links h3,
+.footer-social h3,
+.footer-subscribe h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+/* Quick Links */
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: #ffeb3b;
+    /* Bright yellow on hover */
+}
+
+/* Social Icons */
+.footer-social ul {
+    display: flex;
+    gap: 15px;
+    padding: 0;
+}
+
+.footer-social ul li a {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-social ul li a:hover {
+    color: #ffeb3b;
+    transform: scale(1.2);
+    /* Slight zoom on hover */
+}
+
+/* Subscribe Section */
+.footer-subscribe form {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-subscribe input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.footer-subscribe button {
+    padding: 10px;
+    background-color: #ffeb3b;
+    color: #333;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.footer-subscribe button:hover {
+    background-color: #ffc107;
+    /* Darker yellow on hover */
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* Fade In Up Animation */
+@keyframes fadeInUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
