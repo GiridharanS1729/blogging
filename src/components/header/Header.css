@@ -15,101 +15,102 @@
     /* Modern, attractive font */
     animation: slideIn 1s ease-in-out;
     /* Smooth entrance animation */
-}
 
-/* Logo Styling */
-.header-logo {
-    color: #fff;
-    font-size: 2rem;
-    font-weight: 800;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-    /* Soft shadow for the logo */
-}
 
-/* Navigation */
-.header-nav .nav-list {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-}
+    /* Logo Styling */
+    .header-logo {
+        color: #fff;
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        /* Soft shadow for the logo */
+    }
 
-.header-nav .nav-list li {
-    display: inline-block;
-}
+    /* Navigation */
+    .header-nav .nav-list {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+    }
 
-.header-nav .nav-list li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    transition: color 0.3s ease, transform 0.3s ease;
-    /* Smooth hover transitions */
-    position: relative;
-}
+    .header-nav .nav-list li {
+        display: inline-block;
+    }
 
-/* Hover Effect for Links */
-.header-nav .nav-list li a:hover {
-    color: #ffeb3b;
-    /* Bright yellow hover color */
-    transform: scale(1.1);
-    /* Slight zoom effect */
-}
+    .header-nav .nav-list li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        transition: color 0.3s ease, transform 0.3s ease;
+        /* Smooth hover transitions */
+        position: relative;
+    }
 
-/* Underline on hover */
-.header-nav .nav-list li a::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 3px;
-    background: #ffeb3b;
-    /* Yellow underline on hover */
-    transition: width 0.3s ease;
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-}
+    /* Hover Effect for Links */
+    .header-nav .nav-list li a:hover {
+        color: #ffeb3b;
+        /* Bright yellow hover color */
+        transform: scale(1.1);
+        /* Slight zoom effect */
+    }
 
-.header-nav .nav-list li a:hover::after {
-    width: 100%;
-}
+    /* Underline on hover */
+    .header-nav .nav-list li a::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 3px;
+        background: #ffeb3b;
+        /* Yellow underline on hover */
+        transition: width 0.3s ease;
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+    }
 
-/* Search Form Styles */
-.search-form {
-    display: flex;
-    align-items: center;
-}
+    .header-nav .nav-list li a:hover::after {
+        width: 100%;
+    }
 
-.search-input {
-    border: none;
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 4px;
-    width: 200px;
-    transition: border-color 0.3s;
-}
+    /* Search Form Styles */
+    .search-form {
+        display: flex;
+        align-items: center;
+    }
 
-.search-input:focus {
-    outline: none;
-    border-color: #e74c3c;
-}
+    .search-input {
+        border: none;
+        padding: 8px;
+        font-size: 16px;
+        border-radius: 4px;
+        width: 200px;
+        transition: border-color 0.3s;
+    }
 
-.search-button {
-    border: none;
-    background-color: #e74c3c;
-    color: #fff;
-    padding: 8px 12px;
-    font-size: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-left: 8px;
-    transition: background-color 0.3s;
-}
+    .search-input:focus {
+        outline: none;
+        border-color: #e74c3c;
+    }
 
-.search-button:hover {
-    background-color: #c0392b;
+    .search-button {
+        border: none;
+        background-color: #e74c3c;
+        color: #fff;
+        padding: 8px 12px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 8px;
+        transition: background-color 0.3s;
+    }
+
+    .search-button:hover {
+        background-color: #c0392b;
+    }
 }
 
 /* Entrance Animation for Header */
