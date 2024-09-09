@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ onSearch }) => {
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
+    const handleSearchSubmit = (event) => {
+        event.preventDefault();
+        onSearch(searchQuery);
+    };
+
     return (
         <header className="header">
             <div className="header-logo">GMS Blogs</div>
@@ -11,7 +22,18 @@ const Header = () => {
                     <li><a className="nav-lnk" href="/createpost">Create Post</a></li>
                     <li><a className="nav-lnk" href="/about">About</a></li>
                     <li><a className="nav-lnk" href="/contact">Contact</a></li>
-                    <li><a className="nav-lnk" href="/allusers">All Users</a></li>
+                    <li>
+                        <form onSubmit={handleSearchSubmit} className="search-form">
+                            <input
+                                type="text"
+                                value={searchQuery}
+                                onChange={handleSearchChange}
+                                placeholder="Search blogs..."
+                                className="search-input"
+                            />
+                            <button type="submit" className="search-button">Search</button>
+                        </form>
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -19,4 +41,3 @@ const Header = () => {
 }
 
 export default Header;
-

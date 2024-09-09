@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Blogs.css';
 import { FaHeart, FaComment } from 'react-icons/fa'; // Font Awesome icons for likes and comments
 import x from '../../config';
 
-const BlogList = () => {
+const BlogList = ({ searchQuery }) => {
     const [blogs, setBlogs] = useState([]);
-    const [loading, setLoading] = useState(true); // Loading state
-    const { id } = useParams(); // Get the blog ID from the URL params
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const url = x === 1 ? '/data.json' : `http://localhost:1729/blogs`;
@@ -16,32 +15,36 @@ const BlogList = () => {
         axios.get(url)
             .then(response => {
                 const data = x === 1 ? response.data : response.data;
-                if (id) {
-                    const filteredBlog = data.find(blog => blog._id === parseInt(id));
-                    setBlogs(filteredBlog ? [filteredBlog] : []);
+                if (searchQuery) {
+                    const filteredBlogs = data.filter(blog =>
+                        blog.title.toLowerCase().includes(searchQuery.toLowerCase())
+                    );
+                    setBlogs(filteredBlogs);
                 } else {
                     setBlogs(data);
                 }
-                setLoading(false); // Data is loaded
+                setLoading(false);
             })
             .catch(error => {
                 console.error('Error fetching blogs:', error);
-                setLoading(false); // Stop loading even if there's an error
+                setLoading(false);
             });
-    }, [id]); // Re-fetch when the ID changes
+    }, [searchQuery]);
 
     if (loading) {
         return (
-            <div className="blog-list">
-                {[...Array(4)].map((_, index) => ( // Generate 4 placeholders
-                    <div key={index} className="blog-card placeholder">
-                        <div className="blog-image"></div>
-                        <div className="blog-content">
-                            <h2 className="blog-title"></h2>
-                            <p className="blog-subject"></p>
+            <div className='mab'>
+                <div className="blog-list">
+                    {[...Array(4)].map((_, index) => (
+                        <div key={index} className="blog-card placeholder">
+                            <div className="blog-image"></div>
+                            <div className="blog-content">
+                                <h2 className="blog-title"></h2>
+                                <p className="blog-subject"></p>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         );
     }

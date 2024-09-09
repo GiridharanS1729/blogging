@@ -3,8 +3,8 @@
 
 /* Footer Container */
 .footer {
+    margin-top:100px;
     background: linear-gradient(135deg, #3b8d99, #6b6b83);
-    /* Blue-to-purple gradient */
     color: #fff;
     padding: 40px 0;
     font-family: 'Montserrat', sans-serif;

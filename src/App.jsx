@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 import './App.css';
 import Home from './components/home';
 import About from './components/about';
@@ -13,19 +13,25 @@ import User from './components/users';
 import CreatePost from './components/CreatePost';
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
   return (
     <Router>
-      <Analytics/>
+      <Analytics />
       <div className="App">
-        <Header />
+        <Header onSearch={handleSearch} />
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/" element={<Home searchQuery={searchQuery} />} />
           <Route path="/about" element={<About />} />
           <Route path="/allusers" element={<AllUser />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/createpost" element={<CreatePost />} />
-          <Route path="/content/:id" element={<ContentPage props=":id" />} />
-          <Route path="/users/:id" element={<User props=":id" />} />
+          <Route path="/content/:id" element={<ContentPage />} />
+          <Route path="/users/:id" element={<User />} />
         </Routes>
       </div>
       <Footer />

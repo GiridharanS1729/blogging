@@ -41,7 +41,6 @@ const userSchema = new mongoose.Schema({
     category: { type: String, default: "Innovation" }
 });
 
-
 // Auto-Increment Function
 const getNextSequenceValue = async (sequenceName) => {
     const sequenceDocument = await Counter.findByIdAndUpdate(
@@ -71,41 +70,28 @@ app.get("/blogs/:id", (req, res) => {
         .catch(err => res.status(500).json(err));
 });
 
-app.get("/users", (req, res) => {
-    User.find().then((data) => res.json(data))
-        .catch(err => res.json(err));
-});
+app.get("/search", async (req, res) => {
+    const { query } = req.query;
 
-app.get("/users/:id", (req, res) => {
-    const { id } = req.params;
-    User.findById(id)
-        .then(data => {
-            if (!data) {
-                return res.status(404).json({ message: 'User not found' });
-            }
-            res.json(data);
-        })
-        .catch(err => res.status(500).json(err));
-});
+    if (!query) {
+        return res.status(400).json({ message: 'Query parameter is required' });
+    }
 
-app.get('/posts/:id', async (req, res) => {
     try {
-        const post = await User.findById(req.params.id);
-        if (!post) {
-            return res.status(404).json({ message: 'Post not found' });
-        }
-        res.json(post);
+        const regex = new RegExp(query, 'i'); // Case-insensitive search
+        const blogs = await User.find({
+            $or: [
+                { title: { $regex: regex } },
+                { description: { $regex: regex } }
+            ]
+        });
+        res.json(blogs);
     } catch (error) {
-        console.error('Error fetching post:', error);
-        res.status(500).json({ message: 'Server error' });
+        console.error('Error searching blogs:', error);
+        res.status(500).json({ message: 'Server error while searching blogs' });
     }
 });
 
-
-
-
-
-// Create Post Route
 app.post("/createpost", async (req, res) => {
     try {
         const { title, imagepath, description } = req.body;
@@ -128,11 +114,6 @@ app.post("/createpost", async (req, res) => {
     }
 });
 
-
-
-
-
-
 app.get('/', (req, res) => {
     res.json("Welcome to Blogging Platform");
 });
@@ -140,9 +121,3 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port http://localhost:${port}`);
 });
-
-
-
-
-
-

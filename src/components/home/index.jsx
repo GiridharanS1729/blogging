@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import BlogList from '../blogs/index';
 
-export default function Home() {
+export default function Home({ searchQuery }) {
     return (
         <div>
-        <BlogList/>
+            <BlogList searchQuery={searchQuery} />
         </div>
-    )
+    );
 }
