@@ -61,7 +61,6 @@ const getNextSequenceValue = async (sequenceName) => {
 const User = mongoose.model(dbname, userSchema, dbname);
 
 // CRUD Operations
-
 // Create Post
 app.post("/createpost", async (req, res) => {
     try {
