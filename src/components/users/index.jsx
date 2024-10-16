@@ -10,7 +10,7 @@ function User(props) {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const url = x === 1 ? '/data.json' : `http://localhost:1729/users/${id}`;
+        const url = x === 1 ? '/data.json' : `http://localhost:1729/blogs`;
         axios.get(url)
             .then(response => {
                 let data;
