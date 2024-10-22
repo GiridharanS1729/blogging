@@ -13,9 +13,9 @@ app.use(express.json());
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
-const uri = process.env.MONGO_URI;
+const uri = process.env.MONGO_URL || "mongodb://localhost:27017/Blogging";
 mongoose.connect(uri)
-    .then(() => console.log("Connected to MongoDB Atlas successfully"))
+    .then(() => console.log("Connected to MongoDB successfully"))
     .catch(err => console.error("Error connecting to MongoDB Atlas:", err));
 
 // Counter Schema for Auto-Incrementing _id
@@ -29,9 +29,9 @@ const Counter = mongoose.model('counter', counterSchema);
 // User Schema with Default Values
 const userSchema = new mongoose.Schema({
     _id: { type: Number, required: true },
-    title: { type: String, required: true },
-    imagepath: { type: String, required: true },
-    description: { type: String, required: true },
+    title: { type: String, required: true ,default:"Title of the Blog"},
+    imagepath: { type: String, required: true, default:"/images/a.jpg"},
+    description: { type: String, required: true ,default:"Description of the Blog"},
     aimage: { type: String, default: "/images/aut.png" },
     subject: { type: String, default: "Master asynchronous operations with async/await." },
     author: { type: String, default: "Giridharan S" },
