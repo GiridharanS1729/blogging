@@ -3,14 +3,13 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import swal from 'sweetalert';
 import "./createpost.css";
 
 function CreatePost() {
   const [formData, setFormData] = useState({
-    title: "",
-    date: "",
-    time: "",
-    body: "",
+    title: "title",
+    body: "body",
     imagepath: ""
   });
 
@@ -18,15 +17,9 @@ function CreatePost() {
 
   function handleChange(e) {
     const { name, value } = e.target;
-    const date = new Date();
-    const currentDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
-    const time = new Date().toLocaleTimeString();
-
     setFormData({
       ...formData,
-      [name]: value,
-      date: currentDate,
-      time: time
+      [name]: value
     });
   }
 
@@ -61,25 +54,41 @@ function CreatePost() {
         ...formData,
         body: cleanedBody
       };
-      navigate('/');
-      await axios.post("http://localhost:1729/createpost", updatedFormData);
-      setFormData({
-        title: "",
-        date: "",
-        time: "",
-        body: "",
-        imagepath: ""
-      });
 
-    } catch (e) {
-      console.error("Error submitting the form:", e);
+      console.log(updatedFormData);  // Log the data to be sent
+
+      await axios.post("http://localhost:1729/createpost", updatedFormData);
+
+      swal({
+        title: "Post Created!",
+        text: "Your blog post has been successfully created.",
+        icon: "success",
+        button: "OK",
+      }).then(() => {
+        setFormData({
+          title: "",
+          body: "",
+          imagepath: ""
+        });
+        navigate('/');
+      });
+    } catch (error) {
+      console.error("Error submitting the form:", error.response || error.message);
+
+      // Error feedback to user
+      swal({
+        title: "Error!",
+        text: "There was an issue while creating your post. Please try again.",
+        icon: "error",
+        button: "OK",
+      });
     }
   }
+
 
   return (
     <div className="create-post">
       <div className="post-form-container">
-        {/* <h2>Create a New Post</h2> */}
         <form onSubmit={handleSubmit} className="form-container">
           <div className="form-group">
             <label htmlFor="title">Title</label>
@@ -100,7 +109,7 @@ function CreatePost() {
               id="imagepath"
               name="imagepath"
               onChange={handleImageChange}
-              required
+              // required
               className="form-control"
             />
           </div>

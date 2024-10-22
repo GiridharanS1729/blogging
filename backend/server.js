@@ -6,126 +6,134 @@ require('dotenv').config();
 
 const app = express();
 const port = 1729;
-const dbname = "blog";
 
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
+// Increase the limit for JSON payloads (for large posts or image uploads)
+app.use(bodyParser.json({ limit: '10mb' })); // Set it to 10MB (or higher as needed)
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
 const uri = process.env.MONGO_URL || "mongodb://localhost:27017/Blogging";
 mongoose.connect(uri)
-    .then(() => console.log("Connected to MongoDB successfully"))
+    .then(() => {
+        const ci = 20;
+        console.log("Connected to MongoDB successfully");
+    }
+    )
     .catch(err => console.error("Error connecting to MongoDB Atlas:", err));
 
 // Counter Schema for Auto-Incrementing _id
-const counterSchema = new mongoose.Schema({
-    _id: { type: String, required: true },
-    seq: { type: Number, default: 0 }
-});
 
-const Counter = mongoose.model('counter', counterSchema);
-
-// User Schema with Default Values
+// User Schema
 const userSchema = new mongoose.Schema({
-    _id: { type: Number, required: true },
-    title: { type: String, required: true ,default:"Title of the Blog"},
-    imagepath: { type: String, required: true, default:"/images/a.jpg"},
-    description: { type: String, required: true ,default:"Description of the Blog"},
     aimage: { type: String, default: "/images/aut.png" },
-    subject: { type: String, default: "Master asynchronous operations with async/await." },
     author: { type: String, default: "Giridharan S" },
     bio: { type: String, default: "React enthusiast and Full Stack Developer" },
     followers: { type: String, default: "2544" },
     following: { type: String, default: "1729" },
     publication: { type: String, default: "Tech Trends" },
     totalposts: { type: String, default: "123" },
+    category: { type: String, default: "Innovation" }
+});
+
+const User = mongoose.model('User', userSchema);
+
+// Blog Schema
+const blogSchema = new mongoose.Schema({
+    _id: { type: Number, required: true },
+    title: { type: String, required: true, default: "Title of the Blog" },
+    imagepath: { type: String, required: true, default: "/images/a.jpg" },
+    description: { type: String, required: true, default: "Description of the Blog" },
+    subject: { type: String, default: "Master asynchronous operations with async/await." },
     read: { type: String, default: "10 min" },
     date: { type: String, default: "2023-05-25" },
     likes: { type: String, default: "15.3K" },
     comments: { type: String, default: "320" },
-    quote: { type: String, default: "Happiness is not by chance, but by your own choice." },
-    category: { type: String, default: "Innovation" }
+    quote: { type: String, default: "Happiness is not by chance, but by your own choice." }
 });
 
+const Blog = mongoose.model('Blog', blogSchema);
+
+
 // Auto-Increment Function
-const getNextSequenceValue = async (sequenceName) => {
-    const sequenceDocument = await Counter.findByIdAndUpdate(
-        sequenceName,
-        { $inc: { seq: 1 } },
-        { new: true, upsert: true }
-    );
-    return sequenceDocument.seq;
+const getNextSequenceValue = async () => {
+    // Fetch all existing blog IDs
+    const blogs = await Blog.find({}, { _id: 1 });
+    const ids = blogs.map(blog => blog._id);
+
+    // Sort IDs to find the next available ID
+    ids.sort((a, b) => a - b);
+
+    // Find the next available ID
+    let nextId = 1; // Start checking from ID 1
+    for (const id of ids) {
+        if (id === nextId) {
+            nextId++; // Move to the next number if the current ID exists
+        } else if (id > nextId) {
+            // If there's a gap, return the next available ID
+            return nextId;
+        }
+    }
+
+    return nextId; // If no gaps, return the next ID after the highest
 };
 
-const User = mongoose.model(dbname, userSchema, dbname);
 
-// CRUD Operations
-// Create Post
+
+
+// CRUD Operations for Blogs
+// Create Blog Post
 app.post("/createpost", async (req, res) => {
     try {
         const {
             title = "Understanding Async/Await in JavaScript",
             imagepath = "/images/a.jpg",
             description = "Asynchronous programming is a critical aspect...",
-            aimage = "/images/aut.png",
             subject = "Master asynchronous operations with async/await.",
-            author = "Giridharan S",
-            bio = "React enthusiast and Full Stack Developer",
-            followers = "2544",
-            following = "1729",
-            publication = "Tech Trends",
-            totalposts = "123",
             read = "10 min",
             date = "2023-05-25",
             likes = "15.3K",
             comments = "320",
-            quote = "Happiness is not by chance, but by your own choice.",
-            category = "Innovation"
+            quote = "Happiness is not by chance, but by your own choice."
         } = req.body;
 
-        const _id = await getNextSequenceValue("userId");
+        const _id = await getNextSequenceValue(); // Get the next unique _id
 
-        const newPost = new User({
+        const newBlog = new Blog({
             _id,
             title,
             imagepath,
             description,
-            aimage,
             subject,
-            author,
-            bio,
-            followers,
-            following,
-            publication,
-            totalposts,
             read,
             date,
             likes,
             comments,
-            quote,
-            category
+            quote
         });
 
-        await newPost.save();
-        res.status(201).json(newPost);
+        await newBlog.save();
+        res.status(201).json(newBlog);
     } catch (error) {
-        console.error('Error creating post:', error);
-        res.status(500).json({ message: 'Server error while creating post' });
+        console.error('Error creating blog post:', error);
+        res.status(500).json({ message: 'Server error while creating blog post' });
     }
 });
 
-// Read All Posts
+
+
+// Read All Blog Posts
 app.get("/blogs", (req, res) => {
-    User.find()
+    Blog.find()
         .then(data => res.json(data))
         .catch(err => res.status(500).json(err));
 });
 
-// Read a Single Post by ID
+// Read a Single Blog Post by ID
 app.get("/blogs/:id", (req, res) => {
     const { id } = req.params;
-    User.findById(id)
+    Blog.findById(id)
         .then(data => {
             if (!data) {
                 return res.status(404).json({ message: 'Blog not found' });
@@ -135,8 +143,8 @@ app.get("/blogs/:id", (req, res) => {
         .catch(err => res.status(500).json(err));
 });
 
-// Search Posts
-app.get("/search", async (req, res) => {
+// Search Blog Posts
+app.get("/blogs/search", async (req, res) => {
     const { query } = req.query;
 
     if (!query) {
@@ -145,7 +153,7 @@ app.get("/search", async (req, res) => {
 
     try {
         const regex = new RegExp(query, 'i');
-        const blogs = await User.find({
+        const blogs = await Blog.find({
             $or: [
                 { title: { $regex: regex } },
                 { description: { $regex: regex } }
@@ -158,42 +166,71 @@ app.get("/search", async (req, res) => {
     }
 });
 
-// Update a Post
+// Update Blog Post
 app.put("/blogs/:id", async (req, res) => {
     const { id } = req.params;
     const updateData = req.body;
 
     try {
-        const updatedPost = await User.findByIdAndUpdate(id, updateData, { new: true });
-        if (!updatedPost) {
-            return res.status(404).json({ message: 'Post not found' });
+        const updatedBlog = await Blog.findByIdAndUpdate(id, updateData, { new: true });
+        if (!updatedBlog) {
+            return res.status(404).json({ message: 'Blog post not found' });
         }
-        res.json(updatedPost);
+        res.json(updatedBlog);
     } catch (error) {
-        console.error('Error updating post:', error);
-        res.status(500).json({ message: 'Server error while updating post' });
+        console.error('Error updating blog post:', error);
+        res.status(500).json({ message: 'Server error while updating blog post' });
     }
 });
 
-// Delete a Post
+// Delete Blog Post
 app.delete("/blogs/:id", async (req, res) => {
     const { id } = req.params;
 
     try {
-        const deletedPost = await User.findByIdAndDelete(id);
-        if (!deletedPost) {
-            return res.status(404).json({ message: 'Post not found' });
+        const deletedBlog = await Blog.findByIdAndDelete(id);
+        if (!deletedBlog) {
+            return res.status(404).json({ message: 'Blog post not found' });
         }
-        res.json({ message: 'Post deleted successfully' });
+        res.json({ message: 'Blog post deleted successfully' });
     } catch (error) {
-        console.error('Error deleting post:', error);
-        res.status(500).json({ message: 'Server error while deleting post' });
+        console.error('Error deleting blog post:', error);
+        res.status(500).json({ message: 'Server error while deleting blog post' });
     }
 });
 
-// Welcome Route
-app.get('/', (req, res) => {
-    res.json("Welcome to Blogging Platform");
+// CRUD Operations for Users
+// Create User (Optional route if needed)
+app.post("/users/create", async (req, res) => {
+    try {
+        const {
+            aimage = "/images/aut.png",
+            author = "Giridharan S",
+            bio = "React enthusiast and Full Stack Developer",
+            followers = "2544",
+            following = "1729",
+            publication = "Tech Trends",
+            totalposts = "123",
+            category = "Innovation"
+        } = req.body;
+
+        const newUser = new User({
+            aimage,
+            author,
+            bio,
+            followers,
+            following,
+            publication,
+            totalposts,
+            category
+        });
+
+        await newUser.save();
+        res.status(201).json(newUser);
+    } catch (error) {
+        console.error('Error creating user:', error);
+        res.status(500).json({ message: 'Server error while creating user' });
+    }
 });
 
 // Start the Server
