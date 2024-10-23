@@ -78,7 +78,7 @@ function CreatePost() {
       // Error feedback to user
       swal({
         title: "Error!",
-        text: "There was an issue while creating your post. Please try again.",
+        text: "There was an issue while creating your post. Please try again."+error,
         icon: "error",
         button: "OK",
       });

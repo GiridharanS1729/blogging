@@ -17,7 +17,6 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 const uri = process.env.MONGO_URL || "mongodb://localhost:27017/Blogging";
 mongoose.connect(uri)
     .then(() => {
-        const ci = 20;
         console.log("Connected to MongoDB successfully");
     }
     )
@@ -61,7 +60,7 @@ const getNextSequenceValue = async () => {
     // Fetch all existing blog IDs
     const blogs = await Blog.find({}, { _id: 1 });
     const ids = blogs.map(blog => blog._id);
-
+    
     // Sort IDs to find the next available ID
     ids.sort((a, b) => a - b);
 
@@ -232,6 +231,32 @@ app.post("/users/create", async (req, res) => {
         res.status(500).json({ message: 'Server error while creating user' });
     }
 });
+// Read All Users
+app.get("/users", (req, res) => {
+    User.find()
+        .then(users => {
+            res.json(users);
+        })
+        .catch(err => res.status(500).json({ message: 'Error fetching users', error: err }));
+});
+
+
+// Read a Single User by ID
+app.get("/users/:id", (req, res) => {
+    const { id } = req.params;
+    User.findById(id)
+        .then(user => {
+            if (!user) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+            res.json(user);
+        })
+        .catch(err => res.status(500).json({ message: 'Error fetching user', error: err }));
+});
+
+
+
+
 
 // Start the Server
 app.listen(port, () => {

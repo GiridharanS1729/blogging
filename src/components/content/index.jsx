@@ -1,4 +1,3 @@
-// src/components/ContentPage/ContentPage.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
@@ -8,21 +7,27 @@ import x from '../../config';
 function ContentPage() {
     const { id } = useParams();
     const [blog, setBlog] = useState(null);
+    const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const url = x === 1 ? '/data.json' : `http://localhost:1729/blogs/${id}`;
-
-        axios.get(url)
-            .then(response => {
-                let data;
-                if (x === 1) {
-                    data = response.data.find(blog => blog._id.toString() === id);
-                } else {
-                    data = response.data;
-                }
+        const fetchBlogAndUserData = async () => {
+            const blogUrl = x === 1 ? '/data.json' : `http://localhost:1729/blogs/${id}`;
+            try {
+                const response = await axios.get(blogUrl);
+                const data = x === 1 ? response.data.find(blog => blog._id.toString() === id) : response.data;
                 setBlog(data);
-            })
-            .catch(error => console.error('Error fetching blog:', error));
+
+                // Fetch the user data using the blog author's ID
+                if (data) {
+                    const userResponse = await axios.get(`http://localhost:1729/users/${data._id}`); // Use the user's ID here
+                    setUser(userResponse.data);
+                }
+            } catch (error) {
+                console.error('Error fetching blog or user:', error);
+            }
+        };
+
+        fetchBlogAndUserData();
     }, [id]);
 
     return (
@@ -33,10 +38,10 @@ function ContentPage() {
                     <h3 className="sub">{blog.subject}</h3>
                     <div className="btm">
                         <div className="btm-left">
-                            <img className='author-img' src={blog.aimage} alt="a img" />
+                            <img className='author-img' src={user ? user.aimage : '/images/aut.png'} alt="a img" />
                         </div>
                         <Link key={blog._id} to={`/users/${blog._id}`} className='link btm-right'>
-                            <span className="author">{blog.author}</span>
+                            <span className="author">{user ? user.author : 'Loading...'}</span>
                             <br />
                             <span className='date'>{blog.date}</span>&nbsp;
                             <span className="mx-2 pnt">•</span>&nbsp;
