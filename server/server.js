@@ -255,7 +255,9 @@ app.get("/users/:id", (req, res) => {
 });
 
 
-
+app.get("/", (req, res) => {
+    res.send(`Port is Running Succesfully on <b>http://localhost:${port}</b>`);
+});
 
 
 // Start the Server

@@ -1,23 +1,15 @@
-/* Import Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
 
-/* Styling for Header */
 .header {
     background: linear-gradient(135deg, #ff7e5f, #feb47b);
-    /* Warm gradient from orange to light peach */
     padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    /* Elegant shadow */
     font-family: 'Montserrat', sans-serif;
-    /* Modern, attractive font */
     animation: slideIn 1s ease-in-out;
-    /* Smooth entrance animation */
 
-
-    /* Logo Styling */
     .header-logo {
         color: #fff;
         font-size: 2rem;
@@ -25,10 +17,8 @@
         letter-spacing: 3px;
         text-transform: uppercase;
         text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-        /* Soft shadow for the logo */
     }
 
-    /* Navigation */
     .header-nav .nav-list {
         list-style: none;
         display: flex;
@@ -46,26 +36,20 @@
         font-weight: 600;
         text-transform: uppercase;
         transition: color 0.3s ease, transform 0.3s ease;
-        /* Smooth hover transitions */
         position: relative;
     }
 
-    /* Hover Effect for Links */
     .header-nav .nav-list li a:hover {
         color: #ffeb3b;
-        /* Bright yellow hover color */
         transform: scale(1.1);
-        /* Slight zoom effect */
     }
 
-    /* Underline on hover */
     .header-nav .nav-list li a::after {
         content: '';
         display: block;
         width: 0;
         height: 3px;
         background: #ffeb3b;
-        /* Yellow underline on hover */
         transition: width 0.3s ease;
         position: absolute;
         bottom: -5px;
@@ -76,7 +60,6 @@
         width: 100%;
     }
 
-    /* Search Form Styles */
     .search-form {
         display: flex;
         align-items: center;
@@ -113,7 +96,6 @@
     }
 }
 
-/* Entrance Animation for Header */
 @keyframes slideIn {
     from {
         transform: translateY(-50px);
@@ -126,7 +108,6 @@
     }
 }
 
-/* Responsive Adjustments */
 @media (max-width: 768px) {
     .header-nav {
         flex-direction: column;

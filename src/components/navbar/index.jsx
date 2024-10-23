@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Header.css';
+import './Navbar.css';
 
 const Header = ({ onSearch }) => {
     const [searchQuery, setSearchQuery] = useState('');

@@ -7,7 +7,7 @@ import About from './components/about';
 import Contact from './components/contact';
 import ContentPage from './components/content';
 import Footer from './components/footer';
-import Header from './components/header';
+import Navbar from './components/navbar';
 import AllUser from './components/allusers';
 import User from './components/users';
 import CreatePost from './components/CreatePost';
@@ -23,7 +23,7 @@ function App() {
     <Router>
       <Analytics />
       <div className="App">
-        <Header onSearch={handleSearch} />
+        <Navbar onSearch={handleSearch} />
         <Routes>
           <Route exact path="/" element={<Home searchQuery={searchQuery} />} />
           <Route path="/about" element={<About />} />

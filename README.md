@@ -40,13 +40,6 @@ Make sure you have the following installed:
 
 2. **Install Dependencies**
 
-- Backend:
-
-```bash
-  cd server
-  npm install
-```
-
 - Frontend:
 
 ```bash
@@ -71,14 +64,14 @@ npm start
 4. **Open ```http://localhost:3000``` in your browser to view the application.**
 
 5. **📂 Directory Structure**
-bash
-Copy code
+```bash
 blogging/      
 │   ├── src/           # React.js frontend
 │   └── ...
 ├── backend/           # Node.js backend
 │   └── server.js
 └── README.md          # This file
+```
 
 6. **📝 Usage**
 
