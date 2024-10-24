@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
     followers: { type: String, default: "2544" },
     following: { type: String, default: "1729" },
     publication: { type: String, default: "Tech Trends" },
-    totalposts: { type: Number, default: 0, set: (val) => this.blogids.length } ,
+    totalposts: { type: Number, default: 0 } ,
     category: { type: String, default: "Innovation" },
     blogids: [{ type: Number, default: [] }]    
 });
@@ -78,7 +78,7 @@ app.post("/createblog", async (req, res) => {
         const {
             title = "Understanding Async/Await in JavaScript",
             imagepath = "/images/a.jpg",
-            description = "Asynchronous programming is a critical aspect...",
+            body = "Asynchronous programming is a critical aspect...",
             subject = "Master asynchronous operations with async/await.",
             read = 10,
             date = new Date().toISOString().slice(0, 10),
@@ -92,7 +92,7 @@ app.post("/createblog", async (req, res) => {
             aid,
             title,
             imagepath,
-            description,
+            body,
             subject,
             read,
             date,
@@ -101,9 +101,9 @@ app.post("/createblog", async (req, res) => {
         });
         await newBlog.save();
 
-        // update user by mathcing the blog.aid to user._id,increment the totalposts by 1 and 
+        await User.findByIdAndUpdate(aid, { $inc: { totalposts: 1 }, $push: { blogids: _id } }, { new: true, upsert: true });
 
-
+        
         res.status(201).json(newBlog);
     } catch (error) {
         console.error('Error creating blog post:', error);
