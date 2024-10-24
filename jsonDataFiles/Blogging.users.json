@@ -15,7 +15,7 @@
 },
 {
   "_id": 2,
-  "aimage": "/images/aut.png",
+  "aimage": "/images/boy.png",
   "author": "Gokul",
   "mail":"a@gmail.com",
   "password":"g",
@@ -30,7 +30,7 @@
 },
 {
   "_id": 3,
-  "aimage": "/images/aut.png",
+  "aimage": "/images/boy.png",
   "author": "Ashok",
   "mail":"b@gmail.com",
   "password":"g",
@@ -46,7 +46,7 @@
 },
 {
   "_id": 4,
-  "aimage": "/images/aut.png",
+  "aimage": "/images/boy.png",
   "author": "Aria",
   "mail":"c@gmail.com",
   "password":"g",
@@ -61,7 +61,7 @@
 },
 {
   "_id": 5,
-  "aimage": "/images/aut.png",
+  "aimage": "/images/boy.png",
   "author": "Bharani",
   "mail":"d@gmail.com",
   "password":"g",
@@ -76,7 +76,7 @@
 },
 {
   "_id": 6,
-  "aimage": "/images/aut.png",
+  "aimage": "/images/boy.png",
   "author": "Kapeesh",
   "mail":"e@gmail.com",
   "password":"g",
@@ -91,7 +91,7 @@
 },
 {
   "_id": 7,
-  "aimage": "/images/aut.png",
+  "aimage": "/images/boy.png",
   "author": "Akhil",
   "mail":"f@gmail.com",
   "password":"g",
@@ -106,7 +106,7 @@
 },
 {
   "_id": 8,
-  "aimage": "/images/aut.png",
+  "aimage": "/images/girl.png",
   "author": "Elakiya",
   "mail":"h@gmail.com",
   "password":"g",
@@ -121,7 +121,7 @@
 },
 {
   "_id": 9,
-  "aimage": "/images/aut.png",
+  "aimage": "/images/girl.png",
   "author": "Priya",
   "mail":"i@gmail.com",
   "password":"g",
@@ -136,7 +136,7 @@
 },
 {
   "_id": 10,
-  "aimage": "/images/aut.png",
+  "aimage": "/images/girl.png",
   "author": "Mownisha",
   "mail":"j@gmail.com",
   "password":"g",

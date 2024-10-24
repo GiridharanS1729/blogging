@@ -111,6 +111,7 @@
         position: absolute;
         right: 10px;
         top: 100px;
+        z-index: 999;
         background-color: #fff;
         color: #333;
         padding: 10px;
