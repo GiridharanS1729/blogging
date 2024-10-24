@@ -8,7 +8,6 @@ import "./createpost.css";
 
 function CreatePost() {
   const [formData, setFormData] = useState({
-
     title: "title",
     subject:"subject",
     description: "description",
