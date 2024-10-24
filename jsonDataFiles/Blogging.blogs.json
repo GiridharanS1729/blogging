@@ -93,41 +93,5 @@
   "date": "2024-08-27",
   "likes": 150,
   "comments": 100
-},
-{
-  "_id": 9,
-  "aid":5,
-  "title": "title",
-  "imagepath": "/image/a.jpg",
-  "description": "Asynchronous programming is a critical aspect...",
-  "subject": "Master asynchronous operations with async/await.",
-  "read":15,
-  "date": "2024-08-27",
-  "likes": 150,
-  "comments": 100
-},
-{
-  "_id": 10,
-  "aid":9,
-  "title": "title",
-  "imagepath": "/image/a.jpg",
-  "description": "Asynchronous programming is a critical aspect...",
-  "subject": "Master asynchronous operations with async/await.",
-  "read":15,
-  "date": "2023-05-25" ,
-  "likes": 150,
-  "comments": 100
-},
-{
-  "_id": 11,
-  "aid":2,
-  "title": "title",
-  "imagepath": "/image/a.jpg",
-  "description": "Asynchronous programming is a critical aspect...",
-  "subject": "Master asynchronous operations with async/await.",
-  "read":10,
-  "date": "2023-05-25",
-  "likes": 150,
-  "comments": 100
 }
 ]

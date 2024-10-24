@@ -2,7 +2,7 @@
   "_id": 1,
   "aimage": "/images/aut.png",
   "author": "Giridharan",
-  "bio": "React enthusiast and Full Stack Developer",
+  "bio": "React enthusiast , Full Stack Developer and open-source advocate",
   "followers": "2544",
   "following": "1729",
   "publication": "Tech Trends",
@@ -57,13 +57,13 @@
   "publication": "Security Today",
   "totalposts": 1,
   "category": "Security",
-  "blogids": [9]
+  "blogids": []
 },
 {
   "_id": 6,
   "aimage": "/images/aut.png",
-  "author": "Bharath",
-  "bio": "Full Stack Developer and open-source advocate",
+  "author": "Kapeesh",
+  "bio": "Web Developer",
   "followers": "3200",
   "following": "2000",
   "publication": "Open Source Journal",
@@ -105,7 +105,7 @@
   "publication": "AI Weekly",
   "totalposts": 1,
   "category": "Artificial Intelligence",
-  "blogids": [10]
+  "blogids": []
 },
 {
   "_id": 10,

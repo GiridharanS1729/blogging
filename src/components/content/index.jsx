@@ -41,9 +41,9 @@ function ContentPage() {
                         <Link key={blog._id} to={`/users/${blog.aid}`} className='link btm-right'>
                             <span className="author">{user ? user.author : 'Loading...'}</span>
                             <br />
-                            <span className='date'>{blog.date}</span>&nbsp;
+                            <span className='date'>{new Date(blog.date).toLocaleString('default', { month: 'long', day: 'numeric', year: 'numeric' })}    </span>&nbsp;
                             <span className="mx-2 pnt">•</span>&nbsp;
-                            <span className="read">{blog.read} read</span>
+                            <span className="read">{blog.read} min read</span>
                         </Link>
                     </div>
                     <img src={blog.imagepath} alt={blog.title} className="img" />
