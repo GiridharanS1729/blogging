@@ -94,6 +94,42 @@
     .search-button:hover {
         background-color: #c0392b;
     }
+
+    .nav-pic {
+        width: 40px;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: border-radius 0.3s ease-in;
+    }
+
+    .nav-pic:hover {
+        border-radius: 0%;
+    }
+
+    .menu {
+        position: absolute;
+        right: 10px;
+        top: 100px;
+        background-color: #fff;
+        color: #333;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu a {
+        text-decoration: none;
+        color: #333;
+        padding: 5px 0;
+    }
+
+    .menu a:hover {
+        background-color: #f0f0f0;
+    }
 }
 
 @keyframes slideIn {

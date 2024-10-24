@@ -6,6 +6,7 @@ import './user.css';
 
 function User(props) {
     const { id } = useParams();
+    // const { id } = parseInt(props.id);
     const [user, setUser] = useState(null);
     useEffect(() => {
         const url = "http://localhost:1729/users";

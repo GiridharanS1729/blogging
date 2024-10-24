@@ -11,6 +11,8 @@ import Navbar from './components/navbar';
 import AllUser from './components/allusers';
 import User from './components/users';
 import CreatePost from './components/CreatePost';
+import Logout from './components/logout';
+import Settings from './components/settings';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -32,6 +34,8 @@ function App() {
           <Route path="/createpost" element={<CreatePost />} />
           <Route path="/content/:id" element={<ContentPage />} />
           <Route path="/users/:id" element={<User />} />
+          <Route path="/settings" element={<Settings/>} />
+          <Route path="/logout" element={<Logout/>} />
         </Routes>
       </div>
       <Footer />

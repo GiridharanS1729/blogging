@@ -3,6 +3,7 @@ import './Navbar.css';
 
 const Header = ({ onSearch }) => {
     const [searchQuery, setSearchQuery] = useState('');
+    const [menuVisible, setMenuVisible] = useState(false);
 
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
@@ -11,6 +12,10 @@ const Header = ({ onSearch }) => {
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         onSearch(searchQuery);
+    };
+
+    const toggleMenu = () => {
+        setMenuVisible(!menuVisible);
     };
 
     return (
@@ -34,8 +39,18 @@ const Header = ({ onSearch }) => {
                             <button type="submit" className="search-button">Search</button>
                         </form>
                     </li>
+                    <li>
+                        <img src='/images/aut.png' className='nav-pic' alt='user profile' onClick={toggleMenu} />
+                    </li>
                 </ul>
             </nav>
+
+            {menuVisible && (
+                <div id="menu" className="menu">
+                    <a href="/logout">Logout</a><br />
+                    <a href="/settings">Settings</a>
+                </div>
+            )}
         </header>
     );
 }
