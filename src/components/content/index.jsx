@@ -26,6 +26,12 @@ function ContentPage() {
             .catch(error => console.error('Error fetching user:', error));
     }, [aid]);
 
+    const calculateReadingTime = (content) => {
+        const wordsPerMinute = 200; // Average reading speed
+        const words = content.split(' ').length;
+        const minutes = Math.ceil(words / wordsPerMinute);
+        return minutes;
+    };
 
     return (
         <div>
@@ -42,7 +48,7 @@ function ContentPage() {
                             <br />
                             <span className='date'>{new Date(blog.date).toLocaleString('default', { month: 'long', day: 'numeric', year: 'numeric' })}    </span>&nbsp;
                             <span className="mx-2 pnt">•</span>&nbsp;
-                            <span className="read">{blog.read} min read</span>
+                            <span className="read">{calculateReadingTime(blog.description)} min read</span>
                         </Link>
                     </div>
                     <img src={blog.imagepath} alt={blog.title} className="img" />

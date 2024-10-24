@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Blogs.css';
-import { FaHeart, FaComment } from 'react-icons/fa'; // Font Awesome icons for likes and comments
+import { FaHeart, FaComment } from 'react-icons/fa';
 
 const BlogList = ({ searchQuery }) => {
     const [blogs, setBlogs] = useState([]);
@@ -29,6 +29,13 @@ const BlogList = ({ searchQuery }) => {
                 setLoading(false);
             });
     }, [searchQuery]);
+
+    const calculateReadingTime = (content) => {
+        const wordsPerMinute = 200; 
+        const words = content.split(' ').length;
+        const minutes = Math.ceil(words / wordsPerMinute);
+        return minutes;
+    };
 
     if (loading) {
         return (
@@ -68,7 +75,7 @@ const BlogList = ({ searchQuery }) => {
                     </Link>
                     <div className="blog-footer">
                         <div className="blog-meta">
-                            <span className="read-time">{blog.read} read</span>
+                            <span className="read-time">{calculateReadingTime(blog.description)} min read</span>
                             <span className="likes">
                                 <FaHeart /> {blog.likes}
                             </span>

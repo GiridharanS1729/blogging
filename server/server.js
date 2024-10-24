@@ -185,15 +185,16 @@ app.post("/users/create", async (req, res) => {
             category = "Innovation"
         } = req.body;
         const _id = await getNextSequenceValueU();
+        const joined = new Date().toISOString().slice(0, 10);
         const newUser = new User({
             _id: _id,
             aimage: aimage,
             author: author,
             bio: bio,
+            joined: joined,
             followers: followers,
             following: following,
             publication: publication,
-            // totalposts,
             category: category
         });
         await newUser.save();
