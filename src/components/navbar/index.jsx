@@ -21,7 +21,7 @@ const Header = ({ onSearch }) => {
                     <li><a className="nav-lnk" href="/">Home</a></li>
                     <li><a className="nav-lnk" href="/createpost">Create Post</a></li>
                     <li><a className="nav-lnk" href="/about">About</a></li>
-                    <li><a className="nav-lnk" href="/contact">Contact</a></li>
+                    <li><a className="nav-lnk" href="/allusers">All Users</a></li>
                     <li>
                         <form onSubmit={handleSearchSubmit} className="search-form">
                             <input

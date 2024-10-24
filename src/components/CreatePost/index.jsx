@@ -57,7 +57,7 @@ function CreatePost() {
 
       console.log(updatedFormData);  // Log the data to be sent
 
-      await axios.post("http://localhost:1729/createpost", updatedFormData);
+      await axios.post("http://localhost:1729/createblog", updatedFormData);
 
       swal({
         title: "Post Created!",

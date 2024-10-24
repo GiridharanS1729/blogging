@@ -8,22 +8,24 @@ function ContentPage() {
     const { id } = useParams();
     const [blog, setBlog] = useState(null);
     const [user, setUser] = useState(null);
+    const [aid, setAid] = useState(0);
 
     useEffect(() => {
         axios.get(`http://localhost:1729/blogs/${id}`)
             .then(response => {
                 setBlog(response.data);
+                setAid(response.data.aid);
             })
             .catch(error => console.error('Error fetching blog:', error));
     }, [id]);
 
     useEffect(() => {
-        axios.get(`http://localhost:1729/users/${id}`)
+        axios.get(`http://localhost:1729/users/${aid}`)
             .then(response => {
                 setUser(response.data);
             })
             .catch(error => console.error('Error fetching user:', error));
-    }, [id]);
+    }, [aid]);
 
 
     return (
@@ -36,7 +38,7 @@ function ContentPage() {
                         <div className="btm-left">
                             <img className='author-img' src={user ? user.aimage : '/images/aut.png'} alt="a img" />
                         </div>
-                        <Link key={blog._id} to={`/users/${blog._id}`} className='link btm-right'>
+                        <Link key={blog._id} to={`/users/${blog.aid}`} className='link btm-right'>
                             <span className="author">{user ? user.author : 'Loading...'}</span>
                             <br />
                             <span className='date'>{blog.date}</span>&nbsp;

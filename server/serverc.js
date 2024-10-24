@@ -24,24 +24,21 @@ const userSchema = new mongoose.Schema({
     followers: { type: String, default: "2544" },
     following: { type: String, default: "1729" },
     publication: { type: String, default: "Tech Trends" },
-    totalposts: { type: Number, default: 0, set: (val) => this.blogids.length } ,
-    category: { type: String, default: "Innovation" },
-    blogids: [{ type: Number, default: [] }]    
+    totalposts: { type: String, default: "123" },
+    category: { type: String, default: "Innovation" }
 });
 const User = mongoose.model('User', userSchema);
-
-//blogs
 const blogSchema = new mongoose.Schema({
     _id: { type: Number, required: true },
-    aid: { type: Number, ref: 'User' }  ,
     title: { type: String, required: true, default: "Title of the Blog" },
     imagepath: { type: String, required: true, default: "/images/a.jpg" },
     description: { type: String, required: true, default: "Description of the Blog" },
-    subject: { type: String, required:true,default: "subject of this blog" },
-    read: { type: Number, default: 1 },
-    date: { type: String },  
-    likes: { type: Number, default: 0 },
-    comments: { type: Number, default: 0 },
+    subject: { type: String, default: "Master asynchronous operations with async/await." },
+    read: { type: String, default: "10 min" },
+    date: { type: String, default: "2023-05-25" },
+    likes: { type: String, default: "15.3K" },
+    comments: { type: String, default: "320" },
+    quote: { type: String, default: "Happiness is not by chance, but by your own choice." }
 });
 const Blog = mongoose.model('Blog', blogSchema);
 
@@ -80,16 +77,15 @@ app.post("/createblog", async (req, res) => {
             imagepath = "/images/a.jpg",
             description = "Asynchronous programming is a critical aspect...",
             subject = "Master asynchronous operations with async/await.",
-            read = 10,
-            date = new Date().toISOString().slice(0, 10),
-            likes = 100,
-            comments =50
+            read = "10 min",
+            date = "2023-05-25",
+            likes = "15.3K",
+            comments = "320",
+            quote = "Happiness is not by chance, but by your own choice."
         } = req.body;
         const _id = await getNextSequenceValueB();
-        const aid = 1;
         const newBlog = new Blog({
             _id,
-            aid,
             title,
             imagepath,
             description,
@@ -98,12 +94,9 @@ app.post("/createblog", async (req, res) => {
             date,
             likes,
             comments,
+            quote
         });
         await newBlog.save();
-
-        // update user by mathcing the blog.aid to user._id,increment the totalposts by 1 and 
-
-
         res.status(201).json(newBlog);
     } catch (error) {
         console.error('Error creating blog post:', error);
@@ -181,20 +174,20 @@ app.post("/users/create", async (req, res) => {
             followers = "2544",
             following = "1729",
             publication = "Tech Trends",
-            // totalposts = 0,
+            totalposts = "123",
             category = "Innovation"
         } = req.body;
         const _id = await getNextSequenceValueU();
         const newUser = new User({
-            _id:_id,
-            aimage:aimage,
-            author:author,
-            bio:bio,
-            followers:followers,
-            following:following,
-            publication:publication,
-            // totalposts,
-            category: category
+            _id,
+            aimage,
+            author,
+            bio,
+            followers,
+            following,
+            publication,
+            totalposts,
+            category
         });
         await newUser.save();
         res.status(201).json(newUser);
