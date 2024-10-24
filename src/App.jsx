@@ -58,37 +58,17 @@ function App() {
             path="/home"
             element={isLoggedIn ? <Home searchQuery={searchQuery} /> : <Navigate to="/login" />}
           />
-          <Route
-            path="/about"
-            element={isLoggedIn && <About />}
-          />
-          <Route
-            path="/allusers" element={isLoggedIn && <AllUser />}
-          />
-          <Route
-            path="/contact" element={isLoggedIn && <Contact />}
-          />
-          <Route
-            path="/createpost" element={isLoggedIn && <CreatePost />}
-          />
-          <Route
-            path="/content/:id" element={isLoggedIn && <ContentPage />}
-          />
-          <Route
-            path="/users/:id" element={isLoggedIn && <User />}
-          />
-          <Route
-            path="/settings" element={isLoggedIn && <Settings />}
-          />
-          <Route
-            path="/logout" element={isLoggedIn ? <Logout /> : <Navigate to="/login" />}
-          />
+          <Route path="/about" element={isLoggedIn && <About />}/>
+          <Route path="/allusers" element={isLoggedIn && <AllUser />}/>
+          <Route path="/contact" element={isLoggedIn && <Contact />}/>
+          <Route path="/createpost" element={isLoggedIn && <CreatePost />}/>
+          <Route path="/content/:id" element={isLoggedIn && <ContentPage />}/>
+          <Route path="/users/:id" element={isLoggedIn && <User />}/>
+          <Route path="/settings" element={isLoggedIn && <Settings />}/>
+          <Route path="/logout" element={isLoggedIn ? <Logout /> : <Navigate to="/login" />}/>
 
           {/* Redirect any undefined routes */}
-          <Route
-            path="*"
-            element={<Navigate to={isLoggedIn ? "/" : "/login"} />}
-          />
+          <Route path="*" element={<Navigate to={isLoggedIn ? "/" : "/login"} />}/>
         </Routes>
       </div>
       {isLoggedIn && <Footer />}

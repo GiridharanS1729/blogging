@@ -8,11 +8,14 @@ import "./createpost.css";
 
 function CreatePost() {
   const [formData, setFormData] = useState({
+
     title: "title",
-    body: "body",
+    subject:"subject",
+    description: "description",
     imagepath: ""
   });
 
+  const aid = parseInt(localStorage.getItem('aid')) || 1;
   const navigate = useNavigate();
 
   function handleChange(e) {
@@ -42,17 +45,18 @@ function CreatePost() {
   function handleEditorChange(value) {
     setFormData({
       ...formData,
-      body: value
+      description: value
     });
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const cleanedBody = formData.body.replace(/<[^>]*>/g, "");
+      const cleanedBody = formData.description.replace(/<[^>]*>/g, "");
       const updatedFormData = {
         ...formData,
-        body: cleanedBody
+        aid:aid,
+        description: cleanedBody
       };
 
       console.log(updatedFormData);  // Log the data to be sent
@@ -67,7 +71,7 @@ function CreatePost() {
       }).then(() => {
         setFormData({
           title: "",
-          body: "",
+          description: "",
           imagepath: ""
         });
         navigate('/');
@@ -103,6 +107,18 @@ function CreatePost() {
             />
           </div>
           <div className="form-group">
+            <label htmlFor="title">Subject</label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+              required
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
             <label htmlFor="imagepath">Image</label>
             <input
               type="file"
@@ -114,9 +130,9 @@ function CreatePost() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="body">Body</label>
+            <label htmlFor="description">Description</label>
             <ReactQuill
-              value={formData.body}
+              value={formData.description}
               onChange={handleEditorChange}
               modules={CreatePost.modules}
               formats={CreatePost.formats}

@@ -39,7 +39,6 @@ const blogSchema = new mongoose.Schema({
     imagepath: { type: String, required: true, default: "/images/a.jpg" },
     description: { type: String, required: true, default: "Description of the Blog" },
     subject: { type: String, required: true, default: "subject of this blog" },
-    read: { type: Number, default: 1 },
     date: { type: String },
     likes: { type: Number, default: 0 },
     comments: { type: Number, default: 0 },
@@ -99,25 +98,23 @@ app.post('/login', (req, res) => {
 app.post("/createblog", async (req, res) => {
     try {
         const {
+            aid,
             title = "Understanding Async/Await in JavaScript",
             imagepath = "/images/a.jpg",
-            body = "Asynchronous programming is a critical aspect...",
-            subject = "Master asynchronous operations with async/await.",
-            read = 10,
+            subject = "new subject",
+            description ="new description",
             date = new Date().toISOString().slice(0, 10),
             likes = 100,
             comments = 50
         } = req.body;
         const _id = await getNextSequenceValueB();
-        const aid = 1;
         const newBlog = new Blog({
             _id,
             aid,
             title,
-            imagepath,
-            body,
             subject,
-            read,
+            description,
+            imagepath,
             date,
             likes,
             comments,

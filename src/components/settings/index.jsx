@@ -5,12 +5,12 @@ import './settings.css';
 export default function Settings() {
     const [user, setUser] = useState(null);
     const [blogs, setBlogs] = useState([]);
-
+    const aid = parseInt(localStorage.getItem('aid')) || 1;   
     useEffect(() => {
         const url = "http://localhost:1729/users";
         axios.get(url)
             .then(response => {
-                const data = response.data.find(user => user._id === 1);
+                const data = response.data.find(user => user._id === aid);
                 setUser(data);
             })
             .catch(error => console.error('Error fetching user:', error));
@@ -18,7 +18,7 @@ export default function Settings() {
         const blogsUrl = "http://localhost:1729/blogs";
         axios.get(blogsUrl)
             .then(response => {
-                const userBlogs = response.data.filter(blog => blog.aid === 1); // Assuming user._id is 1
+                const userBlogs = response.data.filter(blog => blog.aid === aid); // Assuming user._id is 1
                 setBlogs(userBlogs);
             })
             .catch(error => console.error('Error fetching blogs:', error));
@@ -82,6 +82,7 @@ export default function Settings() {
                                     <img src={blog.imagepath} alt={blog.title} className="blog-image" />
                                 </div>
                                 <div className="blog-stats">
+                                    <span className="blog-read">{calculateReadingTime(blog.description)} min read</span>
                                     <span className="blog-likes">💖 {blog.likes} Likes</span>
                                     <span className="blog-comments">💬 {blog.comments} Comments</span>
                                 </div>
