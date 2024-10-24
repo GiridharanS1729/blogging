@@ -24,22 +24,22 @@ const userSchema = new mongoose.Schema({
     followers: { type: String, default: "2544" },
     following: { type: String, default: "1729" },
     publication: { type: String, default: "Tech Trends" },
-    totalposts: { type: Number, default: 0 } ,
+    totalposts: { type: Number, default: 0 },
     category: { type: String, default: "Innovation" },
-    blogids: [{ type: Number, default: [] }]    
+    blogids: [{ type: Number, default: [] }]
 });
 const User = mongoose.model('User', userSchema);
 
 //blogs
 const blogSchema = new mongoose.Schema({
     _id: { type: Number, required: true },
-    aid: { type: Number, ref: 'User' }  ,
+    aid: { type: Number, ref: 'User' },
     title: { type: String, required: true, default: "Title of the Blog" },
     imagepath: { type: String, required: true, default: "/images/a.jpg" },
     description: { type: String, required: true, default: "Description of the Blog" },
-    subject: { type: String, required:true,default: "subject of this blog" },
+    subject: { type: String, required: true, default: "subject of this blog" },
     read: { type: Number, default: 1 },
-    date: { type: String },  
+    date: { type: String },
     likes: { type: Number, default: 0 },
     comments: { type: Number, default: 0 },
 });
@@ -83,7 +83,7 @@ app.post("/createblog", async (req, res) => {
             read = 10,
             date = new Date().toISOString().slice(0, 10),
             likes = 100,
-            comments =50
+            comments = 50
         } = req.body;
         const _id = await getNextSequenceValueB();
         const aid = 1;
@@ -103,7 +103,7 @@ app.post("/createblog", async (req, res) => {
 
         await User.findByIdAndUpdate(aid, { $inc: { totalposts: 1 }, $push: { blogids: _id } }, { new: true, upsert: true });
 
-        
+
         res.status(201).json(newBlog);
     } catch (error) {
         console.error('Error creating blog post:', error);
@@ -186,13 +186,13 @@ app.post("/users/create", async (req, res) => {
         } = req.body;
         const _id = await getNextSequenceValueU();
         const newUser = new User({
-            _id:_id,
-            aimage:aimage,
-            author:author,
-            bio:bio,
-            followers:followers,
-            following:following,
-            publication:publication,
+            _id: _id,
+            aimage: aimage,
+            author: author,
+            bio: bio,
+            followers: followers,
+            following: following,
+            publication: publication,
             // totalposts,
             category: category
         });

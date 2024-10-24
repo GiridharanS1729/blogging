@@ -1,1 +1,116 @@
- 
+.settings-profile-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+.settings-profile-banner {
+    background-color: #e74c3c;
+    height: 120px;
+    border-radius: 10px 10px 0 0;
+}
+
+.settings-profile-header {
+    text-align: center;
+    margin-top: -60px;
+    position: relative;
+}
+
+.settings-profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.settings-profile-header h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.settings-profile-header p {
+    font-size: 16px;
+    color: #666;
+}
+
+.settings-profile-info {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 14px;
+}
+
+.settings-profile-details {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+}
+
+.settings-profile-detail-item {
+    text-align: center;
+}
+
+.settings-profile-detail-item h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.settings-profile-detail-item p {
+    font-size: 14px;
+    color: #666;
+}
+
+.settings-profile-blogs {
+    padding: 20px 0;
+}
+
+.settings-profile-blogs h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.settings-profile-blog-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+.settings-profile-blog-item:hover {
+    background-color: #f1f1f1;
+}
+
+.settings-profile-blog-item h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.settings-profile-blog-item p {
+    font-size: 14px;
+    color: #666;
+}
+
+.blog-link {
+    font-size: 14px;
+    color: #2980b9;
+    text-decoration: none;
+}
+
+.blog-link:hover {
+    text-decoration: underline;
+}
