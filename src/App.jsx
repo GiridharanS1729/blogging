@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { Analytics } from "@vercel/analytics/react";
 import './App.css';
 import Home from './components/home';
@@ -13,32 +13,85 @@ import User from './components/users';
 import CreatePost from './components/CreatePost';
 import Logout from './components/logout';
 import Settings from './components/settings';
+import Signup from './components/signup';
+import Login from './components/login';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleSearch = (query) => {
     setSearchQuery(query);
   };
 
+  const checkLoginStatus = () => {
+    return localStorage.getItem('aid') !== null;
+  };
+
+  useEffect(() => {
+    setIsLoggedIn(checkLoginStatus());
+  }, []);
+
   return (
     <Router>
       <Analytics />
       <div className="App">
-        <Navbar onSearch={handleSearch} />
+        {isLoggedIn && <Navbar onSearch={handleSearch} />}
+
         <Routes>
-          <Route exact path="/" element={<Home searchQuery={searchQuery} />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/allusers" element={<AllUser />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/createpost" element={<CreatePost />} />
-          <Route path="/content/:id" element={<ContentPage />} />
-          <Route path="/users/:id" element={<User />} />
-          <Route path="/settings" element={<Settings/>} />
-          <Route path="/logout" element={<Logout/>} />
+          {/* Disable login/signup when logged in */}
+          <Route
+            path="/login"
+            element={isLoggedIn ? <Navigate to="/" /> : <Login />}
+          />
+          <Route
+            path="/signup"
+            element={isLoggedIn ? <Navigate to="/" /> : <Signup />}
+          />
+
+          {/* Protected Routes */}
+          <Route
+            path="/"
+            element={isLoggedIn ? <Home searchQuery={searchQuery} /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/home"
+            element={isLoggedIn ? <Home searchQuery={searchQuery} /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/about"
+            element={isLoggedIn && <About />}
+          />
+          <Route
+            path="/allusers" element={isLoggedIn && <AllUser />}
+          />
+          <Route
+            path="/contact" element={isLoggedIn && <Contact />}
+          />
+          <Route
+            path="/createpost" element={isLoggedIn && <CreatePost />}
+          />
+          <Route
+            path="/content/:id" element={isLoggedIn && <ContentPage />}
+          />
+          <Route
+            path="/users/:id" element={isLoggedIn && <User />}
+          />
+          <Route
+            path="/settings" element={isLoggedIn && <Settings />}
+          />
+          <Route
+            path="/logout" element={isLoggedIn ? <Logout /> : <Navigate to="/login" />}
+          />
+
+          {/* Redirect any undefined routes */}
+          <Route
+            path="*"
+            element={<Navigate to={isLoggedIn ? "/" : "/login"} />}
+          />
         </Routes>
       </div>
-      <Footer />
+      {isLoggedIn && <Footer />}
     </Router>
   );
 }

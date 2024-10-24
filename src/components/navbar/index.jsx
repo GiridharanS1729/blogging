@@ -47,7 +47,7 @@ const Header = ({ onSearch }) => {
 
             {menuVisible && (
                 <div id="menu" className="menu">
-                    <a href="/logout">Logout</a><br />
+                    <a href="/" onClick={() => localStorage.clear()}>Logout</a><br /> 
                     <a href="/settings">Settings</a>
                 </div>
             )}

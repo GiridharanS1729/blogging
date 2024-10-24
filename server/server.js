@@ -13,13 +13,14 @@ const uri = process.env.MONGO_URL || "mongodb://localhost:27017/Blogging";
 mongoose.connect(uri)
     .then(() => {
         console.log("Connected to MongoDB successfully");
-    }
-    )
+    })
     .catch(err => console.error("Error connecting to MongoDB Atlas:", err));
 const userSchema = new mongoose.Schema({
     _id: { type: Number },
     aimage: { type: String, default: "/images/aut.png" },
     author: { type: String, default: "Giridharan S" },
+    mail: { type: String },
+    password: { type: String },
     bio: { type: String, default: "React enthusiast and Full Stack Developer" },
     followers: { type: String, default: "2544" },
     following: { type: String, default: "1729" },
@@ -73,6 +74,28 @@ const getNextSequenceValueU = async () => {
     }
     return unextId;
 };
+
+// Assuming you have already required necessary modules and connected to your MongoDB
+
+app.post('/login', (req, res) => {
+    const { mail, password } = req.body;
+    User.findOne({ mail })
+        .then(user => {
+            if (!user) {
+                return res.json({ success: false, message: 'User not found' });
+            }
+            if (user.password === password) {
+                return res.json({aid:user._id, success: true });
+            } else {
+                return res.json({ success: false, message: 'Invalid password' });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'Error logging in', error: err });
+        });
+});
+
+
 app.post("/createblog", async (req, res) => {
     try {
         const {
@@ -222,6 +245,7 @@ app.get("/users/:id", (req, res) => {
         })
         .catch(err => res.status(500).json(err));
 });
+
 app.get("/", (req, res) => {
     res.send(`Port is Running Succesfully on <b>http://localhost:${port}</b>`);
 });
