@@ -10,25 +10,21 @@ function ContentPage() {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const fetchBlogAndUserData = async () => {
-            const blogUrl = x === 1 ? '/data.json' : `http://localhost:1729/blogs/${id}`;
-            try {
-                const response = await axios.get(blogUrl);
-                const data = x === 1 ? response.data.find(blog => blog._id.toString() === id) : response.data;
-                setBlog(data);
-
-                // Fetch the user data using the blog author's ID
-                if (data) {
-                    const userResponse = await axios.get(`http://localhost:1729/users/${data._id}`); // Use the user's ID here
-                    setUser(userResponse.data);
-                }
-            } catch (error) {
-                console.error('Error fetching blog or user:', error);
-            }
-        };
-
-        fetchBlogAndUserData();
+        axios.get(`http://localhost:1729/blogs/${id}`)
+            .then(response => {
+                setBlog(response.data);
+            })
+            .catch(error => console.error('Error fetching blog:', error));
     }, [id]);
+
+    useEffect(() => {
+        axios.get(`http://localhost:1729/users/${id}`)
+            .then(response => {
+                setUser(response.data);
+            })
+            .catch(error => console.error('Error fetching user:', error));
+    }, [id]);
+
 
     return (
         <div>

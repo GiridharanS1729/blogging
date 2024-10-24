@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Blogs.css';
 import { FaHeart, FaComment } from 'react-icons/fa'; // Font Awesome icons for likes and comments
-import x from '../../config';
 
 const BlogList = ({ searchQuery }) => {
     const [blogs, setBlogs] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const url = x === 1 ? '/data.json' : `http://localhost:1729/blogs`;
+        const url =`http://localhost:1729/blogs`;
 
         axios.get(url)
             .then(response => {

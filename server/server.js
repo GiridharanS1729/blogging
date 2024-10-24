@@ -3,17 +3,12 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 require('dotenv').config();
-
 const app = express();
 const port = 1729;
-
 app.use(cors());
 app.use(express.json());
-
-// Increase the limit for JSON payloads (for large posts or image uploads)
-app.use(bodyParser.json({ limit: '10mb' })); // Set it to 10MB (or higher as needed)
+app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
-
 const uri = process.env.MONGO_URL || "mongodb://localhost:27017/Blogging";
 mongoose.connect(uri)
     .then(() => {
@@ -21,11 +16,8 @@ mongoose.connect(uri)
     }
     )
     .catch(err => console.error("Error connecting to MongoDB Atlas:", err));
-
-// Counter Schema for Auto-Incrementing _id
-
-// User Schema
 const userSchema = new mongoose.Schema({
+    _id: { type: Number },
     aimage: { type: String, default: "/images/aut.png" },
     author: { type: String, default: "Giridharan S" },
     bio: { type: String, default: "React enthusiast and Full Stack Developer" },
@@ -35,10 +27,7 @@ const userSchema = new mongoose.Schema({
     totalposts: { type: String, default: "123" },
     category: { type: String, default: "Innovation" }
 });
-
 const User = mongoose.model('User', userSchema);
-
-// Blog Schema
 const blogSchema = new mongoose.Schema({
     _id: { type: Number, required: true },
     title: { type: String, required: true, default: "Title of the Blog" },
@@ -51,38 +40,36 @@ const blogSchema = new mongoose.Schema({
     comments: { type: String, default: "320" },
     quote: { type: String, default: "Happiness is not by chance, but by your own choice." }
 });
-
 const Blog = mongoose.model('Blog', blogSchema);
 
-
-// Auto-Increment Function
-const getNextSequenceValue = async () => {
-    // Fetch all existing blog IDs
+const getNextSequenceValueB = async () => {
     const blogs = await Blog.find({}, { _id: 1 });
     const ids = blogs.map(blog => blog._id);
-    
-    // Sort IDs to find the next available ID
     ids.sort((a, b) => a - b);
-
-    // Find the next available ID
-    let nextId = 1; // Start checking from ID 1
+    let nextId = 1;
     for (const id of ids) {
         if (id === nextId) {
-            nextId++; // Move to the next number if the current ID exists
+            nextId++;
         } else if (id > nextId) {
-            // If there's a gap, return the next available ID
             return nextId;
         }
     }
-
-    return nextId; // If no gaps, return the next ID after the highest
+    return nextId;
 };
-
-
-
-
-// CRUD Operations for Blogs
-// Create Blog Post
+const getNextSequenceValueU = async () => {
+    const blogs = await User.find({}, { _id: 1 });
+    const ids = blogs.map(blog => blog._id);
+    ids.sort((a, b) => a - b);
+    let unextId = 1;
+    for (const id of ids) {
+        if (id === unextId) {
+            unextId++;
+        } else if (id > unextId) {
+            return unextId;
+        }
+    }
+    return unextId;
+};
 app.post("/createpost", async (req, res) => {
     try {
         const {
@@ -96,9 +83,7 @@ app.post("/createpost", async (req, res) => {
             comments = "320",
             quote = "Happiness is not by chance, but by your own choice."
         } = req.body;
-
-        const _id = await getNextSequenceValue(); // Get the next unique _id
-
+        const _id = await getNextSequenceValueB();
         const newBlog = new Blog({
             _id,
             title,
@@ -111,7 +96,6 @@ app.post("/createpost", async (req, res) => {
             comments,
             quote
         });
-
         await newBlog.save();
         res.status(201).json(newBlog);
     } catch (error) {
@@ -119,17 +103,11 @@ app.post("/createpost", async (req, res) => {
         res.status(500).json({ message: 'Server error while creating blog post' });
     }
 });
-
-
-
-// Read All Blog Posts
 app.get("/blogs", (req, res) => {
     Blog.find()
         .then(data => res.json(data))
         .catch(err => res.status(500).json(err));
 });
-
-// Read a Single Blog Post by ID
 app.get("/blogs/:id", (req, res) => {
     const { id } = req.params;
     Blog.findById(id)
@@ -141,15 +119,11 @@ app.get("/blogs/:id", (req, res) => {
         })
         .catch(err => res.status(500).json(err));
 });
-
-// Search Blog Posts
 app.get("/blogs/search", async (req, res) => {
     const { query } = req.query;
-
     if (!query) {
         return res.status(400).json({ message: 'Query parameter is required' });
     }
-
     try {
         const regex = new RegExp(query, 'i');
         const blogs = await Blog.find({
@@ -164,12 +138,9 @@ app.get("/blogs/search", async (req, res) => {
         res.status(500).json({ message: 'Server error while searching blogs' });
     }
 });
-
-// Update Blog Post
 app.put("/blogs/:id", async (req, res) => {
     const { id } = req.params;
     const updateData = req.body;
-
     try {
         const updatedBlog = await Blog.findByIdAndUpdate(id, updateData, { new: true });
         if (!updatedBlog) {
@@ -181,11 +152,8 @@ app.put("/blogs/:id", async (req, res) => {
         res.status(500).json({ message: 'Server error while updating blog post' });
     }
 });
-
-// Delete Blog Post
 app.delete("/blogs/:id", async (req, res) => {
     const { id } = req.params;
-
     try {
         const deletedBlog = await Blog.findByIdAndDelete(id);
         if (!deletedBlog) {
@@ -197,9 +165,6 @@ app.delete("/blogs/:id", async (req, res) => {
         res.status(500).json({ message: 'Server error while deleting blog post' });
     }
 });
-
-// CRUD Operations for Users
-// Create User (Optional route if needed)
 app.post("/users/create", async (req, res) => {
     try {
         const {
@@ -212,8 +177,9 @@ app.post("/users/create", async (req, res) => {
             totalposts = "123",
             category = "Innovation"
         } = req.body;
-
+        const _id = await getNextSequenceValueU();
         const newUser = new User({
+            _id,
             aimage,
             author,
             bio,
@@ -223,7 +189,6 @@ app.post("/users/create", async (req, res) => {
             totalposts,
             category
         });
-
         await newUser.save();
         res.status(201).json(newUser);
     } catch (error) {
@@ -231,7 +196,6 @@ app.post("/users/create", async (req, res) => {
         res.status(500).json({ message: 'Server error while creating user' });
     }
 });
-// Read All Users
 app.get("/users", (req, res) => {
     User.find()
         .then(users => {
@@ -239,28 +203,20 @@ app.get("/users", (req, res) => {
         })
         .catch(err => res.status(500).json({ message: 'Error fetching users', error: err }));
 });
-
-
-// Read a Single User by ID
 app.get("/users/:id", (req, res) => {
     const { id } = req.params;
     User.findById(id)
-        .then(user => {
-            if (!user) {
-                return res.status(404).json({ message: 'User not found' });
+        .then(data => {
+            if (!data) {
+                return res.status(404).json({ message: 'user not found' });
             }
-            res.json(user);
+            res.json(data);
         })
-        .catch(err => res.status(500).json({ message: 'Error fetching user', error: err }));
+        .catch(err => res.status(500).json(err));
 });
-
-
 app.get("/", (req, res) => {
     res.send(`Port is Running Succesfully on <b>http://localhost:${port}</b>`);
 });
-
-
-// Start the Server
 app.listen(port, () => {
     console.log(`Server is running on port http://localhost:${port}`);
 });
