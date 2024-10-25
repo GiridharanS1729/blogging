@@ -3,10 +3,10 @@ import './login.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
     const [passwordVisible, setPasswordVisible] = useState(false);
-    const [mail, setMail] = useState('');
-    const [password, setPassword] = useState('');
+    const [mail, setMail] = useState('g@gmail.com');
+    const [password, setPassword] = useState('g');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -19,7 +19,8 @@ const Login = () => {
         axios.post('http://localhost:1729/login', { mail, password })
             .then(response => {
                 if (response.data.success) {
-                    localStorage.setItem('aid', response.data.aid); 
+                    localStorage.setItem('aid', response.data.aid);
+                    onLogin(); // Call onLogin to update App state
                     navigate('/');
                 } else {
                     setError('Invalid email or password');
@@ -38,7 +39,7 @@ const Login = () => {
             <div className="login">
                 <div className="content">
                     <h2>Login</h2>
-                    <form className="form" onSubmit={handleSubmit}>  {/* Add <form> tag */}
+                    <form className="form" onSubmit={handleSubmit}>
                         {error && <p className="error">{error}</p>}
                         <div className="inputBox">
                             <input
@@ -74,7 +75,7 @@ const Login = () => {
                             <a href="/signup">Signup</a>
                         </div>
                         <div className="inputBox">
-                            <input type="submit" value="Login" />  {/* Submit button inside form */}
+                            <input type="submit" value="Login" />
                         </div>
                     </form>
                 </div>

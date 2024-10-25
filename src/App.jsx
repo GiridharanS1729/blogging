@@ -19,7 +19,8 @@ import Login from './components/login';
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const [isAdmin, setIsAdmin] = useState(false);
+  const aid = parseInt(localStorage.getItem("aid"));
   const handleSearch = (query) => {
     setSearchQuery(query);
   };
@@ -28,8 +29,14 @@ function App() {
     return localStorage.getItem('aid') !== null;
   };
 
+  // Function to update login status
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
   useEffect(() => {
     setIsLoggedIn(checkLoginStatus());
+    aid===1?setIsAdmin(true): setIsAdmin(false);
   }, []);
 
   return (
@@ -42,7 +49,7 @@ function App() {
           {/* Disable login/signup when logged in */}
           <Route
             path="/login"
-            element={isLoggedIn ? <Navigate to="/" /> : <Login />}
+            element={isLoggedIn ? <Navigate to="/" /> : <Login onLogin={handleLogin} />}
           />
           <Route
             path="/signup"
@@ -58,17 +65,17 @@ function App() {
             path="/home"
             element={isLoggedIn ? <Home searchQuery={searchQuery} /> : <Navigate to="/login" />}
           />
-          <Route path="/about" element={isLoggedIn && <About />}/>
-          <Route path="/allusers" element={isLoggedIn && <AllUser />}/>
-          <Route path="/contact" element={isLoggedIn && <Contact />}/>
-          <Route path="/createpost" element={isLoggedIn && <CreatePost />}/>
-          <Route path="/content/:id" element={isLoggedIn && <ContentPage />}/>
-          <Route path="/users/:id" element={isLoggedIn && <User />}/>
-          <Route path="/settings" element={isLoggedIn && <Settings />}/>
-          <Route path="/logout" element={isLoggedIn ? <Logout /> : <Navigate to="/login" />}/>
+          <Route path="/about" element={isLoggedIn && <About />} />
+          <Route path="/allusers" element={(isLoggedIn && isAdmin) ? <AllUser /> : <Navigate to="/login" />} />
+          <Route path="/contact" element={isLoggedIn && <Contact />} />
+          <Route path="/createpost" element={isLoggedIn && <CreatePost />} />
+          <Route path="/content/:id" element={isLoggedIn && <ContentPage />} />
+          <Route path="/users/:id" element={isLoggedIn && <User />} />
+          <Route path="/settings" element={isLoggedIn && <Settings />} />
+          <Route path="/logout" element={isLoggedIn ? <Logout /> : <Navigate to="/login" />} />
 
           {/* Redirect any undefined routes */}
-          <Route path="*" element={<Navigate to={isLoggedIn ? "/" : "/login"} />}/>
+          <Route path="*" element={<Navigate to={isLoggedIn ? "/" : "/login"} />} />
         </Routes>
       </div>
       {isLoggedIn && <Footer />}
