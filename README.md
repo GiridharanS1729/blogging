@@ -34,14 +34,14 @@ Make sure you have the following installed:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/blogging.git
+   git clone https://github.com/GiridharanS1729/blogging.git
    cd blogging
    ```
 
 2. **Install Dependencies**
 
 - Frontend:
-
+blogging/
 ```bash
   npm install
 ```
@@ -49,7 +49,7 @@ Make sure you have the following installed:
 3. **Start the Application**
 
 - Backend:
-
+blogging/backend/
 ```bash
   cd server
   npm start
