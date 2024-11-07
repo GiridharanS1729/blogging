@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import './updateblog.css';
+import './updateBlog.css';
 
 export default function UpdateBlog() {
   const location = useLocation();
