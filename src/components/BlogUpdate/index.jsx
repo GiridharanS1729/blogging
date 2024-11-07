@@ -98,3 +98,4 @@ UpdateBlog.formats = [
   'list', 'bullet', 'indent',
   'link', 'image', 'color', 'background', 'align', 'code-block'
 ];
+
