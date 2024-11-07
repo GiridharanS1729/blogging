@@ -3,15 +3,17 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Blogs.css';
 import { FaHeart, FaComment } from 'react-icons/fa';
+import BlogActions from '../BlogActions';
 
 const BlogList = ({ searchQuery }) => {
+    const [user, setUser] = useState(null);
+    const aid = parseInt(localStorage.getItem('aid')) || 1;
     const [blogs, setBlogs] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const url =`http://localhost:1729/blogs`;
-
-        axios.get(url)
+        const blogUrl = `http://localhost:1729/blogs`;
+        axios.get(blogUrl)
             .then(response => {
                 const data = response.data;
                 if (searchQuery) {
@@ -28,13 +30,25 @@ const BlogList = ({ searchQuery }) => {
                 console.error('Error fetching blogs:', error);
                 setLoading(false);
             });
+
+        const url = "http://localhost:1729/users";
+        axios.get(url)
+            .then(response => {
+                const data = response.data.find(user => user._id === aid);
+                setUser(data);
+            })
+            .catch(error => console.error('Error fetching user:', error));
     }, [searchQuery]);
 
     const calculateReadingTime = (content) => {
-        const wordsPerMinute = 200; 
+        const wordsPerMinute = 200;
         const words = content.split(' ').length;
         const minutes = Math.ceil(words / wordsPerMinute);
         return minutes;
+    };
+
+    const handleDelete = (id) => {
+        setBlogs(blogs.filter(blog => blog._id !== id));
     };
 
     if (loading) {
@@ -83,6 +97,7 @@ const BlogList = ({ searchQuery }) => {
                                 <FaComment /> {blog.comments}
                             </span>
                         </div>
+                    <BlogActions blog={blog} user={user} onDelete={handleDelete} />
                     </div>
                 </div>
             ))}

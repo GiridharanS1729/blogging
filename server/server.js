@@ -243,6 +243,53 @@ app.get("/users/:id", (req, res) => {
         .catch(err => res.status(500).json(err));
 });
 
+
+
+
+
+// Delete Blog by ID
+app.delete('/deleteblog/:id', async (req, res) => {
+    try {
+        const blogId = req.params.id;
+        const deletedBlog = await Blog.findByIdAndDelete(blogId);
+
+        if (!deletedBlog) {
+            return res.status(404).send({ message: 'Blog not found' });
+        }
+
+        // Update User's blogids array after blog deletion (if required)
+        await User.updateMany(
+            { blogids: blogId },
+            { $pull: { blogids: blogId } }
+        );
+
+        res.status(200).send({ message: 'Blog deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting blog:', error);
+        res.status(500).send({ message: 'Error deleting blog' });
+    }
+});
+
+// Update Blog by ID
+app.put('/updateblog/:id', async (req, res) => {
+    try {
+        const blogId = req.params.id;
+        const updatedData = req.body;
+
+        const updatedBlog = await Blog.findByIdAndUpdate(blogId, updatedData, { new: true });
+
+        if (!updatedBlog) {
+            return res.status(404).send({ message: 'Blog not found' });
+        }
+
+        res.status(200).send({ message: 'Blog updated successfully', blog: updatedBlog });
+    } catch (error) {
+        console.error('Error updating blog:', error);
+        res.status(500).send({ message: 'Error updating blog' });
+    }
+});
+
+
 app.get("/", (req, res) => {
     res.send(`Port is Running Succesfully on <b>http://localhost:${port}</b>`);
 });

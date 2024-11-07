@@ -36,6 +36,7 @@ export default function BlogActions({ blog, user, onDelete }) {
         navigate('/updateblog', { state: { blog } });
     };
 
+
     if (blog.aid !== user._id) return null;
 
     return (
