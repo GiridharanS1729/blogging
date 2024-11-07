@@ -41,7 +41,7 @@ const Header = ({ onSearch }) => {
             <nav className="header-nav">
                 <ul className="nav-list">
                     <li><a className="nav-lnk" href="/">Home</a></li>
-                    <li><a className="nav-lnk" href="/createpost">Create Post</a></li>
+                    <li><a className="nav-lnk" href="/createblog">Create Blog</a></li>
                     <li><a className="nav-lnk" href="/about">About</a></li>
 
                     {/* Conditional rendering for admin link */}

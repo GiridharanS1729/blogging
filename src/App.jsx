@@ -10,11 +10,12 @@ import Footer from './components/footer';
 import Navbar from './components/navbar';
 import AllUser from './components/allusers';
 import User from './components/users';
-import CreatePost from './components/CreatePost';
+import CreateBlog from './components/CreateBlog';
 import Logout from './components/logout';
 import Settings from './components/settings';
 import Signup from './components/signup';
 import Login from './components/login';
+import BlogUpdate from './components/BlogUpdate';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -69,7 +70,10 @@ function App() {
             path="/contact" element={isLoggedIn && <Contact />}
           />
           <Route
-            path="/createpost" element={isLoggedIn && <CreatePost />}
+            path="/createblog" element={isLoggedIn && <CreateBlog />}
+          />
+          <Route
+            path="/updateblog" element={isLoggedIn && <BlogUpdate />}
           />
           <Route
             path="/content/:id" element={isLoggedIn && <ContentPage />}

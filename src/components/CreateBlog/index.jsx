@@ -4,9 +4,9 @@ import axios from "axios";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import swal from 'sweetalert';
-import "./createpost.css";
+import "./createblog.css";
 
-function CreatePost() {
+function CreateBlog() {
   const [formData, setFormData] = useState({
     title: "title",
     subject:"subject",
@@ -133,8 +133,8 @@ function CreatePost() {
             <ReactQuill
               value={formData.description}
               onChange={handleEditorChange}
-              modules={CreatePost.modules}
-              formats={CreatePost.formats}
+              modules={CreateBlog.modules}
+              formats={CreateBlog.formats}
               className="editor-container"
             />
           </div>
@@ -145,7 +145,7 @@ function CreatePost() {
   );
 }
 
-CreatePost.modules = {
+CreateBlog.modules = {
   toolbar: [
     [{ 'header': '1' }, { 'header': '2' }],
     ['bold', 'italic', 'underline'],
@@ -159,11 +159,11 @@ CreatePost.modules = {
   ],
 };
 
-CreatePost.formats = [
+CreateBlog.formats = [
   'header', 'font', 'size',
   'bold', 'italic', 'underline',
   'list', 'bullet', 'indent',
   'link', 'image', 'color', 'background', 'align', 'code-block'
 ];
 
-export default CreatePost;
+export default CreateBlog;
