@@ -34,14 +34,14 @@ Make sure you have the following installed:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/yourusername/blogging.git
+   git clone https://github.com/GiridharanS1729/blogging.git
    cd blogging
    ```
 
 2. **Install Dependencies**
 
 - Frontend:
-
+blogging/
 ```bash
   npm install
 ```
@@ -49,7 +49,7 @@ Make sure you have the following installed:
 3. **Start the Application**
 
 - Backend:
-
+blogging/backend/
 ```bash
   cd server
   npm start
@@ -94,8 +94,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Feel free to submit issues, fork the repository, and make pull requests. Contributions are welcome!
 
 📞 Contact
-For any inquiries, please contact your-email@example.com.
+For any inquiries, please contact [Me](giridharans1729@gmail.com).
 
 Happy coding! 🚀
 
-css
