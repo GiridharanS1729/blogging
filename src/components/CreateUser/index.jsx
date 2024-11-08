@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import './createUser.css';
+import axios from "axios";
+import swal from 'sweetalert';
 
 export default function CreateUser() {
     const [formData, setFormData] = useState({
@@ -18,9 +20,34 @@ export default function CreateUser() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+
+        const data = new FormData();
+        data.append("author", formData.author);
+        data.append("bio", formData.bio);
+        data.append("publication", formData.publication);
+        data.append("category", formData.category);
+        if (formData.aimage) data.append("aimage", formData.aimage);
+
+        try {
+            const response = await axios.post("http://localhost:1729/createuser", data, {
+                headers: { "Content-Type": "multipart/form-data" },
+            });
+            swal("Success", "User created successfully!", "success");
+            setFormData({
+                author: '',
+                bio: '',
+                aimage: null,
+                publication: '',
+                category: 'Innovation',
+            });
+            console.log("User created:", response.data);
+        } catch (error) {
+            swal("Error", "Server error while creating user", "error");
+            console.error("Error creating user:", error);
+        }
+        
     };
 
     const [imagePreview, setImagePreview] = useState(null);

@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
     mail: { type: String },
     password: { type: String },
     bio: { type: String, default: "Your bio" },
+    joined: { type: String, default: new Date().toISOString().slice(0, 10) },
     followers: { type: String, default: "25" },
     following: { type: String, default: "10" },
     publication: { type: String, default: "Tech Trends" },
@@ -84,7 +85,7 @@ app.post('/login', (req, res) => {
                 return res.json({ success: false, message: 'User not found' });
             }
             if (user.password === password) {
-                return res.json({aid:user._id, success: true });
+                return res.json({ aid: user._id, success: true });
             } else {
                 return res.json({ success: false, message: 'Invalid password' });
             }
@@ -102,7 +103,7 @@ app.post("/createblog", async (req, res) => {
             title = "Understanding Async/Await in JavaScript",
             imagepath = "/images/a.jpg",
             subject = "new subject",
-            description ="new description",
+            description = "new description",
             date = new Date().toISOString().slice(0, 10),
             likes = 100,
             comments = 50
@@ -202,13 +203,13 @@ app.post("/createuser", async (req, res) => {
             category = "Innovation"
         } = req.body;
         const _id = await getNextSequenceValueU();
-        const joined = new Date().toISOString().slice(0, 10);
+        // const joinedd = new Date().toISOString().slice(0, 10);
         const newUser = new User({
             _id: _id,
             aimage: aimage,
             author: author,
             bio: bio,
-            joined: joined,
+            // joined: joinedd,
             publication: publication,
             category: category
         });
