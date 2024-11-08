@@ -18,12 +18,13 @@ mongoose.connect(uri)
 const userSchema = new mongoose.Schema({
     _id: { type: Number },
     aimage: { type: String, default: "/images/aut.png" },
-    author: { type: String, default: "Giridharan S" },
+    author: { type: String, default: "Your name" },
     mail: { type: String },
     password: { type: String },
-    bio: { type: String, default: "React enthusiast and Full Stack Developer" },
-    followers: { type: String, default: "2544" },
-    following: { type: String, default: "1729" },
+    bio: { type: String, default: "Your bio" },
+    joined: { type: String, default: new Date().toISOString().slice(0, 10) },
+    followers: { type: String, default: "25" },
+    following: { type: String, default: "10" },
     publication: { type: String, default: "Tech Trends" },
     totalposts: { type: Number, default: 0 },
     category: { type: String, default: "Innovation" },
@@ -84,7 +85,7 @@ app.post('/login', (req, res) => {
                 return res.json({ success: false, message: 'User not found' });
             }
             if (user.password === password) {
-                return res.json({aid:user._id, success: true });
+                return res.json({ aid: user._id, success: true });
             } else {
                 return res.json({ success: false, message: 'Invalid password' });
             }
@@ -102,7 +103,7 @@ app.post("/createblog", async (req, res) => {
             title = "Understanding Async/Await in JavaScript",
             imagepath = "/images/a.jpg",
             subject = "new subject",
-            description ="new description",
+            description = "new description",
             date = new Date().toISOString().slice(0, 10),
             likes = 100,
             comments = 50
@@ -192,28 +193,23 @@ app.delete("/blogs/:id", async (req, res) => {
         res.status(500).json({ message: 'Server error while deleting blog post' });
     }
 });
-app.post("/users/create", async (req, res) => {
+app.post("/createuser", async (req, res) => {
     try {
         const {
             aimage = "/images/aut.png",
-            author = "Giridharan S",
-            bio = "React enthusiast and Full Stack Developer",
-            followers = "2544",
-            following = "1729",
+            author = "Your name",
+            bio = "Your Bio",
             publication = "Tech Trends",
-            // totalposts = 0,
             category = "Innovation"
         } = req.body;
         const _id = await getNextSequenceValueU();
-        const joined = new Date().toISOString().slice(0, 10);
+        // const joinedd = new Date().toISOString().slice(0, 10);
         const newUser = new User({
             _id: _id,
             aimage: aimage,
             author: author,
             bio: bio,
-            joined: joined,
-            followers: followers,
-            following: following,
+            // joined: joinedd,
             publication: publication,
             category: category
         });
