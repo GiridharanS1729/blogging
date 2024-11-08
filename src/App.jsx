@@ -69,7 +69,7 @@ function App() {
           />
           
           <Route
-            path="/createuser" element={isLoggedIn && <CreateUser />}
+            path="/createuser" element={ <CreateUser />}
           />
 
           <Route

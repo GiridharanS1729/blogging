@@ -1,12 +1,44 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import './signup.css';
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import swal from 'sweetalert';
 
 const Signup = () => {
+    const [formData, setFormData] = useState({
+        username: 'z',
+        email: 'z@gmail.com',
+        password: 'z'
+    });
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            // Send signup request to your backend
+            const response = await axios.post("http://localhost:1729/signup", formData);
+            swal("Success", "Signup successful!", "success");
+            // Pass email as prop to CreateUser page
+            navigate('/createuser', { state: { email: formData.email } });
+        } catch (error) {
+            swal("Error", "Signup failed", "error");
+            console.error("Error during signup:", error);
+        }
+    };
+
     return (
         <section className="signup-main">
             {[...Array(150)].map((_, i) => (
@@ -17,12 +49,31 @@ const Signup = () => {
                     <h2>Sign up</h2>
                     <div className="form">
                         <div className="inputBox">
-                            <input type="text" required />
+                            <input
+                                type="text"
+                                name="username"
+                                value={formData.username}
+                                onChange={handleChange}
+                                required
+                            />
                             <i>Username</i>
                         </div>
                         <div className="inputBox">
                             <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                            <i>Email</i>
+                        </div>
+                        <div className="inputBox">
+                            <input
                                 type={passwordVisible ? 'text' : 'password'}
+                                name="password"
+                                value={formData.password}
+                                onChange={handleChange}
                                 required
                             />
                             <i>Password</i>
@@ -43,7 +94,11 @@ const Signup = () => {
                             <a href="/login">Login</a>
                         </div>
                         <div className="inputBox">
-                            <input type="submit" value="Signup" />
+                            <input
+                                type="submit"
+                                value="Signup"
+                                onClick={handleSubmit}
+                            />
                         </div>
                     </div>
                 </div>
