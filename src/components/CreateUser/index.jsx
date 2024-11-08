@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import './createUser.css';
 import axios from "axios";
 import swal from 'sweetalert';
+import { useLocation } from 'react-router-dom';
 
 export default function CreateUser() {
+    const location = useLocation();
+    const userEmail = location.state?.email || ''; // Get email passed from Signup
+
     const [formData, setFormData] = useState({
         author: '',
         bio: '',
@@ -28,6 +32,7 @@ export default function CreateUser() {
         data.append("bio", formData.bio);
         data.append("publication", formData.publication);
         data.append("category", formData.category);
+        data.append("email", userEmail); // Send email received from Signup
         if (formData.aimage) data.append("aimage", formData.aimage);
 
         try {
@@ -47,7 +52,6 @@ export default function CreateUser() {
             swal("Error", "Server error while creating user", "error");
             console.error("Error creating user:", error);
         }
-        
     };
 
     const [imagePreview, setImagePreview] = useState(null);
@@ -70,100 +74,54 @@ export default function CreateUser() {
 
     return (
         <form onSubmit={handleSubmit} className="user-container">
-            <label className="label-author">
-                Your Name:
+            <label>
+                Author:
                 <input
                     type="text"
                     name="author"
                     value={formData.author}
                     onChange={handleChange}
-                    className="input-author"
                     required
                 />
             </label>
-            <label className="label-bio">
+            <label>
                 Bio:
-                <input
-                    type="text"
+                <textarea
                     name="bio"
                     value={formData.bio}
                     onChange={handleChange}
-                    className="input-bio"
                     required
+                ></textarea>
+            </label>
+            <label>
+                Publication:
+                <input
+                    type="text"
+                    name="publication"
+                    value={formData.publication}
+                    onChange={handleChange}
                 />
             </label>
-            <div className="image-upload-container">
-                {imagePreview && (
-                    <img
-                        src={imagePreview}
-                        alt="Preview"
-                        className="image-preview"
-                    />
-                )}
-                <label className="label-image">
-                    <span className="label-text">{imagePreview ? "Change Image" : "Choose Image"}</span>
-                    <input
-                        type="file"
-                        name="aimage"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                        className="input-image"
-                    />
-                </label>
-            </div>
-            <br />
-            <fieldset className="fieldset-publication">
-                <legend className="legend-publication">Publication</legend>
-                <label className="label-tech">
-                    <input
-                        type="radio"
-                        name="publication"
-                        value="Tech Trends"
-                        checked={formData.publication === 'Tech Trends'}
-                        onChange={handleChange}
-                        className="radio-tech"
-                    />
-                    Tech Trends
-                </label>
-                <label className="label-science">
-                    <input
-                        type="radio"
-                        name="publication"
-                        value="Science Daily"
-                        checked={formData.publication === 'Science Daily'}
-                        onChange={handleChange}
-                        className="radio-science"
-                    />
-                    Science Daily
-                </label>
-                <label className="label-global">
-                    <input
-                        type="radio"
-                        name="publication"
-                        value="Global Insights"
-                        checked={formData.publication === 'Global Insights'}
-                        onChange={handleChange}
-                        className="radio-global"
-                    />
-                    Global Insights
-                </label>
-            </fieldset>
-            <label className="label-category">
+            <label>
                 Category:
                 <select
                     name="category"
                     value={formData.category}
                     onChange={handleChange}
-                    className="select-category"
-                    required
                 >
                     <option value="Innovation">Innovation</option>
                     <option value="Technology">Technology</option>
                     <option value="Science">Science</option>
-                    <option value="Health">Health</option>
                 </select>
             </label>
-            <button type="submit" className="button-submit">Submit</button>
+            <label>
+                Profile Image:
+                <input type="file" onChange={handleImageChange} />
+                {imagePreview && (
+                    <img src={imagePreview} alt="Preview" style={{ width: 100, height: 100 }} />
+                )}
+            </label>
+            <button type="submit">Create User</button>
         </form>
     );
 }

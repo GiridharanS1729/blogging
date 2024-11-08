@@ -77,6 +77,19 @@ const getNextSequenceValueU = async () => {
 
 // Assuming you have already required necessary modules and connected to your MongoDB
 
+app.post('/signup', async (req, res) => {
+    const { mail, password } = req.body;
+    try {
+        const _id = await getNextSequenceValueU();
+        const newUser = new User({ _id, mail: mail, password });
+        await newUser.save();
+        res.status(201).send("User created successfully");
+    } catch (error) {
+        console.error("Error creating user:", error);
+        res.status(500).send("Error creating user");
+    }
+});
+
 app.post('/login', (req, res) => {
     const { mail, password } = req.body;
     User.findOne({ mail })
