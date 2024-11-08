@@ -1,3 +1,16 @@
+
+_id
+id
+aimage
+author
+bio
+followers
+following
+publication
+totalposts
+category
+
+
 [{
   "_id": 1,
   "id": "1",
@@ -23,19 +36,6 @@
   "totalposts": 89,
   "category": "Design"
 },
-
-_id
-id
-aimage
-author
-bio
-followers
-following
-publication
-totalposts
-category
-
-
 {
   "_id": 3,
   "id": "3",

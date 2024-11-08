@@ -16,6 +16,7 @@ import Settings from './components/settings';
 import Signup from './components/signup';
 import Login from './components/login';
 import BlogUpdate from './components/BlogUpdate';
+import CreateUser from './components/CreateUser';
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -66,6 +67,11 @@ function App() {
           <Route
             path="/allusers" element={isLoggedIn && <AllUser />}
           />
+          
+          <Route
+            path="/createuser" element={isLoggedIn && <CreateUser />}
+          />
+
           <Route
             path="/contact" element={isLoggedIn && <Contact />}
           />

@@ -18,12 +18,12 @@ mongoose.connect(uri)
 const userSchema = new mongoose.Schema({
     _id: { type: Number },
     aimage: { type: String, default: "/images/aut.png" },
-    author: { type: String, default: "Giridharan S" },
+    author: { type: String, default: "Your name" },
     mail: { type: String },
     password: { type: String },
-    bio: { type: String, default: "React enthusiast and Full Stack Developer" },
-    followers: { type: String, default: "2544" },
-    following: { type: String, default: "1729" },
+    bio: { type: String, default: "Your bio" },
+    followers: { type: String, default: "25" },
+    following: { type: String, default: "10" },
     publication: { type: String, default: "Tech Trends" },
     totalposts: { type: Number, default: 0 },
     category: { type: String, default: "Innovation" },
@@ -192,16 +192,13 @@ app.delete("/blogs/:id", async (req, res) => {
         res.status(500).json({ message: 'Server error while deleting blog post' });
     }
 });
-app.post("/users/create", async (req, res) => {
+app.post("/createuser", async (req, res) => {
     try {
         const {
             aimage = "/images/aut.png",
-            author = "Giridharan S",
-            bio = "React enthusiast and Full Stack Developer",
-            followers = "2544",
-            following = "1729",
+            author = "Your name",
+            bio = "Your Bio",
             publication = "Tech Trends",
-            // totalposts = 0,
             category = "Innovation"
         } = req.body;
         const _id = await getNextSequenceValueU();
@@ -212,8 +209,6 @@ app.post("/users/create", async (req, res) => {
             author: author,
             bio: bio,
             joined: joined,
-            followers: followers,
-            following: following,
             publication: publication,
             category: category
         });

@@ -1,0 +1,127 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    margin: 55px auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.label-author,
+.label-bio,
+.label-image,
+.label-category {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.input-author,
+.input-bio,
+.input-image,
+.select-category {
+    width: 100%;
+    padding: 0.4rem;
+    margin-bottom: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f7f9fc;
+    transition: border 0.3s ease;
+}
+
+.input-author:focus,
+.input-bio:focus,
+.input-image:focus,
+.select-category:focus {
+    border-color: #4f8bc1;
+    outline: none;
+    box-shadow: 0px 0px 5px rgba(79, 139, 193, 0.5);
+}
+
+
+.fieldset-publication {
+    border: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.legend-publication {
+    font-size: 1.1rem;
+    color: #4f8bc1;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.label-tech,
+.label-science,
+.label-global {
+    font-weight: 600;
+    color: #333;
+    margin-left: 10px;
+}
+
+.radio-tech,
+.radio-science,
+.radio-global {
+    margin-right: 8px;
+    transform: scale(1.2);
+}
+
+.button-submit {
+    background: #4f8bc1;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.button-submit:hover {
+    background: #3b6d98;
+}
+
+.image-upload-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.image-preview {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.label-image {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.input-image {
+    display: none;
+}
+
+.label-text {
+    font-size: 14px;
+    color: #555;
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f1f1f1;
+    transition: background-color 0.3s ease;
+}
+
+.label-image:hover .label-text {
+    background-color: #e0e0e0;
+}
