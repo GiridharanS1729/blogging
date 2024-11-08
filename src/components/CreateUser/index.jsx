@@ -69,7 +69,7 @@ export default function CreateUser() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="form-container">
+        <form onSubmit={handleSubmit} className="user-container">
             <label className="label-author">
                 Your Name:
                 <input

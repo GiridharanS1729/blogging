@@ -11,9 +11,12 @@ export default function UpdateBlog() {
   const location = useLocation();
   const navigate = useNavigate();
   const { blog } = location.state || {};
-  const [title, setTitle] = useState(blog?.title || '');
-  const [subject, setSubject] = useState(blog?.subject || '');
-  const [description, setDescription] = useState(blog?.description || '');
+  const [formData, setFormData] = useState({
+    title: blog?.title || '',
+    subject: blog?.subject || '',
+    description: blog?.description || '',
+    imagepath: blog?.imagepath || ''
+  });
 
   useEffect(() => {
     if (!blog) {
@@ -23,7 +26,8 @@ export default function UpdateBlog() {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    const updatedBlog = { ...blog, title, subject, description };
+    const cleanedDescription = formData.description.replace(/<[^>]*>/g, "");
+    const updatedBlog = { ...blog, ...formData, description: cleanedDescription };
 
     axios.put(`http://localhost:1729/updateblog/${blog._id}`, updatedBlog)
       .then(() => {
@@ -32,6 +36,37 @@ export default function UpdateBlog() {
       })
       .catch(error => console.error('Error updating blog:', error));
   };
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  }
+
+  function handleImageChange(e) {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setFormData({
+        ...formData,
+        imagepath: reader.result
+      });
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+
+  function handleEditorChange(value) {
+    setFormData({
+      ...formData,
+      description: value
+    });
+  }
 
   return (
     <div className="update-post">
@@ -43,8 +78,8 @@ export default function UpdateBlog() {
               type="text"
               id="title"
               name="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={formData.title}
+              onChange={handleChange}
               required
               className="form-control"
             />
@@ -55,17 +90,27 @@ export default function UpdateBlog() {
               type="text"
               id="subject"
               name="subject"
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
+              value={formData.subject}
+              onChange={handleChange}
               required
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="imagepath">Image</label>
+            <input
+              type="file"
+              id="imagepath"
+              name="imagepath"
+              onChange={handleImageChange}
               className="form-control"
             />
           </div>
           <div className="form-group">
             <label htmlFor="description">Description</label>
             <ReactQuill
-              value={description}
-              onChange={(value) => setDescription(value)}
+              value={formData.description}
+              onChange={handleEditorChange}
               modules={UpdateBlog.modules}
               formats={UpdateBlog.formats}
               className="editor-container"
@@ -98,4 +143,3 @@ UpdateBlog.formats = [
   'list', 'bullet', 'indent',
   'link', 'image', 'color', 'background', 'align', 'code-block'
 ];
-

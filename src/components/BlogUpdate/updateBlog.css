@@ -25,6 +25,7 @@
 
 .form-group {
     margin-bottom: 15px;
+    height: max-content;
 }
 
 .form-group label {
