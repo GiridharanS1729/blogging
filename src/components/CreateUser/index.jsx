@@ -84,11 +84,12 @@ export default function CreateUser() {
     const handleImageChange = async (e) => {
         const file = e.target.files[0];
 
-        if (file) {
+        if (file && file.size <= 10 * 1024 * 1024) { // Accept files up to 10MB
             try {
                 const compressedFile = await imageCompression(file, {
-                    maxSizeMB: 0.5, // compress to 0.5 MB
-                    maxWidthOrHeight: 800, // resize to 800px width/height max
+                    maxSizeMB: 0.04, // Target size below 40KB
+                    maxWidthOrHeight: 800, // Resize to 800px max width/height
+                    useWebWorker: true
                 });
                 const reader = new FileReader();
 
@@ -103,8 +104,11 @@ export default function CreateUser() {
             } catch (error) {
                 console.error("Error compressing the image", error);
             }
+        } else {
+            console.error("File size exceeds the 10MB limit.");
         }
     };
+
 
 
 

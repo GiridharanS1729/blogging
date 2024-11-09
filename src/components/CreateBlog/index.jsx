@@ -5,6 +5,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import swal from 'sweetalert';
 import "./createblog.css";
+import imageCompression from 'browser-image-compression';
 
 function CreateBlog() {
   const [formData, setFormData] = useState({
@@ -25,21 +26,34 @@ function CreateBlog() {
     });
   }
 
-  function handleImageChange(e) {
+  async function handleImageChange(e) {
     const file = e.target.files[0];
-    const reader = new FileReader();
 
-    reader.onloadend = () => {
-      setFormData({
-        ...formData,
-        imagepath: reader.result
-      });
-    };
+    if (file && file.size <= 10 * 1024 * 1024) { // Accept files up to 10MB
+      try {
+        const compressedFile = await imageCompression(file, {
+          maxSizeMB: 0.04, // Target size below 40KB
+          maxWidthOrHeight: 800,
+          useWebWorker: true
+        });
+        const reader = new FileReader();
 
-    if (file) {
-      reader.readAsDataURL(file);
+        reader.onloadend = () => {
+          setFormData({
+            ...formData,
+            imagepath: reader.result
+          });
+        };
+        reader.readAsDataURL(compressedFile);
+      } catch (error) {
+        console.error("Error compressing the image", error);
+      }
+    } else {
+      console.error("File size exceeds the 10MB limit.");
     }
   }
+
+
 
   function handleEditorChange(value) {
     setFormData({
@@ -51,14 +65,15 @@ function CreateBlog() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const cleanedBody = formData.description.replace(/<[^>]*>/g, "");
+      const cleanedBody = formData.description;
       const updatedFormData = {
         ...formData,
-        aid:aid,
+        aid: aid,
         description: cleanedBody
       };
 
-      console.log(updatedFormData);  // Log the data to be sent
+
+      console.log(updatedFormData);
 
       await axios.post("http://localhost:1729/createblog", updatedFormData);
 
