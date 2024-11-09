@@ -94,7 +94,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Feel free to submit issues, fork the repository, and make pull requests. Contributions are welcome!
 
 📞 Contact
+<<<<<<< HEAD
 For any inquiries, please contact [Me](giridharans1729@gmail.com).
 
 Happy coding! 🚀
 
+=======
+For any inquiries, please contact giridharans1729@gmail.com
+
+Happy coding! 🚀
+>>>>>>> users

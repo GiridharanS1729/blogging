@@ -1,127 +1,130 @@
-.user-container {
+/* Form container styling */
+.profile-form {
+    background: linear-gradient(135deg, #f76b1c, #fcb045);
+    padding: 30px;
+    border-radius: 15px;
+    width: 500px;
+    /* Increased width for desktop/laptop view */
+    margin: 20px auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.form-title {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Input group styling */
+.input-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.label-name,
+.label-bio,
+.label-publication,
+.label-category,
+.label-image {
+    font-size: 1em;
+    font-weight: bold;
+    color: #222;
+}
+
+/* Input and Textarea styling */
+.input-name,
+.input-bio {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    width: 100%;
+}
+
+.input-bio {
+    height: 80px;
+    /* Slightly taller for better readability */
+    resize: none;
+}
+
+/* Radio button styling */
+.radio-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    color: #222;
+}
+
+.radio-option input[type="radio"] {
+    margin-right: 8px;
+    accent-color: #6b0af7;
+    /* Purple accent color for radio buttons */
+}
+
+/* Select dropdown styling */
+.select-category {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+    width: 100%;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* Image upload section styling */
+.image-upload {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 500px;
-    margin: 55px auto;
-    padding: 2rem;
-    background: linear-gradient(135deg, #e0eafc, #cfdef3);
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.label-author,
-.label-bio,
-.label-image,
-.label-category {
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #333;
-}
-
-.input-author,
-.input-bio,
-.input-image,
-.select-category {
-    width: 100%;
-    padding: 0.4rem;
-    margin-bottom: 1rem;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-    background-color: #f7f9fc;
-    transition: border 0.3s ease;
-}
-
-.input-author:focus,
-.input-bio:focus,
-.input-image:focus,
-.select-category:focus {
-    border-color: #4f8bc1;
-    outline: none;
-    box-shadow: 0px 0px 5px rgba(79, 139, 193, 0.5);
-}
-
-
-.fieldset-publication {
-    border: none;
-    padding: 0;
-    margin-bottom: 1.5rem;
-    width: 100%;
-}
-
-.legend-publication {
-    font-size: 1.1rem;
-    color: #4f8bc1;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-
-.label-tech,
-.label-science,
-.label-global {
-    font-weight: 600;
-    color: #333;
-    margin-left: 10px;
-}
-
-.radio-tech,
-.radio-science,
-.radio-global {
-    margin-right: 8px;
-    transform: scale(1.2);
-}
-
-.button-submit {
-    background: #4f8bc1;
-    color: #fff;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.button-submit:hover {
-    background: #3b6d98;
-}
-
-.image-upload-container {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-.image-preview {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.label-image {
-    cursor: pointer;
-    position: relative;
-    display: inline-block;
 }
 
 .input-image {
     display: none;
 }
 
-.label-text {
-    font-size: 14px;
-    color: #555;
-    padding: 8px 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f1f1f1;
-    transition: background-color 0.3s ease;
+.label-image {
+    padding: 8px 12px;
+    background-color: #6b0af7;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-.label-image:hover .label-text {
-    background-color: #e0e0e0;
+.image-preview {
+    width: 70px;
+    /* Increased size for desktop preview */
+    height: 70px;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+.preview-text {
+    font-size: 0.85em;
+    color: #666;
+    text-align: center;
+}
+
+/* Save button styling */
+.button-save {
+    background: #333;
+    color: #fff;
+    font-size: 1.1em;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.button-save:hover {
+    background: #6b0af7;
 }

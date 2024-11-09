@@ -28,14 +28,19 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Send signup request to your backend
-            const response = await axios.post("http://localhost:1729/signup", formData);
+            // Update backend route if expecting `mail` instead of `email`
+            const response = await axios.post("http://localhost:1729/signup", {
+                mail: formData.email, // Replace `email` with `mail`
+                password: formData.password
+            });
+            const userId = response.data._id;
             swal("Success", "Signup successful!", "success");
-            // Pass email as prop to CreateUser page
+
+            localStorage.setItem("aaid", userId);
             navigate('/createuser', { state: { email: formData.email } });
         } catch (error) {
             swal("Error", "Signup failed", "error");
-            console.error("Error during signup:", error);
+            console.error("Error creating user:", error);
         }
     };
 
