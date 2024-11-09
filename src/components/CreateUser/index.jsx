@@ -3,6 +3,8 @@ import './createUser.css';
 import axios from "axios";
 import swal from 'sweetalert';
 import 'react-quill/dist/quill.snow.css';
+import { useNavigate } from 'react-router-dom';
+import imageCompression from 'browser-image-compression';
 
 export default function CreateUser() {
 
@@ -13,6 +15,7 @@ export default function CreateUser() {
         publication: '',
         category: 'Innovation',
     });
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -53,6 +56,14 @@ export default function CreateUser() {
 
             swal("Success", "User updated successfully!", "success");
 
+            // window.location.href = "/"
+            // localStorage.setItem("aid", _id)
+
+            localStorage.setItem("aid", iid);
+            navigate('/');
+            setTimeout(() => {
+                window.location.reload();
+            }, 100);
             setFormData({
                 author: '',
                 bio: '',
@@ -60,6 +71,7 @@ export default function CreateUser() {
                 publication: '',
                 category: 'Innovation',
             });
+
             console.log("User updated:", response.data);
         } catch (error) {
             swal("Error", "Server error while updating user", "error");
@@ -69,75 +81,130 @@ export default function CreateUser() {
 
     const [imagePreview, setImagePreview] = useState(null);
 
-    const handleImageChange = (e) => {
+    const handleImageChange = async (e) => {
         const file = e.target.files[0];
-        const reader = new FileReader();
-
-        reader.onloadend = () => {
-            setImagePreview(reader.result);
-            setFormData({
-                ...formData,
-                aimage: reader.result
-            });
-        };
 
         if (file) {
-            reader.readAsDataURL(file);  // Only call readAsDataURL once
+            try {
+                const compressedFile = await imageCompression(file, {
+                    maxSizeMB: 0.5, // compress to 0.5 MB
+                    maxWidthOrHeight: 800, // resize to 800px width/height max
+                });
+                const reader = new FileReader();
+
+                reader.onloadend = () => {
+                    setImagePreview(reader.result);
+                    setFormData({
+                        ...formData,
+                        aimage: reader.result,
+                    });
+                };
+                reader.readAsDataURL(compressedFile); // Only call readAsDataURL once
+            } catch (error) {
+                console.error("Error compressing the image", error);
+            }
         }
     };
 
 
 
     return (
-        <form onSubmit={handleSubmit} className="user-container">
-            <label>
-                Author:
+        <form onSubmit={handleSubmit} className="profile-form">
+            <h2 className="form-title">Profile Information</h2>
+
+            <div className="input-group">
+                <label className="label-name">Name:</label>
                 <input
                     type="text"
                     name="author"
                     value={formData.author}
                     onChange={handleChange}
+                    className="input-name"
                     required
                 />
-            </label>
-            <label>
-                Bio:
+            </div>
+
+            <div className="input-group">
+                <label className="label-bio">BIO:</label>
                 <textarea
                     name="bio"
                     value={formData.bio}
                     onChange={handleChange}
+                    className="input-bio"
                     required
                 ></textarea>
-            </label>
-            <label>
-                Publication:
-                <input
-                    type="text"
-                    name="publication"
-                    value={formData.publication}
-                    onChange={handleChange}
-                />
-            </label>
-            <label>
-                Category:
+            </div>
+
+            <div className="input-group">
+                <p className="label-publication">Publication:</p>
+                <label className="radio-option">
+                    <input
+                        type="radio"
+                        name="publication"
+                        value="Science"
+                        checked={formData.publication === "Science"}
+                        onChange={handleChange}
+                    />
+                    Science
+                </label>
+                <label className="radio-option">
+                    <input
+                        type="radio"
+                        name="publication"
+                        value="Technology"
+                        checked={formData.publication === "Technology"}
+                        onChange={handleChange}
+                    />
+                    Technology
+                </label>
+                <label className="radio-option">
+                    <input
+                        type="radio"
+                        name="publication"
+                        value="Daily News"
+                        checked={formData.publication === "Daily News"}
+                        onChange={handleChange}
+                    />
+                    Daily News
+                </label>
+            </div>
+
+            <div className="input-group">
+                <label className="label-category">Innovation</label>
                 <select
                     name="category"
                     value={formData.category}
                     onChange={handleChange}
+                    className="select-category"
                 >
                     <option value="Innovation">Innovation</option>
                     <option value="Technology">Technology</option>
                     <option value="Science">Science</option>
                 </select>
-            </label>
-            <label>
-                Profile Image:
-                <input type="file" onChange={handleImageChange} />
+            </div>
+
+            <div className="image-upload">
+                <label htmlFor="aimage" className="label-image">
+                    Choose/Change Image
+                </label>
+                <input
+                    id="aimage"
+                    type="file"
+                    onChange={handleImageChange}
+                    className="input-image"
+                />
                 {imagePreview && (
-                    <img src={imagePreview} alt="Preview" style={{ width: 100, height: 100 }} />
+                    <img
+                        src={imagePreview}
+                        alt="Preview"
+                        className="image-preview"
+                    />
                 )}
-            </label>
-            <button type="submit">Update User</button>
+                <p className="preview-text">Preview the image</p>
+            </div>
+
+
+            <button type="submit" className="button-save">Save</button>
         </form>
     );
 }
