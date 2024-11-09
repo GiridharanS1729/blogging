@@ -78,17 +78,24 @@ const getNextSequenceValueU = async () => {
 // Assuming you have already required necessary modules and connected to your MongoDB
 
 app.post('/signup', async (req, res) => {
+    console.log("Request body:", req.body); // Debug: Log incoming request body
     const { mail, password } = req.body;
+
+    if (!mail || !password) {
+        return res.status(400).json({ message: "Mail and password are required" });
+    }
+
     try {
         const _id = await getNextSequenceValueU();
-        const newUser = new User({ _id, mail: mail, password });
+        const newUser = new User({ _id, mail, password });
         await newUser.save();
-        res.status(201).send("User created successfully");
+        res.status(201).json({ _id });
     } catch (error) {
         console.error("Error creating user:", error);
         res.status(500).send("Error creating user");
     }
 });
+
 
 app.post('/login', (req, res) => {
     const { mail, password } = req.body;
@@ -107,8 +114,60 @@ app.post('/login', (req, res) => {
             res.status(500).json({ message: 'Error logging in', error: err });
         });
 });
+app.put('/createuser', async (req, res) => {
+    const { _id, author, bio, publication, category, aimage } = req.body;
+
+    // Ensure _id is provided and is a valid number
+    if (!Number.isInteger(_id)) {
+        return res.status(400).json({ message: "Invalid user ID." });
+    }
+
+    try {
+        const user = await User.findOne({ _id: _id });
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found." });
+        }
+
+        // Update user information
+        user.author = author || user.author;
+        user.bio = bio || user.bio;
+        user.publication = publication || user.publication;
+        user.category = category || user.category;
+        user.aimage = aimage || user.aimage;
+
+        await user.save();
+        res.status(200).json({ message: "User updated successfully", user: user });
+    } catch (error) {
+        console.error("Error updating user:", error);
+        res.status(500).json({ message: "Error updating user.", error: error.message });
+    }
+});
 
 
+app.get("/users", (req, res) => {
+    User.find()
+        .then(users => {
+            res.json(users);
+        })
+        .catch(err => res.status(500).json({ message: 'Error fetching users', error: err }));
+});
+app.get("/users/:id", (req, res) => {
+    const { id } = req.params;
+    User.findById(id)
+        .then(data => {
+            if (!data) {
+                return res.status(404).json({ message: 'user not found' });
+            }
+            res.json(data);
+        })
+        .catch(err => res.status(500).json(err));
+});
+
+
+
+
+// blogs
 app.post("/createblog", async (req, res) => {
     try {
         const {
@@ -206,52 +265,6 @@ app.delete("/blogs/:id", async (req, res) => {
         res.status(500).json({ message: 'Server error while deleting blog post' });
     }
 });
-app.post("/createuser", async (req, res) => {
-    try {
-        const {
-            aimage = "/images/aut.png",
-            author = "Your name",
-            bio = "Your Bio",
-            publication = "Tech Trends",
-            category = "Innovation"
-        } = req.body;
-        const _id = await getNextSequenceValueU();
-        // const joinedd = new Date().toISOString().slice(0, 10);
-        const newUser = new User({
-            _id: _id,
-            aimage: aimage,
-            author: author,
-            bio: bio,
-            // joined: joinedd,
-            publication: publication,
-            category: category
-        });
-        await newUser.save();
-        res.status(201).json(newUser);
-    } catch (error) {
-        console.error('Error creating user:', error);
-        res.status(500).json({ message: 'Server error while creating user' });
-    }
-});
-app.get("/users", (req, res) => {
-    User.find()
-        .then(users => {
-            res.json(users);
-        })
-        .catch(err => res.status(500).json({ message: 'Error fetching users', error: err }));
-});
-app.get("/users/:id", (req, res) => {
-    const { id } = req.params;
-    User.findById(id)
-        .then(data => {
-            if (!data) {
-                return res.status(404).json({ message: 'user not found' });
-            }
-            res.json(data);
-        })
-        .catch(err => res.status(500).json(err));
-});
-
 
 
 

@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import './createUser.css';
 import axios from "axios";
 import swal from 'sweetalert';
-import { useLocation } from 'react-router-dom';
 
 export default function CreateUser() {
-    const location = useLocation();
-    const userEmail = location.state?.email || ''; // Get email passed from Signup
 
     const [formData, setFormData] = useState({
         author: '',
@@ -27,19 +24,34 @@ export default function CreateUser() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const data = new FormData();
-        data.append("author", formData.author);
-        data.append("bio", formData.bio);
-        data.append("publication", formData.publication);
-        data.append("category", formData.category);
-        data.append("email", userEmail); // Send email received from Signup
-        if (formData.aimage) data.append("aimage", formData.aimage);
+        let iid = localStorage.getItem('aaid');
+
+        // Convert _id to a number
+        iid = Number(iid);
+
+        if (isNaN(iid)) {
+            swal("Error", "Invalid User ID!", "error");
+            return;
+        }
+
+        const aimage = formData.aimage ? formData.aimage : '/images/aut.png';
+
+        const data = {
+            _id: iid, // sending _id as a number
+            author: formData.author,
+            bio: formData.bio,
+            publication: formData.publication,
+            category: formData.category,
+            aimage: aimage,
+        };
 
         try {
-            const response = await axios.post("http://localhost:1729/createuser", data, {
-                headers: { "Content-Type": "multipart/form-data" },
+            const response = await axios.put("http://localhost:1729/createuser", data, {
+                headers: { "Content-Type": "application/json" },
             });
-            swal("Success", "User created successfully!", "success");
+
+            swal("Success", "User updated successfully!", "success");
+
             setFormData({
                 author: '',
                 bio: '',
@@ -47,10 +59,10 @@ export default function CreateUser() {
                 publication: '',
                 category: 'Innovation',
             });
-            console.log("User created:", response.data);
+            console.log("User updated:", response.data);
         } catch (error) {
-            swal("Error", "Server error while creating user", "error");
-            console.error("Error creating user:", error);
+            swal("Error", "Server error while updating user", "error");
+            console.error("Error updating user:", error);
         }
     };
 
@@ -121,7 +133,7 @@ export default function CreateUser() {
                     <img src={imagePreview} alt="Preview" style={{ width: 100, height: 100 }} />
                 )}
             </label>
-            <button type="submit">Create User</button>
+            <button type="submit">Update User</button>
         </form>
     );
 }
