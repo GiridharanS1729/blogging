@@ -3,7 +3,7 @@ import './login.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({ onLogin }) => {
+const Login = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [mail, setMail] = useState('g@gmail.com');
     const [password, setPassword] = useState('g');
@@ -20,14 +20,16 @@ const Login = ({ onLogin }) => {
             .then(response => {
                 if (response.data.success) {
                     localStorage.setItem('aid', response.data.aid);
-                    onLogin(); // Call onLogin to update App state
                     navigate('/');
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1);
                 } else {
                     setError('Invalid email or password');
                 }
             })
             .catch(err => {
-                setError('Something went wrong, please try again');
+                setError(`Something went wrong, please try again${err}`);
             });
     };
 
