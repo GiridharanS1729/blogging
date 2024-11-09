@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './createUser.css';
 import axios from "axios";
 import swal from 'sweetalert';
+import 'react-quill/dist/quill.snow.css';
 
 export default function CreateUser() {
 
@@ -69,20 +70,23 @@ export default function CreateUser() {
     const [imagePreview, setImagePreview] = useState(null);
 
     const handleImageChange = (e) => {
-        setFormData((prev) => ({
-            ...prev,
-            aimage: e.target.files[0],
-        }));
-
         const file = e.target.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            setImagePreview(reader.result);
+            setFormData({
+                ...formData,
+                aimage: reader.result
+            });
+        };
+
         if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result);
-            };
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(file);  // Only call readAsDataURL once
         }
     };
+
+
 
     return (
         <form onSubmit={handleSubmit} className="user-container">
