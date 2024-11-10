@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Navbar.css';
+import { pers } from '../../utils/pers';
 
 const Header = ({ onSearch }) => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -37,7 +38,7 @@ const Header = ({ onSearch }) => {
 
     return (
         <header className="header">
-            <div className="header-logo">GMS Blogs</div>
+            <div className="header-logo">{pers.app}</div>
             <nav className="header-nav">
                 <ul className="nav-list">
                     <li><a className="nav-lnk" href="/">Home</a></li>
