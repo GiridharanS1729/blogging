@@ -39,6 +39,7 @@ function ContentPage() {
                 <div key={blog._id} className='main'>
                     <h2 className='tit' title='title'>{blog.title}</h2>
                     <h3 className="sub" title='subject'>{blog.subject}</h3>
+                        <br/>
                     <div className="btm">
                         <div className="btm-left">
                             <img className='author-img' src={user ? user.aimage : '/images/aut.png'} alt="a img" />

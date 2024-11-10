@@ -2,13 +2,13 @@
   {
     "_id": 1,
     "aimage": "/images/aut.png",
-    "author": "Giridharan",
-    "mail": "g@gmail.com",
-    "password": "g",
+    "author": "Giridharan S",
+    "mail": "admin@gmail.com",
+    "password": "admin",
     "bio": "React enthusiast , Full Stack Developer and open-source advocate",
     "joined": "2024-07-05",
-    "followers": "2544",
-    "following": "1729",
+    "followers": "17290",
+    "following": "1",
     "publication": "Tech Trends",
     "totalposts": 2,
     "category": "Innovation",
@@ -19,7 +19,7 @@
   },
   {
     "_id": 2,
-    "aimage": "/images/aut.png",
+    "aimage": "/images/boy.png",
     "author": "Gokul",
     "mail": "a@gmail.com",
     "password": "g",
@@ -37,7 +37,7 @@
   },
   {
     "_id": 3,
-    "aimage": "/images/aut.png",
+    "aimage": "/images/boy.png",
     "author": "Ashok",
     "mail": "b@gmail.com",
     "password": "g",
@@ -55,7 +55,7 @@
   },
   {
     "_id": 4,
-    "aimage": "/images/aut.png",
+    "aimage": "/images/boy.png",
     "author": "Aria",
     "mail": "c@gmail.com",
     "password": "g",
@@ -73,7 +73,7 @@
   },
   {
     "_id": 5,
-    "aimage": "/images/aut.png",
+    "aimage": "/images/boy.png",
     "author": "Bharani",
     "mail": "d@gmail.com",
     "password": "g",
@@ -88,7 +88,7 @@
   },
   {
     "_id": 6,
-    "aimage": "/images/aut.png",
+    "aimage": "/images/boy.png",
     "author": "Kapeesh",
     "mail": "e@gmail.com",
     "password": "g",
@@ -103,7 +103,7 @@
   },
   {
     "_id": 7,
-    "aimage": "/images/aut.png",
+    "aimage": "/images/boy.png",
     "author": "Akhil",
     "mail": "f@gmail.com",
     "password": "g",
@@ -118,7 +118,7 @@
   },
   {
     "_id": 8,
-    "aimage": "/images/aut.png",
+    "aimage": "/images/girl.png",
     "author": "Elakiya",
     "mail": "h@gmail.com",
     "password": "g",
@@ -133,7 +133,7 @@
   },
   {
     "_id": 9,
-    "aimage": "/images/aut.png",
+    "aimage": "/images/girl.png",
     "author": "Priya",
     "mail": "i@gmail.com",
     "password": "g",
@@ -148,7 +148,7 @@
   },
   {
     "_id": 10,
-    "aimage": "/images/aut.png",
+    "aimage": "/images/girl.png",
     "author": "Mownisha",
     "mail": "j@gmail.com",
     "password": "g",

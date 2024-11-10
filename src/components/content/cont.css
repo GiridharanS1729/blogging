@@ -1,12 +1,13 @@
 .main {
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
     text-align: left;
     margin-bottom: 100px;
+    padding:100px;
+    background-color: #fff;
 
     .tit {
         font-size: 40px;
-        ;
     }
 
     .sub {
