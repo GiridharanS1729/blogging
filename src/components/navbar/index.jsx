@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Navbar.css';
 import { pers } from '../../utils/pers';
+import { FaSearch } from 'react-icons/fa';
 
 const Header = ({ onSearch }) => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -32,6 +33,9 @@ const Header = ({ onSearch }) => {
         onSearch(searchQuery);
     };
 
+    const handleSearchIconClick = () => {
+        onSearch(searchQuery);  // Perform the search when the FaSearch icon is clicked
+    };
     const toggleMenu = () => {
         setMenuVisible(!menuVisible);
     };
@@ -54,16 +58,22 @@ const Header = ({ onSearch }) => {
 
                     <li>
                         <form onSubmit={handleSearchSubmit} className="search-form">
-                            <input
-                                type="text"
-                                value={searchQuery}
-                                onChange={handleSearchChange}
-                                placeholder="Search blogs..."
-                                className="search-input"
-                            />
-                            <button type="submit" className="search-button">Search</button>
+                            <span className='srch-icon'>
+                                <input
+                                    type="text"
+                                    value={searchQuery}
+                                    onChange={handleSearchChange}
+                                    placeholder="Search blogs..."
+                                    className="search-input"
+                                />
+                                <span className='srch-ico' onClick={handleSearchIconClick}>
+                                    <FaSearch />
+                                </span>
+                            </span>
+                            {/* <button type="submit" className="search-button">Search</button> */}
                         </form>
                     </li>
+
                     <li>
                         <img src={userImage} className='nav-pic' alt='user profile' onClick={toggleMenu} />
                     </li>

@@ -159,6 +159,7 @@ function CreateBlog() {
               placeholder="Write your content here..."
             />
           </div>
+          <br/>
           <button type="submit" className="submit">Publish</button>
         </form>
       </div>

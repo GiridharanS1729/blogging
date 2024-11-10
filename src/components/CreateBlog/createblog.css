@@ -4,8 +4,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background-color: #f4f4f9;
+  min-height: 95vh;
+  /* background-color: #f4f4f9; */
+    background: linear-gradient(135deg, #2f2f2f, #4c4c4c);
   padding: 20px;
 }
 

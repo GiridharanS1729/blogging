@@ -7,6 +7,8 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .settings-profile-banner {
