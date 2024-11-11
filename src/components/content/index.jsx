@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import './cont.css';
+import { prt } from '../../utils/prt';
+
 
 function ContentPage() {
     const { id } = useParams();
@@ -10,7 +12,7 @@ function ContentPage() {
     const [aid, setAid] = useState(0);
 
     useEffect(() => {
-        axios.get(`http://localhost:1729/blogs/${id}`)
+        axios.get(`${prt}/blogs/${id}`)
             .then(response => {
                 setBlog(response.data);
                 setAid(response.data.aid);
@@ -19,7 +21,7 @@ function ContentPage() {
     }, [id]);
 
     useEffect(() => {
-        axios.get(`http://localhost:1729/users/${aid}`)
+        axios.get(`${prt}/users/${aid}`)
             .then(response => {
                 setUser(response.data);
             })

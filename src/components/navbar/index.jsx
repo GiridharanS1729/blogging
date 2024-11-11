@@ -3,6 +3,7 @@ import axios from 'axios';
 import './Navbar.css';
 import { pers } from '../../utils/pers';
 import { FaSearch } from 'react-icons/fa';
+import { prt } from '../../utils/prt';
 
 const Header = ({ onSearch }) => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -15,7 +16,7 @@ const Header = ({ onSearch }) => {
         const aid = localStorage.getItem('aid');
         setIsAdmin(aid === '1');
 
-        const url = "http://localhost:1729/users";
+        const url = `${prt}/users`;
         axios.get(`${url}/${aid}`)
             .then(response => {
                 setUserImage(response.data.aimage);

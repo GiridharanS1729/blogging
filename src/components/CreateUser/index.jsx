@@ -5,6 +5,7 @@ import swal from 'sweetalert';
 import 'react-quill/dist/quill.snow.css';
 import { useNavigate } from 'react-router-dom';
 import imageCompression from 'browser-image-compression';
+import { prt } from '../../utils/prt';
 
 export default function CreateUser() {
 
@@ -50,7 +51,7 @@ export default function CreateUser() {
         };
 
         try {
-            const response = await axios.put("http://localhost:1729/createuser", data, {
+            const response = await axios.put(`${prt}/createuser`, data, {
                 headers: { "Content-Type": "application/json" },
             });
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './login.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { prt } from '../../utils/prt';
 
 const Login = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -16,7 +17,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:1729/login', { mail, password })
+        axios.post(`${prt}/login`, { mail, password })
             .then(response => {
                 if (response.data.success) {
                     localStorage.setItem('aid', response.data.aid);

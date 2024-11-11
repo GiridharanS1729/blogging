@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './user.css';
+import { prt } from '../../utils/prt';
 
 function User(props) {
     const { id } = useParams();
     const [user, setUser] = useState(null);
     useEffect(() => {
-        const url = "http://localhost:1729/users";
+        const url = `${prt}/users`;
         axios.get(url)
             .then(response => {
                 let data;

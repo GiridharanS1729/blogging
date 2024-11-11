@@ -6,6 +6,7 @@ import 'react-quill/dist/quill.snow.css';
 import swal from 'sweetalert';
 import "./createblog.css";
 import imageCompression from 'browser-image-compression';
+import { prt } from '../../utils/prt';
 
 function CreateBlog() {
   const [formData, setFormData] = useState({
@@ -75,7 +76,7 @@ function CreateBlog() {
 
       console.log(updatedFormData);
 
-      await axios.post("http://localhost:1729/createblog", updatedFormData);
+      await axios.post(`${prt}/createblog`, updatedFormData);
 
       swal({
         title: "Post Created!",

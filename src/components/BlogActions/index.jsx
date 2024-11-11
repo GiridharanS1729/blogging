@@ -3,7 +3,8 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './BlogActions.css';
-
+import { prt } from '../../utils/prt';
+    
 export default function BlogActions({ blog, user, onDelete }) {
     const navigate = useNavigate();
     const [showOptions, setShowOptions] = useState(false);
@@ -40,7 +41,7 @@ export default function BlogActions({ blog, user, onDelete }) {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:1729/deleteblog/${blog._id}`)
+                axios.delete(`${prt}/deleteblog/${blog._id}`)
                     .then(() => {
                         onDelete(blog._id);
                         Swal.fire('Deleted!', 'The blog has been deleted.', 'success');
