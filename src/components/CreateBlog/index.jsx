@@ -6,6 +6,7 @@ import 'react-quill/dist/quill.snow.css';
 import swal from 'sweetalert';
 import "./createblog.css";
 import imageCompression from 'browser-image-compression';
+import { prt } from '../../utils/prt';
 
 function CreateBlog() {
   const [formData, setFormData] = useState({
@@ -75,7 +76,7 @@ function CreateBlog() {
 
       console.log(updatedFormData);
 
-      await axios.post("http://localhost:1729/createblog", updatedFormData);
+      await axios.post(`${prt}/createblog`, updatedFormData);
 
       swal({
         title: "Post Created!",
@@ -109,7 +110,7 @@ function CreateBlog() {
       <div className="post-form-container">
         <form onSubmit={handleSubmit} className="form-container">
           <div className="form-group">
-            <label htmlFor="title">Title</label>
+            {/* <label htmlFor="title">Title</label> */}
             <input
               type="text"
               id="title"
@@ -118,10 +119,11 @@ function CreateBlog() {
               onChange={handleChange}
               required
               className="form-control"
+              placeholder="Choose a title"
             />
           </div>
           <div className="form-group">
-            <label htmlFor="title">Subject</label>
+            {/* <label htmlFor="title">Subject</label> */}
             <input
               type="text"
               id="subject"
@@ -130,30 +132,36 @@ function CreateBlog() {
               onChange={handleChange}
               required
               className="form-control"
+              placeholder="Add a new Subject"
             />
           </div>
           <div className="form-group">
-            <label htmlFor="imagepath">Image</label>
+              <label htmlFor="imagepath" className="label-imag">
+                Add a Cover Image
+              </label>
+
             <input
               type="file"
               id="imagepath"
               name="imagepath"
               onChange={handleImageChange}
               // required
-              className="form-control"
-            />
+                className="input-imag"
+              />
           </div>
           <div className="form-group">
-            <label htmlFor="description">Description</label>
+            {/* <label htmlFor="description">Description</label> */}
             <ReactQuill
               value={formData.description}
               onChange={handleEditorChange}
               modules={CreateBlog.modules}
               formats={CreateBlog.formats}
               className="editor-container"
+              placeholder="Write your content here..."
             />
           </div>
-          <button type="submit" className="btn btn-primary submit">Submit</button>
+          <br/>
+          <button type="submit" className="submit">Publish</button>
         </form>
       </div>
     </div>

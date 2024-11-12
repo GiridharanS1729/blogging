@@ -1,6 +1,7 @@
 import React from 'react';
 import './Footer.css';
 import { FaGithub, FaTwitter, FaBehance, FaLinkedin, FaMedium, FaTelegram } from "react-icons/fa";
+import {pers} from '../../utils/pers';
 
 const Footer = () => {
     return (
@@ -25,12 +26,12 @@ const Footer = () => {
                     <div className="footer-social">
                         <h3>Follow Us</h3>
                         <ul className="social-icons">
-                            <li><a href="#"><FaLinkedin /></a></li>
-                            <li><a href="#"><FaTwitter /></a></li>
-                            <li><a href="#"><FaTelegram /></a></li>
-                            <li><a href="#"><FaGithub /></a></li>
-                            <li><a href="#"><FaMedium /></a></li>
-                            <li><a href="#"><FaBehance /></a></li>
+                            <li><a href={pers.linkedin}><FaLinkedin /></a></li>
+                            <li><a href={pers.twitter}><FaTwitter /></a></li>
+                            <li><a href={pers.telegram}><FaTelegram /></a></li>
+                            <li><a href={pers.github}><FaGithub /></a></li>
+                            <li><a href={pers.medium}><FaMedium /></a></li>
+                            <li><a href={pers.behance}><FaBehance /></a></li>
                         </ul>
                     </div>
 
@@ -44,7 +45,7 @@ const Footer = () => {
                 </div>
 
                 <div className="footer-bottom">
-                    <p>&copy; 2024 Giridharan blogs. All rights reserved.</p>
+                    <p>&copy; 2024 {pers.app}. All rights reserved.</p>
                 </div>
             </div>
         </footer>

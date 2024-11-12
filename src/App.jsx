@@ -11,7 +11,6 @@ import Navbar from './components/navbar';
 import AllUser from './components/allusers';
 import User from './components/users';
 import CreateBlog from './components/CreateBlog';
-import Logout from './components/logout';
 import Settings from './components/settings';
 import Signup from './components/signup';
 import Login from './components/login';
@@ -89,9 +88,6 @@ function App() {
           />
           <Route
             path="/settings" element={isLoggedIn && <Settings />}
-          />
-          <Route
-            path="/logout" element={isLoggedIn ? <Logout /> : <Navigate to="/login" />}
           />
 
           {/* Redirect any undefined routes */}

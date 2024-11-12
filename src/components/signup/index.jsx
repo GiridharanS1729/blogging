@@ -3,6 +3,7 @@ import './signup.css';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import swal from 'sweetalert';
+import { prt } from '../../utils/prt';
 
 const Signup = () => {
     const [formData, setFormData] = useState({
@@ -29,7 +30,7 @@ const Signup = () => {
         e.preventDefault();
         try {
             // Update backend route if expecting `mail` instead of `email`
-            const response = await axios.post("http://localhost:1729/signup", {
+            const response = await axios.post(`${prt}/signup`, {
                 mail: formData.email, // Replace `email` with `mail`
                 password: formData.password
             });

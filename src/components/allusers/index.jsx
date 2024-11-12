@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './user.css';
 import { Link } from 'react-router-dom';
+import { prt } from '../../utils/prt';
 
 const AllUser = () => {
     const [users, setAllUsers] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:1729/users')
+        axios.get(`${prt}/users`)
             .then(response => setAllUsers(response.data))
             .catch(error => console.error('Error fetching users:', error));
     }, []);

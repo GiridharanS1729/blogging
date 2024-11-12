@@ -4,15 +4,17 @@ import axios from 'axios';
 import './Blogs.css';
 import { FaHeart, FaComment } from 'react-icons/fa';
 import BlogActions from '../BlogActions';
+import { prt } from '../../utils/prt';
+
 
 const BlogList = ({ searchQuery }) => {
     const [user, setUser] = useState(null);
     const aid = parseInt(localStorage.getItem('aid')) || 1;
     const [blogs, setBlogs] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    
     useEffect(() => {
-        const blogUrl = `http://localhost:1729/blogs`;
+        const blogUrl = `${prt}/blogs`;
         axios.get(blogUrl)
             .then(response => {
                 const data = response.data;
@@ -31,7 +33,7 @@ const BlogList = ({ searchQuery }) => {
                 setLoading(false);
             });
 
-        const url = "http://localhost:1729/users";
+        const url = `${prt}/users`;
         axios.get(url)
             .then(response => {
                 const data = response.data.find(user => user._id === aid);

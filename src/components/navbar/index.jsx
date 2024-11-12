@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Navbar.css';
+import { pers } from '../../utils/pers';
+import { FaSearch } from 'react-icons/fa';
+import { prt } from '../../utils/prt';
 
 const Header = ({ onSearch }) => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -13,7 +16,7 @@ const Header = ({ onSearch }) => {
         const aid = localStorage.getItem('aid');
         setIsAdmin(aid === '1');
 
-        const url = "http://localhost:1729/users";
+        const url = `${prt}/users`;
         axios.get(`${url}/${aid}`)
             .then(response => {
                 setUserImage(response.data.aimage);
@@ -31,13 +34,16 @@ const Header = ({ onSearch }) => {
         onSearch(searchQuery);
     };
 
+    const handleSearchIconClick = () => {
+        onSearch(searchQuery);  // Perform the search when the FaSearch icon is clicked
+    };
     const toggleMenu = () => {
         setMenuVisible(!menuVisible);
     };
 
     return (
         <header className="header">
-            <div className="header-logo">GMS Blogs</div>
+            <div className="header-logo">{pers.app}</div>
             <nav className="header-nav">
                 <ul className="nav-list">
                     <li><a className="nav-lnk" href="/">Home</a></li>
@@ -53,16 +59,22 @@ const Header = ({ onSearch }) => {
 
                     <li>
                         <form onSubmit={handleSearchSubmit} className="search-form">
-                            <input
-                                type="text"
-                                value={searchQuery}
-                                onChange={handleSearchChange}
-                                placeholder="Search blogs..."
-                                className="search-input"
-                            />
-                            <button type="submit" className="search-button">Search</button>
+                            <span className='srch-icon'>
+                                <input
+                                    type="text"
+                                    value={searchQuery}
+                                    onChange={handleSearchChange}
+                                    placeholder="Search blogs..."
+                                    className="search-input"
+                                />
+                                <span className='srch-ico' onClick={handleSearchIconClick}>
+                                    <FaSearch />
+                                </span>
+                            </span>
+                            {/* <button type="submit" className="search-button">Search</button> */}
                         </form>
                     </li>
+
                     <li>
                         <img src={userImage} className='nav-pic' alt='user profile' onClick={toggleMenu} />
                     </li>

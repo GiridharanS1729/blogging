@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './updateBlog.css';
+import { prt } from '../../utils/prt';
+
 
 export default function UpdateBlog() {
   const location = useLocation();
@@ -29,7 +31,7 @@ export default function UpdateBlog() {
     const cleanedDescription = formData.description.replace(/<[^>]*>/g, "");
     const updatedBlog = { ...blog, ...formData, description: cleanedDescription };
 
-    axios.put(`http://localhost:1729/updateblog/${blog._id}`, updatedBlog)
+    axios.put(`${prt}/updateblog/${blog._id}`, updatedBlog)
       .then(() => {
         Swal.fire('Updated!', 'Your blog has been updated.', 'success');
         navigate('/settings');

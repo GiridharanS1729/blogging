@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import BlogActions from '../BlogActions/index';
 import './settings.css';
+import { prt } from '../../utils/prt';
 
 export default function Settings() {
     const [user, setUser] = useState(null);
@@ -10,7 +11,7 @@ export default function Settings() {
     const aid = parseInt(localStorage.getItem('aid')) || 1;
 
     useEffect(() => {
-        const url = "http://localhost:1729/users";
+        const url = `${prt}/users`;
         axios.get(url)
             .then(response => {
                 const data = response.data.find(user => user._id === aid);
@@ -18,7 +19,7 @@ export default function Settings() {
             })
             .catch(error => console.error('Error fetching user:', error));
 
-        const blogsUrl = "http://localhost:1729/blogs";
+        const blogsUrl = `${prt}/blogs`;
         axios.get(blogsUrl)
             .then(response => {
                 const userBlogs = response.data.filter(blog => blog.aid === aid);
