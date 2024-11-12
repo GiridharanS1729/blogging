@@ -5,7 +5,12 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 const app = express();
 const port = 1729;
-app.use(cors());
+// app.use(cors());
+
+app.use(cors({
+    origin: '*'
+}))
+
 app.use(express.json());
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
