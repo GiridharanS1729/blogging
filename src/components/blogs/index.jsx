@@ -52,24 +52,25 @@ const BlogList = ({ searchQuery }) => {
     const handleDelete = (id) => {
         setBlogs(blogs.filter(blog => blog._id !== id));
     };
-
-    if (loading) {
-        return (
-            <div className='mab'>
-                <div className="blog-list">
-                    {[...Array(4)].map((_, index) => (
-                        <div key={index} className="blog-card placeholder">
-                            <div className="blog-image"></div>
-                            <div className="blog-content">
-                                <h2 className="blog-title"></h2>
-                                <p className="blog-subject"></p>
-                            </div>
+    const THeight=parseInt((window.innerHeight)/50)      
+if (loading) {
+    return (
+        <div className='mab'>
+            <div className="blog-list">
+                {[...Array(THeight)].map((_, index) => (
+                    <div key={index} className="blog-card placeholder">
+                        <div className="blog-image"></div>
+                        <div className="blog-content">
+                            <h2 className="blog-title"></h2>
+                            <p className="blog-subject"></p>
+                            <p className="blog-date"></p>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
             </div>
-        );
-    }
+        </div>
+    );
+}   
 
     if (blogs.length === 0) {
         return <div className="no-content">No blogs available at the moment.</div>;
