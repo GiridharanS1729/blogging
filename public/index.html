@@ -1,43 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/blog.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Blogging Website By Giridharan S"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/blog.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Blog Platform</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/blog.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+  <!-- Primary Meta Tags -->
+  <title>Blog Platform - Blogging Website by Giridharan S</title>
+  <meta name="title" content="Blog Platform - Blogging Website by Giridharan S" />
+  <meta name="description"
+    content="Explore insightful blogs and articles on the Blogging Platform by Giridharan S. Check out the live website at https://gblogs.vercel.app or visit the GitHub repository at https://github.com/GiridharanS1729/blogging for more details!" />
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gblogs.vercel.app/" />
+  <meta property="og:title" content="Blog Platform - Blogging Website by Giridharan S" />
+  <meta property="og:description"
+    content="Explore insightful blogs and articles by Giridharan S. Live site: https://gblogs.vercel.app, GitHub: https://github.com/GiridharanS1729/blogging." />
+  <meta property="og:image" content="%PUBLIC_URL%/social-preview.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://gblogs.vercel.app/" />
+  <meta property="twitter:title" content="Blog Platform - Blogging Website by Giridharan S" />
+  <meta property="twitter:description"
+    content="Explore blogs and articles by Giridharan S on our Blogging Platform. Visit https://gblogs.vercel.app or the GitHub repository at https://github.com/GiridharanS1729/blogging." />
+  <meta property="twitter:image" content="%PUBLIC_URL%/social-preview.png" />
+
+  <!-- Apple Icons -->
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/blog.png" />
+
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+  <!-- Additional SEO Meta Tags -->
+  <meta name="keywords"
+    content="Blog, Blogging, Tech Blog, Lifestyle Blog, Blogging Platform, Giridharan S, Articles, gblogs.vercel.app, Blogging Repository" />
+  <meta name="author" content="Giridharan S" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Structured Data for SEO (JSON-LD) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Blog Platform by Giridharan S",
+      "url": "https://gblogs.vercel.app/",
+      "description": "Explore insightful blogs and articles by Giridharan S. Live site at https://gblogs.vercel.app, GitHub at https://github.com/GiridharanS1729/blogging.",
+      "author": {
+        "@type": "Person",
+        "name": "Giridharan S",
+        "url": "https://github.com/GiridharanS1729"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Blog Platform",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "%PUBLIC_URL%/blog.png"
+        }
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+</body>
+
 </html>
