@@ -6,8 +6,8 @@ import { prt } from '../../utils/prt';
 
 const Login = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
-    const [mail, setMail] = useState('g@gmail.com');
-    const [password, setPassword] = useState('g');
+    const [mail, setMail] = useState('@gmail.com');
+    const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
