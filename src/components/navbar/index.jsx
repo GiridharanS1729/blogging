@@ -4,12 +4,13 @@ import './Navbar.css';
 import { pers } from '../../utils/pers';
 import { FaSearch } from 'react-icons/fa';
 import { prt } from '../../utils/prt';
+const ProfilePic='/images/users/aut.png';
 
 const Header = ({ onSearch }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [menuVisible, setMenuVisible] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
-    const [userImage, setUserImage] = useState('/images/aut.png'); // Default image path
+    const [userImage, setUserImage] = useState(ProfilePic); // Default image path
 
     useEffect(() => {
         // Check admin status based on "aid" in localStorage
