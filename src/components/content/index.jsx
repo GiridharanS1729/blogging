@@ -44,7 +44,7 @@ function ContentPage() {
                         <br/>
                     <div className="btm">
                         <div className="btm-left">
-                            <img className='author-img' src={user ? user.aimage : '/images/aut.png'} alt="a img" />
+                            <img className='author-img' src={user ? user.aimage : '/images/users/aut.png'} alt="a img" />
                         </div>
                         <Link key={blog._id} to={`/users/${blog.aid}`} className='link btm-right'>
                             <span className="author">{user ? user.author : 'Loading...'}</span>

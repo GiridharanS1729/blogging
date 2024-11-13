@@ -39,7 +39,7 @@ export default function CreateUser() {
             return;
         }
 
-        const aimage = formData.aimage ? formData.aimage : '/images/aut.png';
+        const aimage = formData.aimage ? formData.aimage : '/images/users/aut.png';
 
         const data = {
             _id: iid, // sending _id as a number
