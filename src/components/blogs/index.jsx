@@ -52,7 +52,7 @@ const BlogList = ({ searchQuery }) => {
     const handleDelete = (id) => {
         setBlogs(blogs.filter(blog => blog._id !== id));
     };
-    const THeight=parseInt((window.innerHeight)/50)      
+    const THeight=15;//parseInt((window.innerHeight)/50)      
 if (loading) {
     return (
         <div className='mab'>
