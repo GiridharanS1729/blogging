@@ -109,13 +109,16 @@
     .nav-pic {
         width: 40px;
         aspect-ratio: 1/1;
+        border:2px solid #f00;
         border-radius: 50%;
         cursor: pointer;
         transition: border-radius 0.3s ease-in;
     }
-
+    
     .nav-pic:hover {
-        border-radius: 0%;
+        border:none;
+        /* border-radius: 0%; */
+        transform: scale(1.2);
     }
 
     .menu {

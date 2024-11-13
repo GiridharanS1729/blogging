@@ -1,7 +1,7 @@
 [
   {
     "_id": 1,
-    "aimage": "/images/aut.png",
+    "aimage": "/images/users/aut.png",
     "author": "Giridharan S",
     "mail": "admin@gmail.com",
     "password": "admin",
@@ -19,7 +19,7 @@
   },
   {
     "_id": 2,
-    "aimage": "/images/gokul.png",
+    "aimage": "/images/users/gokul.png",
     "author": "Gokul",
     "mail": "gokul@gmail.com",
     "password": "gokul",
@@ -37,7 +37,7 @@
   },
   {
     "_id": 3,
-    "aimage": "/images/ashok.png",
+    "aimage": "/images/users/ashok.png",
     "author": "Ashok",
     "mail": "ashok@gmail.com",
     "password": "ashok",
@@ -55,7 +55,7 @@
   },
   {
     "_id": 4,
-    "aimage": "/images/boy.png",
+    "aimage": "/images/users/boy.png",
     "author": "Aria",
     "mail": "aria@gmail.com",
     "password": "aria",
@@ -73,7 +73,7 @@
   },
   {
     "_id": 5,
-    "aimage": "/images/boy.png",
+    "aimage": "/images/users/boy.png",
     "author": "Bharani",
     "mail": "bharani@gmail.com",
     "password": "bharani",
@@ -88,7 +88,7 @@
   },
   {
     "_id": 6,
-    "aimage": "/images/mages.png",
+    "aimage": "/images/users/mages.png",
     "author": "Mageswari S",
     "mail": "mages@gmail.com",
     "password": "mages",
@@ -103,7 +103,7 @@
   },
   {
     "_id": 7,
-    "aimage": "/images/sekaran.png",
+    "aimage": "/images/users/sekaran.png",
     "author": "Sekaran V",
     "mail": "sekaran@gmail.com",
     "password": "sekaran",
@@ -118,7 +118,7 @@
   },
   {
     "_id": 8,
-    "aimage": "/images/elakiya.png",
+    "aimage": "/images/users/elakiya.png",
     "author": "Elakiya",
     "mail": "elakiya@gmail.com",
     "password": "elakiya",
@@ -133,7 +133,7 @@
   },
   {
     "_id": 9,
-    "aimage": "/images/boy.png",
+    "aimage": "/images/users/boy.png",
     "author": "Kapeesh",
     "mail": "kapeesh@gmail.com",
     "password": "kapeesh",
@@ -148,7 +148,7 @@
   },
   {
     "_id": 10,
-    "aimage": "/images/girl.png",
+    "aimage": "/images/users/girl.png",
     "author": "Mownisha A",
     "mail": "mownisha@gmail.com",
     "password": "mownisha",

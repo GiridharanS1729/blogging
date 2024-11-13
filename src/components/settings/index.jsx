@@ -1,6 +1,7 @@
 // Settings.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import BlogActions from '../BlogActions/index';
 import './settings.css';
 import { prt } from '../../utils/prt';
@@ -57,26 +58,29 @@ export default function Settings() {
                 <h2><b>My Blogs</b></h2>
                 <div className="settings-profile-blogs-container">
                     {blogs.map(blog => (
+
                         <div className="blog-card" key={blog._id}>
-                            <div className="blog-header">
-                                <img src={user.aimage} alt="Author" className="blog-author-image" />
-                                <div className="blog-info">
-                                    <h5 className="blog-title">{blog.title}</h5>
-                                    <p className="blog-subject">{blog.subject}</p>
-                                    <p className="blog-date">{new Date(blog.date).toLocaleString('default', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+                            <Link className="blog" to={`../content/${blog._id}`}>
+                                <div className="blog-header">
+                                    <img src={user.aimage} alt="Author" className="blog-author-image" />
+                                    <div className="blog-info">
+                                        <h5 className="blog-title">{blog.title}</h5>
+                                        <p className="blog-subject">{blog.subject}</p>
+                                        <p className="blog-date">{new Date(blog.date).toLocaleString('default', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="blog-content">
-                                <img src={blog.imagepath} alt={blog.title} className="blog-image" />
-                            </div>
-                            <div className="blog-stats">
-                                <span className="blog-read">{calculateReadingTime(blog.description)} min read</span>
-                                <span className="blog-likes">💖 {blog.likes} Likes</span>
-                                <span className="blog-comments">💬 {blog.comments} Comments</span>
-                                <BlogActions blog={blog} user={user} onDelete={(deletedId) => setBlogs(blogs.filter(b => b._id !== deletedId))} />
+                                <div className="blog-content">
+                                    <img src={blog.imagepath} alt={blog.title} className="blog-image" />
+                                </div>
+                                <div className="blog-stats">
+                                    <span className="blog-read">{calculateReadingTime(blog.description)} min read</span>
+                                    <span className="blog-likes">💖 {blog.likes} Likes</span>
+                                    <span className="blog-comments">💬 {blog.comments} Comments</span>
+                                    <BlogActions blog={blog} user={user} onDelete={(deletedId) => setBlogs(blogs.filter(b => b._id !== deletedId))} />
 
-                            </div>
+                                </div>
 
+                            </Link>
                         </div>
                     ))}
                 </div>
