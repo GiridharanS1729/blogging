@@ -1,24 +1,30 @@
-# Blogging Website
+# Blog Sphere
 
-Welcome to the Blogging Website project! This application allows users to create, view, and manage blogs and users. It is built using React.js for the frontend, Node.js for the backend, and MongoDB for the database.
+Welcome to the **Blog Sphere** project! This application allows users to create, view, and manage blogs. It is built using **React.js** for the frontend, **Node.js** for the backend, and **MongoDB** for the database.
 
-## View Demo
-https://gblogs.vercel.app
+## Hosted at:
+ **[Blog Sphere](https://gblogs.vercel.app)**
 
-## 📦 Features
+## Screenshots
+![Blog Sphere](./public/preview.png) 
 
-- **Add Users**: Create new user accounts.
-- **View Users**: View details of existing users.
-- **Delete Users**: Remove users from the system.
-- **Add Blogs**: Post new blogs.
-- **View Blogs**: Read and browse published blogs.
-- **Delete Blogs**: Remove blogs from the platform.
+### 📦 Key Features:
+- **Admin Panel**: The **Admin** has full control over the platform, including the ability to:
+  - View all **users** through the **All Users** component.
+  - Edit, delete, and manage all **posts**.
+  - Add, update, or remove blogs from any users.
+
+- **User Panel**: Registered users can:
+  - View blogs created by others through the **Blog List** component.
+  - Add, edit, and delete only their own blogs.
+  - Cannot view or manage blogs created by other users.
+
 
 ## 🛠️ Technologies Used
 
-- **Frontend**: React.js
-- **Backend**: Node.js
-- **Database**: MongoDB
+- **Frontend**: **React.js** 
+- **Backend**: **Node.js**, **Express.js**
+- **Database**: **MongoDB**
 
 ## 🚀 Getting Started
 
@@ -26,10 +32,10 @@ https://gblogs.vercel.app
 
 Make sure you have the following installed:
 
-- [Node.js](https://nodejs.org/) (v14 or higher)
+- [Node.js](https://nodejs.org/) (v16 or higher)
 - [MongoDB](https://www.mongodb.com/try/download/community)
 
-### Installation
+### Installation for Local Machine and Development Environment Setup  
 
 1. **Clone the Repository**
 
@@ -42,38 +48,54 @@ Make sure you have the following installed:
 
 - Frontend:
 blogging/
-```bash
-  npm install
-```
+  ```bash
+    npm install
+  ```
 
 3. **Start the Application**
 
 - Backend:
-blogging/backend/
-```bash
-  cd server
-  npm start
-```
+blogging/server/
+  ```bash
+    cd server
+    npm start
+  ```
 
 - Frontend:
 
-```bash
-npm start
-```
+  ```bash
+  npm start
+  ```
 
-4. **Open ```http://localhost:3000``` in your browser to view the application.**
+### Running the GBlogs Project
 
-5. **📂 Directory Structure**
-```bash
-blogging/      
-│   ├── src/           # React.js frontend
-│   └── ...
-├── backend/           # Node.js backend
-│   └── server.js
-└── README.md          # This file
-```
+To run the GBlogs project using Docker, follow these steps:
 
-6. **📝 Usage**
+1. **Ensure Docker is Installed**  
+  Make sure Docker is installed on your system. If not, download and install it from [Docker's official website](https://www.docker.com/get-started).
+
+2. **Pull the Docker Image**  
+  If you haven't already pulled the image, you can pull it using the following command:
+    ```bash
+    docker pull giridharans1729/gblogs:latest
+    docker run -p 3000:3000 giridharans1729/gblogs:latest
+    ```
+
+### Access the Application
+
+1. **Open ```http://localhost:3000``` in your browser to view the application.**
+
+2. **📂 Directory Structure**
+    ```bash
+    blogging/      
+    │   ├── src/           # React.js frontend
+    │   └── ...
+    ├── backend/           # Node.js backend
+    │   └── server.js
+    └── README.md          # This file
+    ```
+
+3. **📝 Usage**
 
 - Add Users: Navigate to the "Users" section to add new user accounts.
 - View Users: View user profiles from the "Users" section.
@@ -82,7 +104,7 @@ blogging/
 - View Blogs: Browse and read blogs from the "Blogs" section.
 - Delete Blogs: Delete blogs by selecting the delete option next to the blog post.
 
-7. **🛠️ Troubleshooting**
+4. **🛠️ Troubleshooting**
 
 If you encounter issues, ensure that MongoDB is running and that the MONGO_URI in the .env file is correctly set.
 Check the terminal for any error messages and address them accordingly.
@@ -94,13 +116,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Feel free to submit issues, fork the repository, and make pull requests. Contributions are welcome!
 
 📞 Contact
-<<<<<<< HEAD
+
 For any inquiries, please contact [Me](giridharans1729@gmail.com).
 
-Happy coding! 🚀
-
-=======
-For any inquiries, please contact giridharans1729@gmail.com
-
-Happy coding! 🚀
->>>>>>> users
