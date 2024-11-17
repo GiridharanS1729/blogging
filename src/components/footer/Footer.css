@@ -9,6 +9,8 @@
     padding: 40px 0;
     font-family: 'Montserrat', sans-serif;
     animation: fadeInUp 1.2s ease-in-out;
+    position: static;
+    bottom: 0;
 }
 
 .container {

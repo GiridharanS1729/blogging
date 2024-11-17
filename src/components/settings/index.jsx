@@ -33,7 +33,8 @@ export default function Settings() {
                 setLoading(false);
             })
             .catch(error => {
-                console.error('Error fetching blogs:', error); setLoading(false);
+                console.error('Error fetching blogs:', error);
+                setLoading(false);
             });
     }, []);
 
