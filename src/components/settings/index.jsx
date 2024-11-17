@@ -9,6 +9,7 @@ import { prt } from '../../utils/prt';
 export default function Settings() {
     const [user, setUser] = useState(null);
     const [blogs, setBlogs] = useState([]);
+    const [loading, setLoading] = useState(true);
     const aid = parseInt(localStorage.getItem('aid')) || 1;
 
     useEffect(() => {
@@ -17,16 +18,23 @@ export default function Settings() {
             .then(response => {
                 const data = response.data.find(user => user._id === aid);
                 setUser(data);
+                // setTimeout(() => setLoading(false), 500);
             })
-            .catch(error => console.error('Error fetching user:', error));
+            .catch(error => {
+                console.error('Error fetching user:', error);
+                setLoading(false);
+            });
 
         const blogsUrl = `${prt}/blogs`;
         axios.get(blogsUrl)
             .then(response => {
                 const userBlogs = response.data.filter(blog => blog.aid === aid);
                 setBlogs(userBlogs);
+                setLoading(false);
             })
-            .catch(error => console.error('Error fetching blogs:', error));
+            .catch(error => {
+                console.error('Error fetching blogs:', error); setLoading(false);
+            });
     }, []);
 
     const calculateReadingTime = (content) => {
@@ -38,6 +46,41 @@ export default function Settings() {
 
     if (!user) return <div>User not found</div>;
 
+    if (loading) {
+        return (
+            <div className="set-skeleton-container">
+                <div className="set-skeleton-banner"></div>
+                <div className="set-skeleton-header">
+                    <div className="set-skeleton-image"></div>
+                    <div className="set-skeleton-text set-skeleton-name"></div>
+                    <div className="set-skeleton-text set-skeleton-bio"></div>
+                    <div className="set-skeleton-info"></div>
+                </div>
+                <div className="set-skeleton-details">
+                    <div className="set-skeleton-detail-item"></div>
+                    <div className="set-skeleton-detail-item"></div>
+                    <div className="set-skeleton-detail-item"></div>
+                </div>
+                <div className="set-skeleton-blogs">
+                    {Array(3).fill(0).map((_, idx) => (
+                        <div className="set-skeleton-blog-card" key={idx}>
+                            <div className="set-skeleton-blog-header">
+                                <div className="set-skeleton-author-image"></div>
+                                <div className="set-skeleton-blog-info">
+                                    <div className="set-skeleton-text set-skeleton-title"></div>
+                                    <div className="set-skeleton-text set-skeleton-subject"></div>
+                                    <div className="set-skeleton-text set-skeleton-date"></div>
+                                </div>
+                            </div>
+                            <div className="set-skeleton-blog-content"></div>
+                            <div className="set-skeleton-blog-stats"></div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+        );
+    }
     return (
         <div className="settings-profile-container">
             <div className="settings-profile-banner"></div>
@@ -73,13 +116,13 @@ export default function Settings() {
                                     <img src={blog.imagepath} alt={blog.title} className="blog-image" />
                                 </div>
                             </Link>
-                                <div className="blog-stats">
-                                    <span className="blog-read">{calculateReadingTime(blog.description)} min read</span>
-                                    <span className="blog-likes">💖 {blog.likes} Likes</span>
-                                    <span className="blog-comments">💬 {blog.comments} Comments</span>
-                                    <BlogActions blog={blog} user={user} onDelete={(deletedId) => setBlogs(blogs.filter(b => b._id !== deletedId))} />
+                            <div className="blog-stats">
+                                <span className="blog-read">{calculateReadingTime(blog.description)} min read</span>
+                                <span className="blog-likes">💖 {blog.likes} Likes</span>
+                                <span className="blog-comments">💬 {blog.comments} Comments</span>
+                                <BlogActions blog={blog} user={user} onDelete={(deletedId) => setBlogs(blogs.filter(b => b._id !== deletedId))} />
 
-                                </div>
+                            </div>
 
                         </div>
                     ))}

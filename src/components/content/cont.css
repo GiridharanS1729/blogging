@@ -3,10 +3,11 @@
     margin: 0 auto;
     text-align: left;
     margin-bottom: 100px;
-    padding:100px;
-    padding-top:-100px;
-    margin-top:80px;
+    padding: 100px;
+    padding-top: -100px;
+    margin-top: 80px;
     background-color: #fff;
+    border-radius: 5px;
 
     .tit {
         font-size: 40px;
@@ -21,6 +22,7 @@
         height: 300px;
         object-fit: fill;
         margin: 70px 0;
+        border-radius: 2px;
     }
 
     .des {
@@ -64,5 +66,119 @@
     .link {
         text-decoration: none;
         color: #000000;
+    }
+}
+
+/* lazy-loader */
+.c-main {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: fade-in 0.5s ease-in-out;
+}
+
+.c-tit,
+.c-sub {
+    height: 20px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    border-radius: 5px;
+    animation: shimmer 1.5s infinite;
+}
+
+.c-tit {
+    width: 70%;
+    margin-bottom: 10px;
+}
+
+.c-sub {
+    width: 50%;
+}
+
+.c-btm {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.c-author-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+.c-link {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.c-author,
+.c-date,
+.c-read {
+    height: 15px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    border-radius: 5px;
+    animation: shimmer 1.5s infinite;
+}
+
+.c-author {
+    width: 50%;
+    margin-bottom: 5px;
+}
+
+.c-date {
+    width: 30%;
+}
+
+.c-read {
+    width: 20%;
+}
+
+.c-img {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    border-radius: 10px;
+    animation: shimmer 1.5s infinite;
+}
+
+.c-des {
+    height: 15px;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+    background-size: 200% 100%;
+    border-radius: 5px;
+    margin: 10px 0;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

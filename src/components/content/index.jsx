@@ -10,14 +10,20 @@ function ContentPage() {
     const [blog, setBlog] = useState(null);
     const [user, setUser] = useState(null);
     const [aid, setAid] = useState(0);
+    const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         axios.get(`${prt}/blogs/${id}`)
             .then(response => {
                 setBlog(response.data);
                 setAid(response.data.aid);
+                setLoading(false);
             })
-            .catch(error => console.error('Error fetching blog:', error));
+            .catch(error => {
+                console.error('Error fetching blogs:', error);
+                setLoading(false);
+            });
     }, [id]);
 
     useEffect(() => {
@@ -35,13 +41,40 @@ function ContentPage() {
         return minutes;
     };
 
+    if (loading) {
+        return (
+            <>
+                {[...Array(1)].map((_, index) => (
+                <div key={index} className='c-main'>
+                    <h2 className='c-tit'></h2>
+                    <h3 className="c-sub"></h3>
+                    <div className="c-btm">
+                        <div className="c-btm-left">
+                            <img className='c-author-img' alt="" />
+                        </div>
+                        <Link className='c-link btm-right'>
+                            <span className="c-author"></span>
+                            <span className='c-date'></span>
+                            <span className="c-mx-2 pnt"></span>
+                            <span className="c-read"></span>
+                        </Link>
+                    </div>
+                    <img alt="" className="c-img" />
+                    <div className='c-des'></div>
+                </div>
+            ))}
+            </>
+        );
+    }
+
+
     return (
         <div>
             {blog ? (
                 <div key={blog._id} className='main'>
                     <h2 className='tit' title='title'>{blog.title}</h2>
                     <h3 className="sub" title='subject'>{blog.subject}</h3>
-                        <br/>
+                    <br />
                     <div className="btm">
                         <div className="btm-left">
                             <img className='author-img' src={user ? user.aimage : '/images/users/aut.png'} alt="a img" />

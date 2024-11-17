@@ -12,7 +12,7 @@ const BlogList = ({ searchQuery }) => {
     const aid = parseInt(localStorage.getItem('aid')) || 1;
     const [blogs, setBlogs] = useState([]);
     const [loading, setLoading] = useState(true);
-    
+
     useEffect(() => {
         const blogUrl = `${prt}/blogs`;
         axios.get(blogUrl)
@@ -52,25 +52,25 @@ const BlogList = ({ searchQuery }) => {
     const handleDelete = (id) => {
         setBlogs(blogs.filter(blog => blog._id !== id));
     };
-    const THeight=15;
-if (loading) {
-    return (
-        <div className='mab'>
-            <div className="blog-list">
-                {[...Array(THeight)].map((_, index) => (
-                    <div key={index} className="blog-card placeholder">
-                        <div className="blog-image"></div>
-                        <div className="blog-content">
-                            <h2 className="blog-title"></h2>
-                            <p className="blog-subject"></p>
-                            <p className="blog-date"></p>
+    const THeight = 15;
+    if (loading) {
+        return (
+            <div className='bl-mab'>
+                <div className="bl-blog-list">
+                    {[...Array(THeight)].map((_, index) => (
+                        <div key={index} className="bl-blog-card placeholder">
+                            <div className="bl-blog-image"></div>
+                            <div className="bl-blog-content">
+                                <h2 className="bl-blog-title"></h2>
+                                <p className="bl-blog-subject"></p>
+                                <p className="bl-blog-date"></p>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </div>
-    );
-}   
+        );
+    }
 
     if (blogs.length === 0) {
         return <div className="no-content">No blogs available at the moment.</div>;
@@ -100,7 +100,7 @@ if (loading) {
                                 <FaComment /> {blog.comments}
                             </span>
                         </div>
-                    <BlogActions blog={blog} user={user} onDelete={handleDelete} />
+                        <BlogActions blog={blog} user={user} onDelete={handleDelete} />
                     </div>
                 </div>
             ))}

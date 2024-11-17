@@ -1,6 +1,5 @@
 body {
     font-family: 'Roboto', sans-serif;
-    
     background: linear-gradient(135deg, #2f2f2f, #4c4c4c);
     margin: 0;
     padding: 0;
@@ -199,4 +198,92 @@ a.blog {
 
 .blog-actions button:hover {
     background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* lazy-loader */
+.bl-mab {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.bl-blog-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bl-blog-card.placeholder {
+    width: 300px;
+    background-color: #e6e6e6;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fade-in 0.5s ease-in-out;
+}
+
+.bl-blog-image {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(90deg, #d9d9d9 25%, #f0f0f0 50%, #d9d9d9 75%);
+    background-size: 100% 200%;
+    animation: shimmer 1.5s infinite;
+}
+
+.bl-blog-content {
+    padding: 15px;
+}
+
+.bl-blog-title {
+    width: 70%;
+    height: 20px;
+    background: linear-gradient(90deg, #d9d9d9 25%, #f0f0f0 50%, #d9d9d9 75%);
+    background-size: 200% 100%;
+    border-radius: 5px;
+    animation: shimmer 1.5s infinite;
+    margin-bottom: 10px;
+}
+
+.bl-blog-subject {
+    width: 90%;
+    height: 15px;
+    background: linear-gradient(90deg, #d9d9d9 25%, #f0f0f0 50%, #d9d9d9 75%);
+    background-size: 200% 100%;
+    border-radius: 5px;
+    animation: shimmer 1.5s infinite;
+    margin-bottom: 8px;
+}
+
+.bl-blog-date {
+    width: 50%;
+    height: 15px;
+    background: linear-gradient(90deg, #d9d9d9 25%, #f0f0f0 50%, #d9d9d9 75%);
+    background-size: 200% 100%;
+    border-radius: 5px;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }

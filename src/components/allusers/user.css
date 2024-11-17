@@ -94,3 +94,114 @@
         text-decoration: none;
     }
 }
+
+/* Enhanced Lazy Loader */
+.profile-skeleton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #282c34, #444b56);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    animation: shimmer 1.8s infinite ease-in-out;
+    overflow: hidden;
+    position: relative;
+}
+
+.profile-left .skeleton-img {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #3c4048, #555b65);
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    animation: pulse 1.5s infinite;
+}
+
+.profile-left .skeleton-img:after {
+    content: '';
+    display: block;
+    width: 150%;
+    height: 150%;
+    background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    animation: shine 2s infinite;
+}
+
+.profile-left .skeleton-category {
+    width: 80px;
+    height: 15px;
+    background: linear-gradient(135deg, #3e434c, #606a74);
+    margin-top: 10px;
+    border-radius: 8px;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.profile-right {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-left: 20px;
+}
+
+.profile-right .skeleton-bio,
+.profile-right .skeleton-quote,
+.profile-right .skeleton-posts {
+    height: 15px;
+    background: linear-gradient(135deg, #4a4f59, #707881);
+    margin-bottom: 10px;
+    border-radius: 8px;
+    animation: pulse 1.5s infinite;
+}
+
+.profile-right .skeleton-bio {
+    width: 90%;
+}
+
+.profile-right .skeleton-quote {
+    width: 75%;
+}
+
+.profile-right .skeleton-posts {
+    width: 60%;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -100% -100%;
+    }
+
+    100% {
+        background-position: 200% 200%;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
+
+@keyframes shine {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
