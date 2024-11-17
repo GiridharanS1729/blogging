@@ -72,6 +72,7 @@ export default function Settings() {
                                 <div className="blog-content">
                                     <img src={blog.imagepath} alt={blog.title} className="blog-image" />
                                 </div>
+                            </Link>
                                 <div className="blog-stats">
                                     <span className="blog-read">{calculateReadingTime(blog.description)} min read</span>
                                     <span className="blog-likes">💖 {blog.likes} Likes</span>
@@ -80,7 +81,6 @@ export default function Settings() {
 
                                 </div>
 
-                            </Link>
                         </div>
                     ))}
                 </div>
