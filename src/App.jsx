@@ -66,9 +66,9 @@ function App() {
           <Route
             path="/allusers" element={isLoggedIn && <AllUser />}
           />
-          
+
           <Route
-            path="/createuser" element={ <CreateUser />}
+            path="/createuser" element={<CreateUser />}
           />
 
           <Route
@@ -89,6 +89,7 @@ function App() {
           <Route
             path="/settings" element={isLoggedIn && <Settings />}
           />
+
 
           {/* Redirect any undefined routes */}
           <Route

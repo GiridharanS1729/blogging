@@ -10,10 +10,10 @@ import { prt } from '../../utils/prt';
 
 function CreateBlog() {
   const [formData, setFormData] = useState({
-    title: "title",
-    subject:"subject",
-    description: "description",
-    imagepath: ""
+    title: "",
+    subject:"",
+    description: "",
+    imagepath: "/images/blogs/d.jpg"
   });
 
   const aid = parseInt(localStorage.getItem('aid')) || 1;

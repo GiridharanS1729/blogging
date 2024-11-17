@@ -4,11 +4,11 @@ import './Navbar.css';
 import { pers } from '../../utils/pers';
 import { FaSearch } from 'react-icons/fa';
 import { prt } from '../../utils/prt';
-const ProfilePic='/images/users/aut.png';
+const ProfilePic = '/images/users/aut.png';
 
 const Header = ({ onSearch }) => {
     const [searchQuery, setSearchQuery] = useState('');
-    const [menuVisible, setMenuVisible] = useState(false);
+    const [dmenuVisible, setMenuVisible] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     const [userImage, setUserImage] = useState(ProfilePic); // Default image path
 
@@ -38,20 +38,32 @@ const Header = ({ onSearch }) => {
     const handleSearchIconClick = () => {
         onSearch(searchQuery);  // Perform the search when the FaSearch icon is clicked
     };
+    const dtoggleMenu = () => {
+        setMenuVisible(!dmenuVisible);
+    };
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     const toggleMenu = () => {
-        setMenuVisible(!menuVisible);
+        setIsMenuOpen(!isMenuOpen);
     };
 
     return (
-        <header className="header">
-            <div className="header-logo">{pers.app}</div>
-            <nav className="header-nav">
-                <ul className="nav-list">
-                    <li><a className="nav-lnk" href="/">Home</a></li>
-                    <li><a className="nav-lnk" href="/createblog">Create Blog</a></li>
-                    <li><a className="nav-lnk" href="/about">About</a></li>
+        <nav className="navbar">
+            <div className="logo"><a href="/">{pers.app}</a></div>
+            <div className='h-right'>
 
-                    {/* Conditional rendering for admin link */}
+                <ul className={`menu ${isMenuOpen ? "active" : ""}`}>
+                    <li>
+                        <a className="nav-lnk" href="/">Home</a>
+                    </li>
+                    <li>
+                        <a className="nav-lnk" href="/createblog">Create Blog</a>
+                    </li>
+                    <li>
+                        <a className="nav-lnk" href="/about">About</a>
+                    </li>
+
                     <li>
                         <a className="nav-lnk" href={isAdmin ? "/allusers" : "/contact"}>
                             {isAdmin ? "All Users" : "Contact Us"}
@@ -75,19 +87,21 @@ const Header = ({ onSearch }) => {
                         </form>
                     </li>
 
-                    <li>
-                        <img src={userImage} className='nav-pic' alt='user profile' onClick={toggleMenu} />
-                    </li>
                 </ul>
-            </nav>
 
-            {menuVisible && (
-                <div id="menu" className="menu">
+                <div className="menu-toggle" onClick={toggleMenu}>
+                    ☰
+                </div>
+                <img src={userImage} className='nav-pic' alt='user profile' onClick={dtoggleMenu} />
+            </div>
+
+            {dmenuVisible && (
+                <div id="dmenu" className="dmenu">
                     <a href="/" onClick={() => localStorage.clear()}>Logout</a><br />
                     <a href="/settings">Settings</a>
                 </div>
             )}
-        </header>
+        </nav>
     );
 };
 

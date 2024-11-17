@@ -7,9 +7,9 @@ import { prt } from '../../utils/prt';
 
 const Signup = () => {
     const [formData, setFormData] = useState({
-        username: 'z',
-        email: 'z@gmail.com',
-        password: 'z'
+        username: '',
+        email: '',
+        password: ''
     });
     const [passwordVisible, setPasswordVisible] = useState(false);
     const navigate = useNavigate();
