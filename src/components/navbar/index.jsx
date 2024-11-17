@@ -72,7 +72,6 @@ const Header = ({ onSearch }) => {
                                     <FaSearch />
                                 </span>
                             </span>
-                            {/* <button type="submit" className="search-button">Search</button> */}
                         </form>
                     </li>
 
