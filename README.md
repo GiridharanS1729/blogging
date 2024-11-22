@@ -119,3 +119,5 @@ Feel free to submit issues, fork the repository, and make pull requests. Contrib
 
 For any inquiries, please contact [Me](giridharans1729@gmail.com).
 
+<img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FGiridharanS1729%2Fblogging%2F&countColor=%23263759" />
+ 
