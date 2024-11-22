@@ -16,7 +16,7 @@ body {
     gap: 20px;
     max-width: 1200px;
     margin: 20px auto;
-    padding: 0 15vw;
+    padding: 0 15px;
     justify-content: center;
     align-items: center;
 }
@@ -287,5 +287,11 @@ a.blog {
     to {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .blog-list {
+        padding: 0 15vw;
     }
 }
