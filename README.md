@@ -8,6 +8,25 @@ Welcome to the **Blog Sphere** project! This application allows users to create,
 ## Screenshots
 ![Blog Sphere](./public/preview.png) 
 
+<details><summary><b>All Pages</b></summary>
+<img src="./public/images/Screenshots/s1.png" alt="Screenshot 1">
+<img src="./public/images/Screenshots/s2.png" alt="Screenshot 2">
+<img src="./public/images/Screenshots/s3.png" alt="Screenshot 3">
+<img src="./public/images/Screenshots/s4.png" alt="Screenshot 4">
+<img src="./public/images/Screenshots/s5.png" alt="Screenshot 5">
+<img src="./public/images/Screenshots/s6.png" alt="Screenshot 6">
+<img src="./public/images/Screenshots/s7.png" alt="Screenshot 7">
+<img src="./public/images/Screenshots/s8.png" alt="Screenshot 8">
+<img src="./public/images/Screenshots/s9.png" alt="Screenshot 9">
+<img src="./public/images/Screenshots/s10.png" alt="Screenshot 10">
+<img src="./public/images/Screenshots/s11.png" alt="Screenshot 11">
+<img src="./public/images/Screenshots/s12.png" alt="Screenshot 12">
+<img src="./public/images/Screenshots/s13.png" alt="Screenshot 13">
+<img src="./public/images/Screenshots/s14.png" alt="Screenshot 14">
+<img src="./public/images/Screenshots/s15.png" alt="Screenshot 15">
+
+</details>
+
 ### 📦 Key Features:
 - **Admin Panel**: The **Admin** has full control over the platform, including the ability to:
   - View all **users** through the **All Users** component.
@@ -85,17 +104,7 @@ To run the GBlogs project using Docker, follow these steps:
 
 1. **Open ```http://localhost:3000``` in your browser to view the application.**
 
-2. **📂 Directory Structure**
-    ```bash
-    blogging/      
-    │   ├── src/           # React.js frontend
-    │   └── ...
-    ├── backend/           # Node.js backend
-    │   └── server.js
-    └── README.md          # This file
-    ```
-
-3. **📝 Usage**
+2. **📝 Usage**
 
 - Add Users: Navigate to the "Users" section to add new user accounts.
 - View Users: View user profiles from the "Users" section.
@@ -104,11 +113,130 @@ To run the GBlogs project using Docker, follow these steps:
 - View Blogs: Browse and read blogs from the "Blogs" section.
 - Delete Blogs: Delete blogs by selecting the delete option next to the blog post.
 
-4. **🛠️ Troubleshooting**
+3. **🛠️ Troubleshooting**
 
 If you encounter issues, ensure that MongoDB is running and that the MONGO_URI in the .env file is correctly set.
 Check the terminal for any error messages and address them accordingly.
 
+4. <details><summary><b>📂 Directory Structure</b></summary>
+    <pre>
+    blogging
+    ├── .dockerignore
+    ├── .env
+    ├── .gitignore
+    ├── a.txt
+    ├── Dockerfile
+    ├── jsonDataFiles
+    │   ├── Blogging.blog.json
+    │   ├── Blogging.blogs.json
+    │   └── Blogging.users.json
+    ├── package-lock.json
+    ├── package.json
+    ├── path.ini
+    ├── postcss.config.js
+    ├── public
+    │   ├── blog.ico
+    │   ├── blog.png
+    │   ├── data.json
+    │   ├── images
+    │   │   ├── blogs
+    │   │   │   ├── a.jpg
+    │   │   │   ├── b.jpg
+    │   │   │   ├── c.jpg
+    │   │   │   ├── d.jpg
+    │   │   │   ├── e.jpg
+    │   │   │   ├── f.jpg
+    │   │   │   ├── g.jpg
+    │   │   │   └── h.jpg
+    │   │   ├── folderStructure
+    │   │   │   ├── left.png
+    │   │   │   └── right.png
+    │   │   └── users
+    │   │       ├── ashok.png
+    │   │       ├── aut.png
+    │   │       ├── boy.png
+    │   │       ├── elakiya.png
+    │   │       ├── girl.png
+    │   │       ├── gokul.png
+    │   │       ├── mages.png
+    │   │       └── sekaran.png
+    │   ├── index.html
+    │   ├── manifest.json
+    │   ├── preview.png
+    │   └── robots.txt
+    ├── README.md
+    ├── server
+    │   ├── .env
+    │   ├── .gitignore
+    │   ├── package.json
+    │   ├── ser.js
+    │   ├── server.js
+    │   └── vercel.json
+    ├── src
+    │   ├── App.css
+    │   ├── App.jsx
+    │   ├── App.test.js
+    │   ├── components
+    │   │   ├── about
+    │   │   │   ├── index.jsx
+    │   │   │   └── style.css
+    │   │   ├── allusers
+    │   │   │   ├── index.jsx
+    │   │   │   └── user.css
+    │   │   ├── BlogActions
+    │   │   │   ├── BlogActions.css
+    │   │   │   └── index.jsx
+    │   │   ├── blogs
+    │   │   │   ├── Blogs.css
+    │   │   │   └── index.jsx
+    │   │   ├── BlogUpdate
+    │   │   │   ├── index.jsx
+    │   │   │   └── updateBlog.css
+    │   │   ├── contact
+    │   │   │   ├── cont.css
+    │   │   │   └── index.jsx
+    │   │   ├── content
+    │   │   │   ├── cont.css
+    │   │   │   └── index.jsx
+    │   │   ├── CreateBlog
+    │   │   │   ├── createblog.css
+    │   │   │   └── index.jsx
+    │   │   ├── CreateUser
+    │   │   │   ├── createUser.css
+    │   │   │   └── index.jsx
+    │   │   ├── footer
+    │   │   │   ├── Footer.css
+    │   │   │   └── index.jsx
+    │   │   ├── home
+    │   │   │   └── index.jsx
+    │   │   ├── login
+    │   │   │   ├── index.jsx
+    │   │   │   └── login.css
+    │   │   ├── navbar
+    │   │   │   ├── index.jsx
+    │   │   │   └── Navbar.css
+    │   │   ├── settings
+    │   │   │   ├── index.jsx
+    │   │   │   └── settings.css
+    │   │   ├── signup
+    │   │   │   ├── index.jsx
+    │   │   │   └── signup.css
+    │   │   └── users
+    │   │       ├── index.jsx
+    │   │       └── user.css
+    │   ├── config.js
+    │   ├── index.css
+    │   ├── index.js
+    │   ├── logo.png
+    │   ├── logo.svg
+    │   ├── reportWebVitals.js
+    │   ├── setupTests.js
+    │   └── utils
+    │       ├── pers.js
+    │       └── prt.js
+    └── tailwind.config.js
+    </pre>
+</details>
 **📄 License**
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
