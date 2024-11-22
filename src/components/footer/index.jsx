@@ -8,12 +8,12 @@ const Footer = () => {
         <footer className="footer">
             <div className="container">
                 <div className="footer-content">
-                    <div className="footer-about">
+                    <div className="footer-about sml">
                         <h3>About Us</h3>
                         <p>Sharing thoughts and ideas on various topics. Join us on our journey of exploration and discovery.</p>
                     </div>
 
-                    <div className="footer-links">
+                    <div className="footer-links ml">
                         <h3>Quick Links</h3>
                         <ul>
                             <li><a href="/">Home</a></li>
@@ -23,7 +23,7 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div className="footer-social">
+                    <div className="footer-social smll">
                         <h3>Follow Us</h3>
                         <ul className="social-icons">
                             <li><a href={pers.linkedin}><FaLinkedin /></a></li>
@@ -35,7 +35,7 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div className="footer-subscribe">
+                    <div className="footer-subscribe sml">
                         <h3>Subscribe</h3>
                         <form>
                             <input type="email" placeholder="Your email address" />

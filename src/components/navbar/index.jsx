@@ -58,7 +58,7 @@ const Header = ({ onSearch }) => {
                         <a className="nav-lnk" href="/">Home</a>
                     </li>
                     <li>
-                        <a className="nav-lnk" href="/createblog">Create Blog</a>
+                        <a className="nav-lnk" href="/createblog">Create <span className='cbs'>Blog</span></a>
                     </li>
                     <li>
                         <a className="nav-lnk" href="/about">About</a>

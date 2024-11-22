@@ -1,9 +1,6 @@
-/* Import Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
 
-
 .footer {
-    /* margin-top:100px; */
     background: linear-gradient(135deg, #3b8d99, #6b6b83);
     color: #fff;
     padding: 40px 0;
@@ -33,7 +30,6 @@
     margin-bottom: 30px;
 }
 
-/* About Section */
 .footer-about h3,
 .footer-links h3,
 .footer-social h3,
@@ -43,7 +39,6 @@
     font-weight: 800;
 }
 
-/* Quick Links */
 .footer-links ul {
     list-style: none;
     padding: 0;
@@ -63,10 +58,8 @@
 
 .footer-links ul li a:hover {
     color: #ffeb3b;
-    /* Bright yellow on hover */
 }
 
-/* Social Icons */
 .footer-social ul {
     display: flex;
     gap: 15px;
@@ -83,10 +76,8 @@
 .footer-social ul li a:hover {
     color: #ffeb3b;
     transform: scale(1.2);
-    /* Slight zoom on hover */
 }
 
-/* Subscribe Section */
 .footer-subscribe form {
     display: flex;
     flex-direction: column;
@@ -114,10 +105,8 @@
 
 .footer-subscribe button:hover {
     background-color: #ffc107;
-    /* Darker yellow on hover */
 }
 
-/* Footer Bottom */
 .footer-bottom {
     text-align: center;
     margin-top: 20px;
@@ -127,7 +116,6 @@
     opacity: 0.8;
 }
 
-/* Fade In Up Animation */
 @keyframes fadeInUp {
     from {
         transform: translateY(50px);
@@ -139,3 +127,19 @@
         opacity: 1;
     }
 }
+
+@media screen and (max-width: 700px) {
+    .sml{
+        display: none;
+    }
+    .smll{
+        margin:0 auto;
+    }
+    .social-icons{
+        flex-wrap: wrap;
+        margin-left: 20px;
+    }
+    .footer-content *{
+        font-size: 20px;
+    }
+}   

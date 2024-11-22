@@ -16,7 +16,9 @@ body {
     gap: 20px;
     max-width: 1200px;
     margin: 20px auto;
-    padding: 0 15px;
+    padding: 0 15vw;
+    justify-content: center;
+    align-items: center;
 }
 
 .blog-card {

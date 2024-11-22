@@ -70,45 +70,7 @@
     cursor: pointer;
 }
 
-@media (max-width: 800px) {
-    .navbar .menu {
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        display: none;
-    }
 
-    .navbar .menu li a {
-        color: #ff0;
-    }
-
-    .navbar .menu.active {
-        display: flex;
-        background: linear-gradient(135deg, #ff7e5f, #feb47b);
-        width: 50vw;
-        height: fit-content;
-        padding: 50px;
-        align-items: start;
-        position: fixed;
-        top: 87px;
-        right: 0;
-        transform: translateX(100%);
-        transition: transform 0.3s ease-out;
-        border-radius: 10px;
-    }
-
-    .navbar .menu.active.show {
-        transform: translateX(0);
-    }
-
-    .navbar .menu-toggle {
-        display: block;
-        font-weight: 900;
-        font-size: 30px;
-    }
-}
 
 .h-right {
     display: flex;
@@ -186,6 +148,7 @@
     align-items: center;
     flex: 1;
     position: relative;
+
 }
 
 .search-input {
@@ -259,4 +222,63 @@
 
 .dmenu a:hover {
     background-color: #f0f0f0;
+}
+
+/* 
+.navbar .menu.active {
+    transform: translateX(-50%);
+} */
+
+@media (max-width: 800px) {
+    .navbar .menu {
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        display: none;
+    }
+
+    .navbar .menu li a {
+        color: #ff0;
+    }
+
+    .cbs {
+        display: none;
+    }
+
+    .navbar .menu.active {
+        display: flex;
+        background: linear-gradient(135deg, #ff7e5f, #feb47b);
+        width: 50vw;
+        height: fit-content;
+        padding: 50px;
+        align-items: start;
+        position: fixed;
+        top: 87px;
+        right: 100px;
+        transform: translateX(100%);
+        animation: rs 0.1s ease-in-out forwards;
+        border-radius: 10px;
+    }
+
+    @keyframes rs {
+        0% {
+            transform: translateX(150%);
+        }
+
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+    .navbar .menu-toggle {
+        display: block;
+        font-weight: 900;
+        font-size: 30px;
+    }
+
+    .search-form {
+        width: 100%;
+    }
 }
