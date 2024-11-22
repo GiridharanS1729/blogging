@@ -129,17 +129,21 @@
 }
 
 @media screen and (max-width: 700px) {
-    .sml{
+    .sml {
         display: none;
     }
-    .smll{
-        margin:0 auto;
+
+    .smll {
+        margin: 0 auto;
+        width: fit-content;
+
+        h3 {
+            font-size: 20px;
+        }
     }
-    .social-icons{
+
+    .social-icons {
         flex-wrap: wrap;
         margin-left: 20px;
     }
-    .footer-content *{
-        font-size: 20px;
-    }
-}   
+}

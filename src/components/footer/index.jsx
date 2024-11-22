@@ -13,7 +13,7 @@ const Footer = () => {
                         <p>Sharing thoughts and ideas on various topics. Join us on our journey of exploration and discovery.</p>
                     </div>
 
-                    <div className="footer-links ml">
+                    <div className="footer-links smll">
                         <h3>Quick Links</h3>
                         <ul>
                             <li><a href="/">Home</a></li>
