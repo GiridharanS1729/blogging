@@ -2,7 +2,7 @@
 
 Welcome to the **Blog Sphere** project! This application allows users to create, view, and manage blogs. It is built using **React.js** for the frontend, **Node.js** for the backend, and **MongoDB** for the database.
 
-## Hosted at:
+## Hosted at
  **[Blog Sphere](https://gblogs.vercel.app)**
 
 ## Screenshots
@@ -27,7 +27,7 @@ Welcome to the **Blog Sphere** project! This application allows users to create,
 
 </details>
 
-### 📦 Key Features:
+## 📦 Key Features:
 - **Admin Panel**: The **Admin** has full control over the platform, including the ability to:
   - View all **users** through the **All Users** component.
   - Edit, delete, and manage all **posts**.
@@ -43,7 +43,7 @@ Welcome to the **Blog Sphere** project! This application allows users to create,
 
 - **Frontend**: **React.js** 
 - **Backend**: **Node.js**, **Express.js**
-- **Database**: **MongoDB**
+- **Database**: **MongoDB**, **Mongo Atlas**(for hosting purpose)
 
 ## 🚀 Getting Started
 
@@ -237,6 +237,7 @@ Check the terminal for any error messages and address them accordingly.
     └── tailwind.config.js
     </pre>
 </details>
+
 **📄 License**
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
