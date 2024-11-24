@@ -1,5 +1,6 @@
 # Blog Sphere
 
+
 Welcome to the **Blog Sphere** project! This application allows users to create, view, and manage blogs. It is built using **React.js** for the frontend, **Node.js** for the backend, and **MongoDB** for the database.
 
 ## Hosted at
